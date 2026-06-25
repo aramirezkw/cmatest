@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="1f01d987-d58c-449a-8f13-a887fe9385d9"></script>
+</head>
+<body>
+
+<x-dc>
+<helmet>
+<style>/* ============================================================
+   kw XDS Design System — Colors & Type Foundations
+   Source: XDS-Master.fig (Color-Tokens, Typography pages) +
+   XDS Foundations.pdf. Light theme is the default (applets);
+   dark theme (.xds-dark) is used for Command shell/console chrome.
+   ============================================================ */
+
+/* ---------- Fonts ---------- */
+/* Mulish — sole interface font (Vernon Adams, via Google Fonts).
+   Shipped here as a variable TTF. IBM Plex Mono is the monospace
+   companion; IBM Plex Sans is used in design documentation only. */
+@font-face {
+  font-family: "Mulish";
+  src: url("71aa38b4-06b5-40ca-bf82-d0de6159d859") format("truetype");
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("c3d3d4cc-da21-4ccb-ad29-347afe58e67a") format("truetype");
+  font-weight: 200 1000;
+  font-style: italic;
+  font-display: swap;
+}
+/* IBM Plex Mono / Sans expected from Google Fonts CDN:
+   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet"> */
+
+:root {
+  /* ============================================================
+     RAW PALETTE — 8 palettes (2 core, 6 supplementary).
+     These are the underlying hues; prefer the semantic tokens below.
+     ============================================================ */
+  /* Neutral (gray) — default UI, text, inactive */
+  --kw-neutral-900: rgb(40,43,51);    /* #282B33 labelPrimary */
+  --kw-neutral-800: rgb(43,43,51);    /* #2B2B33 shell base / shadow source */
+  --kw-neutral-700: rgb(61,66,77);    /* #3D424D labelSecondary / neutral.action */
+  --kw-neutral-500: rgb(108,114,126); /* #6C727E labelTertiary */
+  --kw-neutral-400: rgb(174,178,186);
+  --kw-neutral-300: rgb(200,203,208);
+  --kw-neutral-200: rgb(228,229,231); /* #E4E5E7 containerTinted */
+  --kw-neutral-100: rgb(247,247,248); /* #F7F7F8 pageBackground */
+  --kw-neutral-000: rgb(255,255,255); /* #FFFFFF containerBackground */
+  --kw-shell-bg:    rgb(23,24,28);    /* #17181C dark pageBackground */
+
+  /* System (teal) — PRIMARY accent: buttons, links, active elements */
+  --kw-system:        rgb(0,108,132);   /* #006C84 */
+  --kw-system-hover:  rgb(14,78,93);    /* #0E4E5D */
+  --kw-system-active: rgb(1,124,152);   /* #017C98 */
+  --kw-system-tint:   rgb(213,247,255); /* #D5F7FF */
+
+  /* Red — danger / destructive / error */
+  --kw-red:        rgb(197,5,11);    /* #C5050B */
+  --kw-red-hover:  rgb(129,9,32);    /* #810920 */
+  --kw-red-active: rgb(222,33,33);
+  --kw-red-tint:   rgb(252,220,221);
+
+  /* Orange — warning */
+  --kw-orange:        rgb(167,59,6);  /* #A73B06 */
+  --kw-orange-hover:  rgb(119,49,15);
+  --kw-orange-tint:   rgb(254,223,207);
+
+  /* Yellow — pending / draft / in progress */
+  --kw-yellow:        rgb(153,94,0);  /* #995E00 */
+  --kw-yellow-hover:  rgb(112,69,0);
+  --kw-yellow-tint:   rgb(255,237,201);
+
+  /* Green — success */
+  --kw-green:        rgb(2,110,36);   /* #026E24 */
+  --kw-green-hover:  rgb(11,76,31);
+  --kw-green-tint:   rgb(214,242,223);
+
+  /* Blue — informative / low-stakes alerts */
+  --kw-blue:        rgb(15,94,173);   /* #0F5EAD */
+  --kw-blue-hover:  rgb(29,70,112);
+  --kw-blue-tint:   rgb(217,239,255);
+
+  /* Purple — help / support / onboarding */
+  --kw-purple:        rgb(103,48,180); /* #6730B4 */
+  --kw-purple-hover:  rgb(77,46,120);
+  --kw-purple-tint:   rgb(239,232,251);
+
+  /* Brand */
+  --kw-brand-red: #CE011F; /* kw logo square */
+
+  /* ============================================================
+     SEMANTIC TOKENS — LIGHT THEME (default; applets)
+     Use these in product UI, not the raw palette.
+     ============================================================ */
+  /* Labels / text */
+  --label-primary:   rgb(40,43,51);
+  --label-secondary: rgb(61,66,77);
+  --label-tertiary:  rgb(108,114,126);
+  --label-inverse:   rgb(255,255,255);
+
+  /* Backgrounds */
+  --page-background:        rgb(247,247,248);
+  --container-background:   rgb(255,255,255);
+  --container-tinted:       rgb(228,229,231);
+  --container-tinted-inverse: rgb(61,66,77);
+
+  /* Lines */
+  --outline:  rgba(61,66,77,0.2);
+  --divider:  rgba(43,43,51,0.1);
+
+  /* Actions — default palette is SYSTEM (teal) */
+  --action:               rgb(0,108,132);
+  --action-hover:         rgb(14,78,93);
+  --action-hover-fill:    rgba(0,108,132,0.1);
+  --action-active:        rgb(1,124,152);
+  --action-active-fill:   rgba(0,108,132,0.2);
+  --action-focus-outline: rgba(0,108,132,0.3);
+
+  /* Neutral actions (some buttons/inputs) */
+  --action-neutral:        rgb(61,66,77);
+  --action-neutral-hover:  rgb(40,43,51);
+  --action-neutral-active: rgb(87,94,107);
+
+  /* Overlays (neutral only) */
+  --overlay-darken:  rgba(43,43,51,0.6);
+  --overlay-lighten: rgba(247,247,248,0.6);
+
+  /* Semantic status (label-strength values, light theme) */
+  --status-danger:  rgb(197,5,11);
+  --status-warning: rgb(167,59,6);
+  --status-pending: rgb(153,94,0);
+  --status-success: rgb(2,110,36);
+  --status-info:    rgb(15,94,173);
+  --status-help:    rgb(103,48,180);
+
+  /* ============================================================
+     ELEVATION — container & bar shadows (light theme)
+     ============================================================ */
+  --shadow04: 0px 2px 4px 0px rgba(43,43,51,0.05), 0px 0px 1px 0px rgba(43,43,51,0.4);
+  --shadow12: 0px 6px 12px 0px rgba(43,43,51,0.05), 0px 3px 6px 0px rgba(43,43,51,0.05), 0px 0px 1px 0px rgba(43,43,51,0.2);
+  --shadow32: 0px 16px 32px 0px rgba(43,43,51,0.1), 0px 8px 16px 0px rgba(43,43,51,0.1), 0px 2px 4px 0px rgba(43,43,51,0.1), 0px 0px 1px 0px rgba(43,43,51,0.4);
+  --shadow04-inset: inset 0px 2px 4px 0px rgba(43,43,51,0.05), inset 0px 0px 1px 0px rgba(43,43,51,0.4);
+  --bar-header: 0px 1px 0px 0px rgba(43,43,51,0.1);
+  --bar-footer: 0px -1px 0px 0px rgba(43,43,51,0.1);
+  --bar-elevated: 0px 0px 12px 0px rgba(43,43,51,0.08), 0px 0px 6px 0px rgba(43,43,51,0.06), 0px 0px 1px 0px rgba(43,43,51,0.4);
+  --shell-bar: 0px 2px 12px 0px rgba(0,0,0,0.15), 0px 1px 6px 0px rgba(0,0,0,0.15), 0px 0px 1px 0px rgba(0,0,0,0.8);
+
+  /* ============================================================
+     SPACING — 8px base unit (4px half-step)
+     ============================================================ */
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 48px;
+  --space-9: 64px;
+  --grid-gutter: 16px;
+  --grid-padding: 16px;
+
+  /* ============================================================
+     RADII — components use small radii (4px default)
+     ============================================================ */
+  --radius-sm: 2px;
+  --radius-md: 4px;   /* buttons, inputs, chips, default */
+  --radius-lg: 8px;   /* cards, larger containers */
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  /* ============================================================
+     TYPOGRAPHY — families
+     ============================================================ */
+  --font-sans: "Mulish", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-docs: "IBM Plex Sans", system-ui, sans-serif; /* documentation only */
+
+  /* Weights */
+  --fw-regular: 400;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+}
+
+/* ============================================================
+   DARK THEME — Command shell / console chrome (.xds-dark)
+   ============================================================ */
+.xds-dark {
+  --label-primary:   rgb(247,247,248);
+  --label-secondary: rgb(200,203,208);
+  --label-tertiary:  rgb(145,150,161);
+  --label-inverse:   rgb(23,24,28);
+
+  --page-background:      rgb(23,24,28);
+  --container-background: rgb(40,43,51);
+  --container-tinted:     rgb(61,66,77);
+  --container-tinted-inverse: rgb(200,203,208);
+
+  --outline:  rgba(200,203,208,0.3);
+  --divider:  rgba(174,178,186,0.2);
+
+  --action:               rgb(88,216,245);
+  --action-hover:         rgb(213,247,255);
+  --action-hover-fill:    rgba(88,216,245,0.2);
+  --action-active:        rgb(12,173,211);
+  --action-active-fill:   rgba(88,216,245,0.3);
+  --action-focus-outline: rgba(88,216,245,0.4);
+
+  --action-neutral:        rgb(200,203,208);
+  --action-neutral-hover:  rgb(228,229,231);
+  --action-neutral-active: rgb(174,178,186);
+
+  --overlay-darken:  rgba(0,0,0,0.6);
+  --overlay-lighten: rgba(40,43,51,0.6);
+
+  --status-danger:  rgb(255,134,134);
+  --status-warning: rgb(254,155,103);
+  --status-pending: rgb(255,206,108);
+  --status-success: rgb(113,218,145);
+  --status-info:    rgb(131,196,254);
+  --status-help:    rgb(199,159,255);
+
+  --shadow04: 0px 2px 4px 0px rgba(0,0,0,0.2), 0px 0px 1px 0px rgba(0,0,0,0.6);
+  --shadow12: 0px 6px 12px 0px rgba(0,0,0,0.2), 0px 3px 6px 0px rgba(0,0,0,0.2), 0px 0px 1px 0px rgba(0,0,0,0.6);
+  --shadow32: 0px 16px 32px 0px rgba(0,0,0,0.3), 0px 8px 16px 0px rgba(0,0,0,0.3), 0px 0px 1px 0px rgba(0,0,0,0.8);
+}
+
+/* ============================================================
+   SEMANTIC TYPE STYLES — XDS scale (fontSize tokens combine
+   size + line-height). Default interface weight is Bold for
+   titles/labels; body is Regular. All map to Mulish.
+   ============================================================ */
+.xds-display-lg      { font: var(--fw-regular) 48px/56px var(--font-sans); }
+.xds-display-lg-bold { font: var(--fw-extrabold) 48px/56px var(--font-sans); }
+.xds-display-md      { font: var(--fw-regular) 40px/48px var(--font-sans); }
+.xds-display-md-bold { font: var(--fw-extrabold) 40px/48px var(--font-sans); }
+
+.xds-title-xl      { font: var(--fw-regular) 32px/40px var(--font-sans); }
+.xds-title-xl-bold { font: var(--fw-extrabold) 32px/40px var(--font-sans); }
+.xds-title-lg      { font: var(--fw-regular) 24px/32px var(--font-sans); }
+.xds-title-lg-bold { font: var(--fw-extrabold) 24px/32px var(--font-sans); }  /* H1 */
+.xds-title-md      { font: var(--fw-regular) 20px/24px var(--font-sans); }
+.xds-title-md-bold { font: var(--fw-extrabold) 20px/24px var(--font-sans); }  /* H2 */
+.xds-title-sm      { font: var(--fw-regular) 16px/20px var(--font-sans); }
+.xds-title-sm-bold { font: var(--fw-bold) 16px/20px var(--font-sans); }       /* H3 */
+
+.xds-subtitle-lg { font: var(--fw-bold) 16px/20px var(--font-sans); letter-spacing: 1.6px; text-transform: uppercase; }
+.xds-subtitle-md { font: var(--fw-bold) 12px/16px var(--font-sans); letter-spacing: 1.2px; text-transform: uppercase; } /* table headers */
+.xds-subtitle-sm { font: var(--fw-bold) 10px/12px var(--font-sans); letter-spacing: 1px;   text-transform: uppercase; }
+
+.xds-text-lg        { font: var(--fw-regular) 16px/24px var(--font-sans); }   /* intro text */
+.xds-text-lg-bold   { font: var(--fw-bold) 16px/24px var(--font-sans); }
+.xds-text-md        { font: var(--fw-regular) 14px/20px var(--font-sans); }   /* body, p, input, table data */
+.xds-text-md-bold   { font: var(--fw-bold) 14px/20px var(--font-sans); }      /* button & link labels, strong */
+.xds-text-sm        { font: var(--fw-regular) 12px/16px var(--font-sans); }   /* helper text, captions */
+.xds-text-sm-bold   { font: var(--fw-bold) 12px/16px var(--font-sans); }      /* chip & input labels, small buttons */
+.xds-text-xs        { font: var(--fw-regular) 10px/12px var(--font-sans); }   /* tiny labels (not body) */
+.xds-text-xs-bold   { font: var(--fw-bold) 10px/12px var(--font-sans); }
+
+/* Convenience semantic aliases */
+.xds-h1 { font: var(--fw-extrabold) 24px/32px var(--font-sans); color: var(--label-primary); }
+.xds-h2 { font: var(--fw-extrabold) 20px/24px var(--font-sans); color: var(--label-primary); }
+.xds-h3 { font: var(--fw-bold) 16px/20px var(--font-sans); color: var(--label-primary); }
+.xds-p  { font: var(--fw-regular) 14px/20px var(--font-sans); color: var(--label-secondary); }
+.xds-link { font: var(--fw-bold) 14px/20px var(--font-sans); color: var(--action); text-decoration: none; cursor: pointer; }
+.xds-link:hover { color: var(--action-hover); text-decoration: underline; }
+.xds-code { font: var(--fw-regular) 14px/20px var(--font-mono); }
+</style>
+<script src="33322667-af50-4d93-bf41-57daeae2b01c"></script>
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;font-family:var(--font-sans);}
+  [data-dash-root] *::-webkit-scrollbar{width:10px;height:10px;}
+  [data-dash-root] *::-webkit-scrollbar-thumb{background:var(--kw-neutral-300);border-radius:8px;border:2px solid var(--page-background);}
+  @keyframes kwiqDot{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-4px);opacity:1}}
+  @keyframes kwiqSpin{to{transform:rotate(360deg)}}
+  @keyframes kwiqIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  [data-dash-root] [data-lead-action]:hover{background:var(--action) !important;color:#fff !important;}
+  [data-dash-root] [data-deck-overlay] [data-deck-nav]:hover{background:rgba(255,255,255,.3) !important;}
+  [data-dash-root] [data-body-row]{transition:margin-right .3s cubic-bezier(.4,0,.2,1);}
+  [data-dash-root] [data-kwiq-prompt]{transition:background .14s ease,color .14s ease,box-shadow .14s ease,transform .14s ease;}
+  [data-dash-root] [data-kwiq-prompt]:hover{background:var(--kw-system-tint) !important;color:var(--action) !important;box-shadow:var(--shadow04);transform:translateY(-1px);}
+  [data-dash-root] [data-kwiq-prompt]:active{transform:translateY(0);box-shadow:none;}
+  /* ---- Concierge AI surface ---- */
+  [data-dash-root] [data-kwiq-cbox]{transition:border-color .2s ease,box-shadow .2s ease;}
+  [data-dash-root] [data-kwiq-cbox]:focus-within{border-color:var(--action) !important;box-shadow:0 0 0 4px var(--action-hover-fill);}
+  [data-dash-root] [data-kwiq-ctx]{transition:background .16s ease,transform .16s ease;}
+  [data-dash-root] [data-kwiq-ctx]:hover{background:var(--kw-system-tint) !important;transform:translateY(-1px);}
+  [data-dash-root] [data-kwiq-voice]{transition:background .16s ease;}
+  [data-dash-root] [data-kwiq-voice]:hover{background:var(--kw-system-tint) !important;}
+  [data-dash-root] [data-kwiq-model]{transition:background .16s ease;}
+  [data-dash-root] [data-kwiq-model]:hover{background:var(--kw-neutral-100) !important;}
+  [data-dash-root] [data-kwiq-send]{transition:background .16s ease,transform .12s ease;}
+  [data-dash-root] [data-kwiq-send]:hover{background:var(--action-hover) !important;}
+  [data-dash-root] [data-kwiq-send]:active{transform:scale(.94);}
+</style>
+</helmet>
+
+<div data-dash-root="" style="height:100vh;display:flex;flex-direction:column;background:var(--page-background);font-family:var(--font-sans);color:var(--label-primary);overflow:hidden;">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <header style="height:64px;flex:none;background:var(--kw-neutral-900);display:flex;align-items:center;box-shadow:var(--shell-bar);position:relative;z-index:40;color:#fff;">
+    <div style="width:64px;height:64px;flex:none;background:var(--kw-brand-red);display:flex;align-items:center;justify-content:center;">
+      <img src="45fc32b2-97c4-4243-81ac-ba0da5ee0c36" alt="kw" style="width:48px;height:48px;border-radius:4px;">
+    </div>
+    <nav style="display:flex;align-items:flex-start;gap:30px;padding-left:26px;">
+      <span style="font:var(--fw-regular) 22px/1 var(--font-sans);color:#fff;cursor:pointer;">command</span>
+      <span style="font:var(--fw-regular) 22px/1 var(--font-sans);color:rgba(255,255,255,.5);cursor:pointer;">connect</span>
+      <span style="font:var(--fw-regular) 22px/1 var(--font-sans);color:rgba(255,255,255,.5);cursor:pointer;">command<sup style="font-size:11px;font-weight:400;">MC</sup></span>
+    </nav>
+    <div style="flex:1;"></div>
+    <div style="display:flex;align-items:center;gap:18px;padding-right:22px;">
+      <!-- KWIQ -->
+      <button data-kwiq-open="" style="display:flex;align-items:center;background:transparent;border:none;cursor:pointer;padding:6px 8px;border-radius:8px;" style-hover="background:rgba(255,255,255,.1);">
+        <img src="23a094c5-300c-4a42-9051-f81c14827186" alt="KWIQ" style="height:24px;width:auto;display:block;">
+      </button>
+      <!-- marketplace -->
+      <button title="Marketplace" style="width:40px;height:40px;border:none;background:transparent;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;" style-hover="background:rgba(255,255,255,.12);">
+        <svg width="24" height="22" viewBox="0 0 26 24" fill="currentColor"><path d="M 4 0 C 3.649 0 3.323 0.184 3.143 0.486 L 0.143 5.486 C 0.049 5.641 0 5.819 0 6 C 0 7.481 0.804 8.773 2 9.465 L 2 20.375 C 2 22.413 3.705 24 5.727 24 L 20.273 24 C 22.295 24 24 22.413 24 20.375 L 24 9.465 C 25.196 8.773 26 7.481 26 6 C 26 5.819 25.951 5.641 25.857 5.486 L 22.857 0.486 C 22.677 0.184 22.351 0 22 0 L 4 0 Z M 22 10 C 20.805 10 19.733 9.476 19 8.646 C 18.267 9.476 17.195 10 16 10 C 14.805 10 13.733 9.476 13 8.646 C 12.267 9.476 11.195 10 10 10 C 8.805 10 7.733 9.476 7 8.646 C 6.267 9.476 5.195 10 4 10 L 4 20.375 C 4 21.237 4.737 22 5.727 22 L 8 22 L 8 14 C 8 12.895 8.895 12 10 12 L 16 12 C 17.105 12 18 12.895 18 14 L 18 22 L 20.273 22 C 21.263 22 22 21.237 22 20.375 L 22 10 Z M 10 8 C 8.895 8 8 7.105 8 6 C 8 5.448 7.552 5 7 5 C 6.448 5 6 5.448 6 6 C 6 7.105 5.105 8 4 8 C 2.98 8 2.139 7.237 2.016 6.251 L 4.566 2 L 21.434 2 L 23.984 6.251 C 23.861 7.237 23.02 8 22 8 C 20.895 8 20 7.105 20 6 C 20 5.448 19.552 5 19 5 C 18.448 5 18 5.448 18 6 C 18 7.105 17.105 8 16 8 C 14.895 8 14 7.105 14 6 C 14 5.448 13.552 5 13 5 C 12.448 5 12 5.448 12 6 C 12 7.105 11.105 8 10 8 Z M 16 14 L 16 22 L 10 22 L 10 14 L 16 14 Z"></path></svg>
+      </button>
+      <!-- bell + badge -->
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button title="Notifications" style="width:40px;height:40px;border:none;background:transparent;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;" style-hover="background:rgba(255,255,255,.12);">
+          <svg width="22" height="24" viewBox="0 0 26 28" fill="currentColor"><path d="M 13 0 C 7.477 0 3 4.477 3 10 L 3 18.126 C 1.275 18.57 0 20.136 0 22 C 0 24.209 1.791 26 4 26 L 10.171 26 C 10.583 27.165 11.694 28 13 28 C 14.306 28 15.417 27.165 15.829 26 L 22 26 C 24.209 26 26 24.209 26 22 C 26 20.136 24.725 18.57 23 18.126 L 23 10 C 23 4.477 18.523 0 13 0 Z M 5 10 C 5 5.582 8.582 2 13 2 C 17.418 2 21 5.582 21 10 L 21 19 C 21 19.552 21.448 20 22 20 C 23.105 20 24 20.895 24 22 C 24 23.105 23.105 24 22 24 L 4 24 C 2.895 24 2 23.105 2 22 C 2 20.895 2.895 20 4 20 C 4.552 20 5 19.552 5 19 L 5 10 Z"></path></svg>
+        </button>
+        <span data-unread="" style="background:#F2555A;color:#fff;font:var(--fw-extrabold) 13px/1 var(--font-sans);padding:5px 9px;border-radius:999px;min-width:30px;text-align:center;">211</span>
+      </div>
+      <!-- account -->
+      <button style="display:flex;align-items:center;gap:11px;background:transparent;border:none;cursor:pointer;padding:5px 8px;border-radius:8px;margin-left:2px;" style-hover="background:rgba(255,255,255,.1);">
+        <span style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#0a7c98,#00566a);color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 15px/1 var(--font-sans);flex:none;">NR</span>
+        <span style="text-align:left;line-height:1.1;">
+          <span style="display:flex;align-items:center;gap:7px;">
+            <span style="font:var(--fw-extrabold) 15px/18px var(--font-sans);color:#fff;white-space:nowrap;">Nina Royals</span>
+            <svg width="11" height="11" viewBox="0 0 32 32" fill="rgba(255,255,255,.65)"><path d="M 19.002 0 L 1.002 0 C 0.111 0 -0.335 1.077 0.295 1.707 L 9.295 10.707 C 9.685 11.098 10.319 11.098 10.709 10.707 L 19.709 1.707 C 20.339 1.077 19.893 0 19.002 0 Z" transform="translate(5.998 11)"></path></svg>
+          </span>
+          <span style="display:flex;align-items:center;gap:5px;color:rgba(255,255,255,.6);font:var(--fw-regular) 12px/16px var(--font-sans);margin-top:2px;white-space:nowrap;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="3"></circle><path d="M2 20c0-3.3 2.7-5 6-5s6 1.7 6 5"></path><circle cx="17.5" cy="9" r="2.2"></circle><path d="M16 14.4c2.9.2 5 1.7 5 5"></path></svg>
+            Nina Royals Team
+          </span>
+        </span>
+      </button>
+      <!-- help -->
+      <button title="Help" style="width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:rgba(255,255,255,.85);font:var(--fw-bold) 16px/1 var(--font-sans);cursor:pointer;display:flex;align-items:center;justify-content:center;" style-hover="background:rgba(255,255,255,.12);">?</button>
+    </div>
+  </header>
+
+  <!-- ===================== BODY ROW ===================== -->
+  <div data-body-row="" style="flex:1;display:flex;min-height:0;">
+
+    <!-- SIDEBAR -->
+    <aside style="width:64px;flex:none;background:#fff;box-shadow:var(--shadow12);position:relative;z-index:30;padding-top:8px;display:flex;flex-direction:column;gap:2px;">
+      <button style="position:relative;width:64px;height:48px;border:none;background:var(--action-hover-fill);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--action);">
+        <span style="position:absolute;left:0;top:7px;bottom:7px;width:3px;border-radius:999px;background:var(--action);"></span>
+        <svg width="24" height="22" viewBox="0 0 28 26" fill="currentColor"><path d="M 13.431 0.178 C 13.773 -0.059 14.227 -0.059 14.569 0.178 L 27.569 9.178 C 28.023 9.492 28.137 10.115 27.822 10.569 C 27.508 11.023 26.885 11.137 26.431 10.822 L 26 10.524 L 26 22 C 26 24.209 24.209 26 22 26 L 6 26 C 3.791 26 2 24.209 2 22 L 2 10.524 L 1.569 10.822 C 1.115 11.137 0.492 11.023 0.178 10.569 C -0.136 10.115 -0.023 9.492 0.431 9.178 L 13.431 0.178 Z M 14 2.216 L 24 9.139 L 24 22 C 24 23.105 23.105 24 22 24 L 19 24 L 19 16 C 19 14.895 18.105 14 17 14 L 11 14 C 9.896 14 9 14.895 9 16 L 9 24 L 6 24 C 4.896 24 4 23.105 4 22 L 4 9.139 L 14 2.216 Z M 11 24 L 17 24 L 17 16 L 11 16 L 11 24 Z" fill-rule="evenodd"></path></svg>
+      </button>
+      <button style="width:64px;height:48px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--label-tertiary);" style-hover="background:var(--kw-neutral-100);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M 0 4 C 0 1.791 1.791 0 4 0 L 20 0 C 22.209 0 24 1.791 24 4 L 24 20 C 24 22.209 22.209 24 20 24 L 19.839 24 C 19.829 24 19.819 24 19.809 24 L 4.19 24 C 4.181 24 4.171 24 4.161 24 L 4 24 C 1.791 24 0 22.209 0 20 L 0 4 Z M 22 20 C 22 20.871 21.443 21.612 20.666 21.886 C 20.207 19.357 19.276 17.437 17.883 16.114 C 17.067 15.339 16.126 14.801 15.097 14.461 C 15.303 14.232 15.491 13.987 15.66 13.734 C 16.493 12.487 17 10.865 17 9.286 C 17 7.682 16.475 6.343 15.537 5.401 C 14.603 4.464 13.337 4 12 4 C 10.663 4 9.397 4.464 8.463 5.401 C 7.525 6.343 7 7.682 7 9.286 C 7 10.865 7.507 12.487 8.34 13.734 C 8.509 13.987 8.697 14.232 8.903 14.461 C 7.874 14.801 6.933 15.339 6.117 16.114 C 4.724 17.437 3.793 19.357 3.334 21.886 C 2.557 21.612 2 20.871 2 20 L 2 4 C 2 2.895 2.895 2 4 2 L 20 2 C 21.105 2 22 2.895 22 4 L 22 20 Z M 18.652 22 L 5.348 22 C 5.766 19.894 6.532 18.479 7.495 17.564 C 8.609 16.506 10.11 16 12 16 C 13.89 16 15.391 16.506 16.505 17.564 C 17.468 18.479 18.234 19.894 18.652 22 Z M 9 9.286 C 9 8.128 9.37 7.325 9.88 6.813 C 10.394 6.298 11.128 6 12 6 C 12.872 6 13.606 6.298 14.12 6.813 C 14.63 7.325 15 8.128 15 9.286 C 15 10.467 14.612 11.703 13.997 12.623 C 13.368 13.564 12.636 14 12 14 C 11.364 14 10.632 13.564 10.003 12.623 C 9.388 11.703 9 10.467 9 9.286 Z" fill-rule="evenodd"></path></svg>
+      </button>
+      <button style="width:64px;height:48px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--label-tertiary);" style-hover="background:var(--kw-neutral-100);">
+        <svg width="24" height="18" viewBox="0 0 28 20" fill="currentColor"><path d="M 9.707 1.707 C 10.098 1.317 10.098 0.683 9.707 0.293 C 9.317 -0.098 8.683 -0.098 8.293 0.293 L 3 5.586 L 1.707 4.293 C 1.317 3.902 0.683 3.902 0.293 4.293 C -0.098 4.683 -0.098 5.317 0.293 5.707 L 2.293 7.707 C 2.683 8.098 3.317 8.098 3.707 7.707 L 9.707 1.707 Z"></path><path d="M 12 2 C 12 1.448 12.448 1 13 1 L 23 1 C 23.552 1 24 1.448 24 2 C 24 2.552 23.552 3 23 3 L 13 3 C 12.448 3 12 2.552 12 2 Z"></path><path d="M 13 5 C 12.448 5 12 5.448 12 6 C 12 6.552 12.448 7 13 7 L 27 7 C 27.552 7 28 6.552 28 6 C 28 5.448 27.552 5 27 5 L 13 5 Z"></path><path d="M 0 16 C 0 13.791 1.791 12 4 12 C 6.209 12 8 13.791 8 16 C 8 18.209 6.209 20 4 20 C 1.791 20 0 18.209 0 16 Z M 4 14 C 2.895 14 2 14.895 2 16 C 2 17.105 2.895 18 4 18 C 5.105 18 6 17.105 6 16 C 6 14.895 5.105 14 4 14 Z"></path><path d="M 13 13 C 12.448 13 12 13.448 12 14 C 12 14.552 12.448 15 13 15 L 23 15 C 23.552 15 24 14.552 24 14 C 24 13.448 23.552 13 23 13 L 13 13 Z"></path><path d="M 13 17 C 12.448 17 12 17.448 12 18 C 12 18.552 12.448 19 13 19 L 27 19 C 27.552 19 28 18.552 28 18 C 28 17.448 27.552 17 27 17 L 13 17 Z"></path></svg>
+      </button>
+      <button style="width:64px;height:48px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--label-tertiary);" style-hover="background:var(--kw-neutral-100);">
+        <svg width="22" height="22" viewBox="0 0 27.783 28" fill="currentColor"><path d="M 2 4 C 2 2.895 2.895 2 4 2 L 20 2 C 21.105 2 22 2.895 22 4 L 22 15 C 22 15.552 22.448 16 23 16 C 23.552 16 24 15.552 24 15 L 24 4 C 24 1.791 22.209 0 20 0 L 4 0 C 1.791 0 0 1.791 0 4 L 0 20 C 0 22.209 1.791 24 4 24 L 16 24 C 16.552 24 17 23.552 17 23 C 17 22.448 16.552 22 16 22 L 4 22 C 2.895 22 2 21.105 2 20 L 2 4 Z" fill-rule="nonzero"></path><path d="M 8 13 C 9.306 13 10.417 13.835 10.829 15 L 18 15 C 18.552 15 19 15.448 19 16 C 19 16.552 18.552 17 18 17 L 10.829 17 C 10.417 18.165 9.306 19 8 19 C 6.343 19 5 17.657 5 16 C 5 14.343 6.343 13 8 13 Z M 8 15 C 8.552 15 9 15.448 9 16 C 9 16.552 8.552 17 8 17 C 7.448 17 7 16.552 7 16 C 7 15.448 7.448 15 8 15 Z" fill-rule="evenodd"></path><path d="M 8 5 C 9.306 5 10.417 5.835 10.829 7 L 18 7 C 18.552 7 19 7.448 19 8 C 19 8.552 18.552 9 18 9 L 10.829 9 C 10.417 10.165 9.306 11 8 11 C 6.343 11 5 9.657 5 8 C 5 6.343 6.343 5 8 5 Z M 8 7 C 7.448 7 7 7.448 7 8 C 7 8.552 7.448 9 8 9 C 8.552 9 9 8.552 9 8 C 9 7.448 8.552 7 8 7 Z" fill-rule="evenodd"></path></svg>
+      </button>
+      <button style="width:64px;height:48px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--label-tertiary);" style-hover="background:var(--kw-neutral-100);">
+        <svg width="20" height="22" viewBox="0 0 24 28" fill="currentColor"><path d="M 4.722 4.722 C 3.015 6.429 2 8.911 2 12 C 2 14.067 2.748 16.102 3.871 17.97 C 4.595 16.825 5.52 15.936 6.621 15.291 C 7.307 14.889 8.048 14.591 8.833 14.382 C 8.655 14.176 8.49 13.958 8.34 13.734 C 7.507 12.487 7 10.865 7 9.286 C 7 7.682 7.525 6.343 8.463 5.401 C 9.397 4.464 10.663 4 12 4 C 13.337 4 14.603 4.464 15.537 5.401 C 16.475 6.343 17 7.682 17 9.286 C 17 10.865 16.493 12.487 15.66 13.734 C 15.51 13.958 15.345 14.176 15.167 14.383 C 15.951 14.591 16.692 14.889 17.379 15.291 C 18.479 15.936 19.404 16.826 20.129 17.971 C 21.252 16.103 22 14.067 22 12 C 22 8.911 20.985 6.429 19.278 4.722 C 17.571 3.015 15.089 2 12 2 C 8.911 2 6.429 3.015 4.722 4.722 Z M 18.867 19.815 C 18.244 18.517 17.393 17.617 16.368 17.017 C 15.202 16.334 13.74 16 12 16 C 10.259 16 8.798 16.334 7.631 17.017 C 6.607 17.617 5.755 18.517 5.133 19.814 C 5.672 20.517 6.252 21.185 6.848 21.81 C 8.116 23.138 9.414 24.223 10.446 24.972 C 10.963 25.346 11.403 25.628 11.729 25.811 C 11.838 25.872 11.928 25.919 12 25.953 C 12.072 25.919 12.162 25.872 12.271 25.811 C 12.597 25.628 13.037 25.346 13.554 24.972 C 14.586 24.223 15.884 23.138 17.152 21.81 C 17.747 21.185 18.327 20.517 18.867 19.815 Z M 3.155 20.507 C 1.387 18.066 0 15.135 0 12 C 0 8.462 1.172 5.444 3.308 3.308 C 5.444 1.172 8.462 0 12 0 C 15.538 0 18.556 1.172 20.692 3.308 C 22.828 5.444 24 8.462 24 12 C 24 16.393 21.277 20.385 18.598 23.19 C 17.241 24.612 15.851 25.777 14.727 26.591 C 14.166 26.997 13.661 27.325 13.249 27.556 C 13.044 27.671 12.849 27.77 12.672 27.843 C 12.535 27.9 12.278 28 12 28 C 11.722 28 11.465 27.9 11.328 27.843 C 11.151 27.77 10.956 27.671 10.751 27.556 C 10.339 27.325 9.834 26.997 9.273 26.591 C 8.149 25.777 6.759 24.612 5.402 23.19 C 4.649 22.402 3.892 21.519 3.194 20.561 C 3.18 20.543 3.167 20.525 3.155 20.507 Z M 9.88 6.813 C 9.37 7.325 9 8.128 9 9.286 C 9 10.467 9.388 11.703 10.003 12.623 C 10.632 13.564 11.364 14 12 14 C 12.636 14 13.368 13.564 13.997 12.623 C 14.612 11.703 15 10.467 15 9.286 C 15 8.128 14.63 7.325 14.12 6.813 C 13.606 6.298 12.872 6 12 6 C 11.128 6 10.394 6.298 9.88 6.813 Z" fill-rule="evenodd"></path></svg>
+      </button>
+      <button style="width:64px;height:48px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--label-tertiary);" style-hover="background:var(--kw-neutral-100);">
+        <svg width="24" height="18" viewBox="0 0 28 20" fill="currentColor"><path d="M 14 0 C 13.735 0 13.48 0.105 13.293 0.293 L 11.586 2 L 8 2 C 7.735 2 7.48 2.105 7.293 2.293 L 4.586 5 L 3 5 C 1.343 5 0 6.343 0 8 L 0 15 C 0 16.657 1.343 18 3 18 L 4.792 18 C 4.938 18.062 5.129 18.143 5.365 18.239 C 5.838 18.431 6.495 18.687 7.234 18.944 C 8.668 19.443 10.563 20 12 20 C 13.64 20 15.266 19.09 16.612 18.061 C 17.052 17.726 17.478 17.364 17.885 16.993 C 17.923 16.998 17.961 17 18 17 L 20 17 C 20.952 17 21.85 16.689 22.469 16.414 C 22.787 16.272 23.051 16.131 23.281 16 L 25 16 C 26.657 16 28 14.657 28 13 L 28 6 C 28 4.343 26.657 3 25 3 L 23.414 3 L 20.707 0.293 C 20.52 0.105 20.265 0 20 0 L 14 0 Z M 19.847 15 L 20 15 C 20.548 15 21.15 14.811 21.656 14.586 C 22.105 14.369 22.404 14.194 22.446 14.168 C 22.61 14.058 22.803 14 23 14 L 25 14 C 25.552 14 26 13.552 26 13 L 26 6 C 26 5.448 25.552 5 25 5 L 23 5 C 22.735 5 22.48 4.895 22.293 4.707 L 19.586 2 L 14.414 2 L 12.706 3.708 L 10.624 5.791 C 9.997 6.509 10.025 7.602 10.71 8.287 C 11.425 9.001 12.583 9.001 13.298 8.287 L 15.293 6.293 C 15.684 5.902 16.317 5.902 16.707 6.293 L 19.91 9.496 C 21.281 10.867 21.506 13.095 20.167 14.637 C 20.064 14.755 19.958 14.876 19.847 15 Z M 5.406 16.086 C 5.278 16.029 5.14 16 5 16 L 3 16 C 2.448 16 2 15.552 2 15 L 2 8 C 2 7.448 2.448 7 3 7 L 5 7 C 5.265 7 5.52 6.895 5.707 6.707 L 8.414 4 L 9.581 4 L 9.157 4.432 C 7.802 5.959 7.855 8.26 9.296 9.701 C 10.792 11.197 13.216 11.197 14.712 9.701 L 16 8.414 L 18.496 10.91 C 19.199 11.613 19.241 12.653 18.657 13.325 C 17.779 14.336 16.626 15.534 15.398 16.472 C 14.137 17.435 12.957 18 12 18 C 10.937 18 9.332 17.557 7.891 17.056 C 7.193 16.813 6.569 16.569 6.119 16.386 C 5.895 16.295 5.714 16.219 5.591 16.166 L 5.451 16.106 L 5.406 16.086 Z" fill-rule="evenodd"></path></svg>
+      </button>
+      <button style="width:64px;height:48px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--label-tertiary);" style-hover="background:var(--kw-neutral-100);">
+        <svg width="24" height="20" viewBox="0 0 28 23.463" fill="currentColor"><path d="M 20.188 0.175 C 21.51 -0.413 23 0.555 23 2.002 L 23 4.463 C 25.761 4.463 28 6.702 28 9.463 C 28 12.225 25.761 14.463 23 14.463 L 23 16.925 C 23 18.372 21.51 19.34 20.188 18.752 L 12.788 15.463 L 10 15.463 L 10 22.463 C 10 23.016 9.552 23.463 9 23.463 C 8.448 23.463 8 23.016 8 22.463 L 8 15.463 L 6 15.463 C 2.686 15.463 0 12.777 0 9.463 C 0 6.237 2.547 3.605 5.74 3.469 L 5.979 3.464 L 6 3.463 L 12.788 3.463 L 20.188 0.175 Z M 26 9.463 C 26 11.12 24.657 12.463 23 12.463 L 23 6.463 C 24.657 6.463 26 7.807 26 9.463 Z M 21 2.002 L 21 16.925 L 13.406 13.55 C 13.278 13.493 13.14 13.463 13 13.463 L 10 13.463 L 10 5.463 L 13 5.463 C 13.14 5.463 13.278 5.434 13.406 5.377 L 21 2.002 Z M 6.011 5.463 L 8 5.463 L 8 13.463 L 6 13.463 C 3.791 13.463 2 11.673 2 9.463 C 2 7.316 3.692 5.564 5.816 5.468 L 6.011 5.463 Z" fill-rule="evenodd"></path></svg>
+      </button>
+      <button style="width:64px;height:48px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--label-tertiary);" style-hover="background:var(--kw-neutral-100);">
+        <svg width="24" height="20" viewBox="0 0 28 24" fill="currentColor"><path d="M 20 2 C 20 0.895 20.896 0 22 0 L 24 0 C 25.105 0 26 0.895 26 2 L 26 9.382 L 27.447 10.106 C 27.941 10.353 28.142 10.953 27.895 11.447 C 27.648 11.941 27.047 12.141 26.553 11.894 L 26 11.618 L 26 22 C 26 23.105 25.105 24 24 24 L 22 24 C 20.896 24 20 23.105 20 22 L 20 13.414 L 17 16.414 L 17 22 C 17 23.105 16.105 24 15 24 L 13 24 C 11.896 24 11 23.105 11 22 L 11 18.358 L 8 17.691 L 8 22 C 8 23.105 7.105 24 6 24 L 4 24 C 2.896 24 2 23.105 2 22 L 2 18.618 L 1.447 18.894 C 0.953 19.141 0.353 18.941 0.106 18.447 C -0.141 17.953 0.059 17.353 0.553 17.106 L 2 16.382 L 2 13 C 2 11.895 2.896 11 4 11 L 6 11 C 7.105 11 8 11.895 8 13 L 8 15.642 L 11 16.309 L 11 9 C 11 7.895 11.896 7 13 7 L 15 7 C 16.105 7 17 7.895 17 9 L 17 13.586 L 20 10.586 L 20 2 Z M 22 11.414 L 22 22 L 24 22 L 24 10.618 L 23.198 10.217 L 22 11.414 Z M 24 8.382 L 23.447 8.106 C 23.062 7.913 22.597 7.989 22.293 8.293 L 22 8.586 L 22 2 L 24 2 L 24 8.382 Z M 15 15.586 L 15 9 L 13 9 L 13 16.753 L 13.681 16.905 L 15 15.586 Z M 13 18.802 L 13 22 L 15 22 L 15 18.414 L 14.707 18.707 C 14.466 18.949 14.117 19.05 13.783 18.976 L 13 18.802 Z M 6 15.198 L 6 13 L 4 13 L 4 15.382 L 4.553 15.106 C 4.758 15.003 4.993 14.974 5.217 15.024 L 6 15.198 Z M 4 17.618 L 4 22 L 6 22 L 6 17.247 L 5.13 17.053 L 4 17.618 Z" fill-rule="evenodd"></path></svg>
+      </button>
+      <button style="width:64px;height:48px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--label-tertiary);" style-hover="background:var(--kw-neutral-100);">
+        <svg width="22" height="22" viewBox="0 0 26 26" fill="currentColor"><path d="M 23.902 2.098 C 23.772 1.967 23.561 1.967 23.431 2.098 L 13.454 10.705 C 13.815 10.928 14.159 11.202 14.48 11.523 C 14.799 11.843 15.072 12.186 15.295 12.547 L 23.852 2.623 C 24.033 2.439 24.033 2.228 23.902 2.098 Z M 15.997 14.795 L 25.346 3.953 C 26.228 3.04 26.218 1.585 25.317 0.683 C 24.415 -0.218 22.96 -0.228 22.047 0.654 L 11.205 10.003 C 11.155 10.001 11.105 10 11.054 10 C 9.801 10 8.606 10.544 7.629 11.523 C 6.379 12.774 5.96 14.712 5.838 16.181 C 5.774 16.945 5.785 17.654 5.83 18.199 C 5.852 18.47 5.885 18.716 5.925 18.916 C 5.945 19.015 5.971 19.122 6.005 19.225 C 6.026 19.289 6.103 19.517 6.292 19.707 C 6.482 19.896 6.71 19.973 6.774 19.995 C 6.876 20.029 6.983 20.055 7.082 20.075 C 7.283 20.116 7.529 20.149 7.8 20.172 C 8.345 20.218 9.054 20.231 9.819 20.168 C 11.289 20.048 13.229 19.632 14.48 18.38 C 15.457 17.401 16 16.205 16 14.951 C 16 14.899 15.999 14.847 15.997 14.795 Z M 4 4 C 2.895 4 2 4.895 2 6 L 2 22 C 2 23.105 2.895 24 4 24 L 20 24 C 21.105 24 22 23.105 22 22 L 22 11.5 C 22 10.948 22.448 10.5 23 10.5 C 23.552 10.5 24 10.948 24 11.5 L 24 22 C 24 24.209 22.209 26 20 26 L 4 26 C 1.791 26 0 24.209 0 22 L 0 6 C 0 3.791 1.791 2 4 2 L 14.5 2 C 15.052 2 15.5 2.448 15.5 3 C 15.5 3.552 15.052 4 14.5 4 L 4 4 Z M 9.044 12.936 C 9.704 12.275 10.408 12 11.054 12 C 11.7 12 12.404 12.275 13.064 12.936 C 13.724 13.597 14 14.303 14 14.951 C 14 15.599 13.724 16.305 13.064 16.966 C 12.338 17.693 11.016 18.064 9.656 18.175 C 9.006 18.228 8.408 18.216 7.969 18.179 C 7.922 18.175 7.877 18.171 7.835 18.166 C 7.831 18.125 7.827 18.08 7.823 18.034 C 7.787 17.595 7.777 16.998 7.831 16.347 C 7.944 14.989 8.317 13.665 9.044 12.936 Z" fill-rule="evenodd"></path></svg>
+      </button>
+      <button style="width:64px;height:48px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--label-tertiary);" style-hover="background:var(--kw-neutral-100);">
+        <svg width="22" height="22" viewBox="0 0 28 28" fill="currentColor"><path d="M 2 1 C 2 0.448 1.552 0 1 0 C 0.448 0 0 0.448 0 1 L 0 27 C 0 27.552 0.448 28 1 28 C 1.552 28 2 27.552 2 27 L 2 4 L 10 4 L 10 6 L 7 6 C 5.343 6 4 7.343 4 9 L 4 21 C 4 22.657 5.343 24 7 24 L 23 24 C 24.657 24 26 22.657 26 21 L 26 9 C 26 7.343 24.657 6 23 6 L 20 6 L 20 4 L 27 4 C 27.552 4 28 3.552 28 3 C 28 2.448 27.552 2 27 2 L 2 2 L 2 1 Z M 12 6 L 12 4 L 18 4 L 18 6 L 12 6 Z M 10 9 L 10 8 L 7 8 C 6.448 8 6 8.448 6 9 L 6 21 C 6 21.552 6.448 22 7 22 L 23 22 C 23.552 22 24 21.552 24 21 L 24 9 C 24 8.448 23.552 8 23 8 L 20 8 L 20 9 C 20 9.552 19.552 10 19 10 C 18.448 10 18 9.552 18 9 L 18 8 L 12 8 L 12 9 C 12 9.552 11.552 10 11 10 C 10.448 10 10 9.552 10 9 Z" fill-rule="evenodd"></path></svg>
+      </button>
+    </aside>
+
+    <!-- MAIN -->
+    <main style="flex:1;min-width:0;overflow-y:auto;background:var(--page-background);padding:24px 32px 56px;">
+
+      <!-- header -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;">
+        <h1 data-greeting="" style="font:var(--fw-bold) 32px/40px var(--font-sans);color:var(--label-primary);margin:0;">Welcome Home, Nina</h1>
+        <button style="display:flex;align-items:center;gap:9px;background:#fff;border:none;border-radius:8px;box-shadow:var(--shadow04);padding:11px 18px;cursor:pointer;color:var(--action);font:var(--fw-bold) 15px/1 var(--font-sans);" style-hover="box-shadow:var(--shadow12);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L18.5 9.5l-4-4L4 16v4z"></path><path d="M13.5 6.5l4 4"></path></svg>
+          Customize
+        </button>
+      </div>
+
+      <!-- stat pills -->
+      <div style="display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:13px;background:#fff;border-radius:999px;box-shadow:var(--shadow04);padding:8px 18px;">
+          <span style="width:36px;height:36px;flex:none;border-radius:999px;border:2px solid var(--action);color:var(--action);display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 16px/1 var(--font-sans);">L</span>
+          <span style="flex:1;min-width:0;">
+            <span style="display:block;font:var(--fw-extrabold) 16px/20px var(--font-sans);color:var(--label-primary);white-space:nowrap;">Leads Never Contacted</span>
+            <span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);margin-top:2px;">3 this week</span>
+          </span>
+          <span style="background:var(--action);color:#fff;font:var(--fw-extrabold) 12px/1 var(--font-sans);min-width:30px;height:30px;padding:0 8px;border-radius:999px;flex:none;display:flex;align-items:center;justify-content:center;">152</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:13px;background:#fff;border-radius:999px;box-shadow:var(--shadow04);padding:8px 18px;">
+          <span style="flex:none;color:var(--action);display:flex;"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M 0 4 C 0 1.791 1.791 0 4 0 L 20 0 C 22.209 0 24 1.791 24 4 L 24 20 C 24 22.209 22.209 24 20 24 L 4 24 C 1.791 24 0 22.209 0 20 L 0 4 Z M 22 20 C 22 20.871 21.443 21.612 20.666 21.886 C 20.207 19.357 19.276 17.437 17.883 16.114 C 17.067 15.339 16.126 14.801 15.097 14.461 C 15.303 14.232 15.491 13.987 15.66 13.734 C 16.493 12.487 17 10.865 17 9.286 C 17 7.682 16.475 6.343 15.537 5.401 C 14.603 4.464 13.337 4 12 4 C 10.663 4 9.397 4.464 8.463 5.401 C 7.525 6.343 7 7.682 7 9.286 C 7 10.865 7.507 12.487 8.34 13.734 C 8.509 13.987 8.697 14.232 8.903 14.461 C 7.874 14.801 6.933 15.339 6.117 16.114 C 4.724 17.437 3.793 19.357 3.334 21.886 C 2.557 21.612 2 20.871 2 20 L 2 4 C 2 2.895 2.895 2 4 2 L 20 2 C 21.105 2 22 2.895 22 4 L 22 20 Z M 18.652 22 L 5.348 22 C 5.766 19.894 6.532 18.479 7.495 17.564 C 8.609 16.506 10.11 16 12 16 C 13.89 16 15.391 16.506 16.505 17.564 C 17.468 18.479 18.234 19.894 18.652 22 Z M 9 9.286 C 9 8.128 9.37 7.325 9.88 6.813 C 10.394 6.298 11.128 6 12 6 C 12.872 6 13.606 6.298 14.12 6.813 C 14.63 7.325 15 8.128 15 9.286 C 15 10.467 14.612 11.703 13.997 12.623 C 13.368 13.564 12.636 14 12 14 C 11.364 14 10.632 13.564 10.003 12.623 C 9.388 11.703 9 10.467 9 9.286 Z" fill-rule="evenodd"></path></svg></span>
+          <span style="flex:1;min-width:0;">
+            <span style="display:block;font:var(--fw-extrabold) 16px/20px var(--font-sans);color:var(--label-primary);white-space:nowrap;">Recently Active</span>
+            <span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);margin-top:2px;">--</span>
+          </span>
+          <span style="background:var(--action);color:#fff;font:var(--fw-extrabold) 12px/1 var(--font-sans);min-width:30px;height:30px;padding:0 8px;border-radius:999px;flex:none;display:flex;align-items:center;justify-content:center;">–</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:13px;background:#fff;border-radius:999px;box-shadow:var(--shadow04);padding:8px 18px;">
+          <span style="flex:none;color:var(--action);display:flex;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21v-7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v7"></path><path d="M3.6 14.5c1.4 1.3 2.8 1.3 4.2 0s2.8-1.3 4.2 0 2.8 1.3 4.2 0 2.8-1.3 4.2 0"></path><path d="M12 8V5"></path><circle cx="12" cy="3.4" r="1"></circle></svg></span>
+          <span style="flex:1;min-width:0;">
+            <span style="display:block;font:var(--fw-extrabold) 16px/20px var(--font-sans);color:var(--label-primary);white-space:nowrap;">Birthdays</span>
+            <span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);margin-top:2px;">1 on 07-10</span>
+          </span>
+          <span style="background:var(--action);color:#fff;font:var(--fw-extrabold) 12px/1 var(--font-sans);min-width:30px;height:30px;padding:0 8px;border-radius:999px;flex:none;display:flex;align-items:center;justify-content:center;">1</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:13px;background:#fff;border-radius:999px;box-shadow:var(--shadow04);padding:8px 18px;">
+          <span style="flex:none;color:var(--action);display:flex;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5L12 4l9 7.5"></path><path d="M5 10.2V20h14v-9.8"></path><path d="M10 20v-5h4v5"></path></svg></span>
+          <span style="flex:1;min-width:0;">
+            <span style="display:block;font:var(--fw-extrabold) 16px/20px var(--font-sans);color:var(--label-primary);white-space:nowrap;">Anniversaries</span>
+            <span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);margin-top:2px;">1 on 07-05</span>
+          </span>
+          <span style="background:var(--action);color:#fff;font:var(--fw-extrabold) 12px/1 var(--font-sans);min-width:30px;height:30px;padding:0 8px;border-radius:999px;flex:none;display:flex;align-items:center;justify-content:center;">2</span>
+        </div>
+      </div>
+
+      <!-- two columns -->
+      <div style="display:grid;grid-template-columns:minmax(0,1.85fr) minmax(0,1fr);gap:24px;align-items:start;">
+
+        <!-- LEFT -->
+        <div style="display:flex;flex-direction:column;gap:24px;min-width:0;">
+
+          <!-- TASKS CARD -->
+          <div style="background:#fff;border-radius:4px;box-shadow:var(--shadow04);overflow:hidden;">
+            <div style="display:flex;align-items:center;gap:18px;padding:18px 24px;flex-wrap:wrap;">
+              <div style="display:flex;align-items:center;gap:12px;margin-right:auto;">
+                <span style="color:var(--action);display:flex;"><svg width="26" height="19" viewBox="0 0 28 20" fill="currentColor"><path d="M 9.707 1.707 C 10.098 1.317 10.098 0.683 9.707 0.293 C 9.317 -0.098 8.683 -0.098 8.293 0.293 L 3 5.586 L 1.707 4.293 C 1.317 3.902 0.683 3.902 0.293 4.293 C -0.098 4.683 -0.098 5.317 0.293 5.707 L 2.293 7.707 C 2.683 8.098 3.317 8.098 3.707 7.707 L 9.707 1.707 Z"></path><path d="M 12 2 C 12 1.448 12.448 1 13 1 L 23 1 C 23.552 1 24 1.448 24 2 C 24 2.552 23.552 3 23 3 L 13 3 C 12.448 3 12 2.552 12 2 Z"></path><path d="M 13 5 C 12.448 5 12 5.448 12 6 C 12 6.552 12.448 7 13 7 L 27 7 C 27.552 7 28 6.552 28 6 C 28 5.448 27.552 5 27 5 L 13 5 Z"></path><path d="M 0 16 C 0 13.791 1.791 12 4 12 C 6.209 12 8 13.791 8 16 C 8 18.209 6.209 20 4 20 C 1.791 20 0 18.209 0 16 Z M 4 14 C 2.895 14 2 14.895 2 16 C 2 17.105 2.895 18 4 18 C 5.105 18 6 17.105 6 16 C 6 14.895 5.105 14 4 14 Z"></path><path d="M 13 13 C 12.448 13 12 13.448 12 14 C 12 14.552 12.448 15 13 15 L 23 15 C 23.552 15 24 14.552 24 14 C 24 13.448 23.552 13 23 13 L 13 13 Z"></path><path d="M 13 17 C 12.448 17 12 17.448 12 18 C 12 18.552 12.448 19 13 19 L 27 19 C 27.552 19 28 18.552 28 18 C 28 17.448 27.552 17 27 17 L 13 17 Z"></path></svg></span>
+                <span style="font:var(--fw-extrabold) 20px/24px var(--font-sans);color:var(--label-primary);">Tasks</span>
+              </div>
+              <button style="display:flex;align-items:center;gap:6px;background:transparent;border:none;cursor:pointer;color:var(--action);font:var(--fw-bold) 14px/1 var(--font-sans);padding:6px;">All Due Dates <svg width="12" height="12" viewBox="0 0 32 32" fill="currentColor"><path d="M 19.002 0 L 1.002 0 C 0.111 0 -0.335 1.077 0.295 1.707 L 9.295 10.707 C 9.685 11.098 10.319 11.098 10.709 10.707 L 19.709 1.707 C 20.339 1.077 19.893 0 19.002 0 Z" transform="translate(5.998 11)"></path></svg></button>
+              <button style="display:flex;align-items:center;gap:6px;background:transparent;border:none;cursor:pointer;color:var(--action);font:var(--fw-bold) 14px/1 var(--font-sans);padding:6px;">All Tasks <svg width="12" height="12" viewBox="0 0 32 32" fill="currentColor"><path d="M 19.002 0 L 1.002 0 C 0.111 0 -0.335 1.077 0.295 1.707 L 9.295 10.707 C 9.685 11.098 10.319 11.098 10.709 10.707 L 19.709 1.707 C 20.339 1.077 19.893 0 19.002 0 Z" transform="translate(5.998 11)"></path></svg></button>
+              <div style="display:flex;align-items:center;background:var(--kw-neutral-100);border:1px solid var(--outline);border-radius:8px;padding:4px;gap:4px;">
+                <button data-seg="my" style="border:none;cursor:pointer;border-radius:6px;padding:7px 16px;font:var(--fw-bold) 14px/1 var(--font-sans);background:#fff;color:var(--action);box-shadow:inset 0 0 0 1.5px var(--action);">My Tasks</button>
+                <button data-seg="team" style="border:none;cursor:pointer;border-radius:6px;padding:7px 16px;font:var(--fw-bold) 14px/1 var(--font-sans);background:transparent;color:var(--label-secondary);box-shadow:none;">Team Tasks</button>
+              </div>
+            </div>
+
+            <!-- table header -->
+            <div style="display:grid;grid-template-columns:1.7fr 1fr 1.3fr 1fr 0.8fr 92px;align-items:center;padding:9px 24px;border-bottom:1px solid var(--divider);background:var(--kw-neutral-100);">
+              <span style="font:var(--fw-bold) 12px/16px var(--font-sans);letter-spacing:1px;text-transform:uppercase;color:var(--label-tertiary);">Task</span>
+              <span style="font:var(--fw-bold) 12px/16px var(--font-sans);letter-spacing:1px;text-transform:uppercase;color:var(--label-tertiary);">Linked To</span>
+              <span style="font:var(--fw-bold) 12px/16px var(--font-sans);letter-spacing:1px;text-transform:uppercase;color:var(--label-tertiary);">Assigned To</span>
+              <span style="font:var(--fw-bold) 12px/16px var(--font-sans);letter-spacing:1px;text-transform:uppercase;color:var(--label-tertiary);">Priority</span>
+              <span style="font:var(--fw-bold) 12px/16px var(--font-sans);letter-spacing:1px;text-transform:uppercase;color:var(--action);">Due</span>
+              <span></span>
+            </div>
+
+            <!-- row 1 -->
+            <div data-task-row="" style="display:grid;grid-template-columns:1.7fr 1fr 1.3fr 1fr 0.8fr 92px;align-items:center;padding:16px 24px;border-bottom:1px solid var(--divider);">
+              <span data-task-name="" style="font:var(--fw-bold) 15px/20px var(--font-sans);color:var(--label-primary);">Build Your Contacts Databank</span>
+              <span></span>
+              <span style="display:flex;align-items:center;gap:10px;"><span style="width:32px;height:32px;flex:none;border-radius:50%;background:#5a6372;color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 12px/1 var(--font-sans);">NR</span><span style="font:var(--fw-regular) 14px/18px var(--font-sans);color:var(--label-secondary);">Nina Royals</span></span>
+              <span><span style="display:inline-flex;align-items:center;gap:8px;background:#fff;box-shadow:inset 0 0 0 1px var(--outline);border-radius:999px;padding:5px 14px 5px 5px;"><span style="width:22px;height:22px;border-radius:50%;background:var(--kw-orange);display:flex;align-items:center;justify-content:center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14l7-7 7 7"></path></svg></span><span style="font:var(--fw-bold) 14px/1 var(--font-sans);color:var(--label-primary);">High</span></span></span>
+              <span style="line-height:1.2;"><span style="display:block;font:var(--fw-bold) 13px/16px var(--font-sans);color:var(--label-secondary);">02/09</span><span style="display:block;font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);">10:52</span></span>
+              <span style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">
+                <button data-task-check="" title="Complete task" style="border:none;background:transparent;cursor:pointer;padding:2px;display:flex;color:var(--label-tertiary);"><svg width="24" height="24" viewBox="0 0 28 28" fill="currentColor"><path d="M 14 0 C 6.268 0 0 6.268 0 14 C 0 21.732 6.268 28 14 28 C 21.732 28 28 21.732 28 14 C 28 6.268 21.732 0 14 0 Z M 2 14 C 2 7.373 7.373 2 14 2 C 20.627 2 26 7.373 26 14 C 26 20.627 20.627 26 14 26 C 7.373 26 2 20.627 2 14 Z M 20.707 10.707 C 21.098 10.317 21.098 9.683 20.707 9.293 C 20.317 8.902 19.683 8.902 19.293 9.293 L 11.5 17.086 L 8.707 14.293 C 8.317 13.902 7.683 13.902 7.293 14.293 C 6.902 14.683 6.902 15.317 7.293 15.707 L 10.793 19.207 C 11.183 19.598 11.817 19.598 12.207 19.207 L 20.707 10.707 Z" fill-rule="evenodd"></path></svg></button>
+                <button title="More" style="border:none;background:transparent;cursor:pointer;padding:2px;display:flex;color:var(--label-tertiary);"><svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M 3 6 C 1.343 6 0 4.657 0 3 C 0 1.343 1.343 0 3 0 C 4.657 0 6 1.343 6 3 C 6 4.657 4.657 6 3 6 Z" transform="translate(13 2)"></path><path d="M 0 14 C 0 15.657 1.343 17 3 17 C 4.657 17 6 15.657 6 14 C 6 12.343 4.657 11 3 11 C 1.343 11 0 12.343 0 14 Z" transform="translate(13 2)"></path><path d="M 0 25 C 0 26.657 1.343 28 3 28 C 4.657 28 6 26.657 6 25 C 6 23.343 4.657 22 3 22 C 1.343 22 0 23.343 0 25 Z" transform="translate(13 2)"></path></svg></button>
+              </span>
+            </div>
+
+            <!-- row 2 -->
+            <div data-task-row="" style="display:grid;grid-template-columns:1.7fr 1fr 1.3fr 1fr 0.8fr 92px;align-items:center;padding:16px 24px;border-bottom:1px solid var(--divider);">
+              <span data-task-name="" style="font:var(--fw-bold) 15px/20px var(--font-sans);color:var(--label-primary);">Connect Applications</span>
+              <span></span>
+              <span style="display:flex;align-items:center;gap:10px;"><span style="width:32px;height:32px;flex:none;border-radius:50%;background:#5a6372;color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 12px/1 var(--font-sans);">NR</span><span style="font:var(--fw-regular) 14px/18px var(--font-sans);color:var(--label-secondary);">Nina Royals</span></span>
+              <span><span style="display:inline-flex;align-items:center;gap:8px;background:#fff;box-shadow:inset 0 0 0 1px var(--outline);border-radius:999px;padding:5px 14px 5px 5px;"><span style="width:22px;height:22px;border-radius:50%;background:var(--label-tertiary);display:flex;align-items:center;justify-content:center;"><span style="width:10px;height:2.5px;background:#fff;border-radius:2px;"></span></span><span style="font:var(--fw-bold) 14px/1 var(--font-sans);color:var(--label-primary);">Medium</span></span></span>
+              <span style="line-height:1.2;"><span style="display:block;font:var(--fw-bold) 13px/16px var(--font-sans);color:var(--label-secondary);">02/09</span><span style="display:block;font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);">10:54</span></span>
+              <span style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">
+                <button data-task-check="" title="Complete task" style="border:none;background:transparent;cursor:pointer;padding:2px;display:flex;color:var(--label-tertiary);"><svg width="24" height="24" viewBox="0 0 28 28" fill="currentColor"><path d="M 14 0 C 6.268 0 0 6.268 0 14 C 0 21.732 6.268 28 14 28 C 21.732 28 28 21.732 28 14 C 28 6.268 21.732 0 14 0 Z M 2 14 C 2 7.373 7.373 2 14 2 C 20.627 2 26 7.373 26 14 C 26 20.627 20.627 26 14 26 C 7.373 26 2 20.627 2 14 Z M 20.707 10.707 C 21.098 10.317 21.098 9.683 20.707 9.293 C 20.317 8.902 19.683 8.902 19.293 9.293 L 11.5 17.086 L 8.707 14.293 C 8.317 13.902 7.683 13.902 7.293 14.293 C 6.902 14.683 6.902 15.317 7.293 15.707 L 10.793 19.207 C 11.183 19.598 11.817 19.598 12.207 19.207 L 20.707 10.707 Z" fill-rule="evenodd"></path></svg></button>
+                <button title="More" style="border:none;background:transparent;cursor:pointer;padding:2px;display:flex;color:var(--label-tertiary);"><svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M 3 6 C 1.343 6 0 4.657 0 3 C 0 1.343 1.343 0 3 0 C 4.657 0 6 1.343 6 3 C 6 4.657 4.657 6 3 6 Z" transform="translate(13 2)"></path><path d="M 0 14 C 0 15.657 1.343 17 3 17 C 4.657 17 6 15.657 6 14 C 6 12.343 4.657 11 3 11 C 1.343 11 0 12.343 0 14 Z" transform="translate(13 2)"></path><path d="M 0 25 C 0 26.657 1.343 28 3 28 C 4.657 28 6 26.657 6 25 C 6 23.343 4.657 22 3 22 C 1.343 22 0 23.343 0 25 Z" transform="translate(13 2)"></path></svg></button>
+              </span>
+            </div>
+
+            <!-- row 3 -->
+            <div data-task-row="" style="display:grid;grid-template-columns:1.7fr 1fr 1.3fr 1fr 0.8fr 92px;align-items:center;padding:16px 24px;border-bottom:1px solid var(--divider);">
+              <span data-task-name="" style="font:var(--fw-bold) 15px/20px var(--font-sans);color:var(--label-primary);">Launch Agent Site</span>
+              <span></span>
+              <span style="display:flex;align-items:center;gap:10px;"><span style="width:32px;height:32px;flex:none;border-radius:50%;background:#5a6372;color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 12px/1 var(--font-sans);">NR</span><span style="font:var(--fw-regular) 14px/18px var(--font-sans);color:var(--label-secondary);">Nina Royals</span></span>
+              <span><span style="display:inline-flex;align-items:center;gap:8px;background:#fff;box-shadow:inset 0 0 0 1px var(--outline);border-radius:999px;padding:5px 14px 5px 5px;"><span style="width:22px;height:22px;border-radius:50%;background:var(--label-tertiary);display:flex;align-items:center;justify-content:center;"><span style="width:10px;height:2.5px;background:#fff;border-radius:2px;"></span></span><span style="font:var(--fw-bold) 14px/1 var(--font-sans);color:var(--label-primary);">Medium</span></span></span>
+              <span style="line-height:1.2;"><span style="display:block;font:var(--fw-bold) 13px/16px var(--font-sans);color:var(--label-secondary);">02/09</span><span style="display:block;font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);">10:55</span></span>
+              <span style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">
+                <button data-task-check="" title="Complete task" style="border:none;background:transparent;cursor:pointer;padding:2px;display:flex;color:var(--label-tertiary);"><svg width="24" height="24" viewBox="0 0 28 28" fill="currentColor"><path d="M 14 0 C 6.268 0 0 6.268 0 14 C 0 21.732 6.268 28 14 28 C 21.732 28 28 21.732 28 14 C 28 6.268 21.732 0 14 0 Z M 2 14 C 2 7.373 7.373 2 14 2 C 20.627 2 26 7.373 26 14 C 26 20.627 20.627 26 14 26 C 7.373 26 2 20.627 2 14 Z M 20.707 10.707 C 21.098 10.317 21.098 9.683 20.707 9.293 C 20.317 8.902 19.683 8.902 19.293 9.293 L 11.5 17.086 L 8.707 14.293 C 8.317 13.902 7.683 13.902 7.293 14.293 C 6.902 14.683 6.902 15.317 7.293 15.707 L 10.793 19.207 C 11.183 19.598 11.817 19.598 12.207 19.207 L 20.707 10.707 Z" fill-rule="evenodd"></path></svg></button>
+                <button title="More" style="border:none;background:transparent;cursor:pointer;padding:2px;display:flex;color:var(--label-tertiary);"><svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M 3 6 C 1.343 6 0 4.657 0 3 C 0 1.343 1.343 0 3 0 C 4.657 0 6 1.343 6 3 C 6 4.657 4.657 6 3 6 Z" transform="translate(13 2)"></path><path d="M 0 14 C 0 15.657 1.343 17 3 17 C 4.657 17 6 15.657 6 14 C 6 12.343 4.657 11 3 11 C 1.343 11 0 12.343 0 14 Z" transform="translate(13 2)"></path><path d="M 0 25 C 0 26.657 1.343 28 3 28 C 4.657 28 6 26.657 6 25 C 6 23.343 4.657 22 3 22 C 1.343 22 0 23.343 0 25 Z" transform="translate(13 2)"></path></svg></button>
+              </span>
+            </div>
+
+            <!-- footer -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;">
+              <button style="display:flex;align-items:center;gap:9px;background:transparent;border:none;cursor:pointer;color:var(--action);font:var(--fw-bold) 15px/1 var(--font-sans);padding:4px;">
+                <svg width="22" height="22" viewBox="0 0 28 28" fill="currentColor"><path d="M 0 14 C 0 6.268 6.268 0 14 0 C 21.732 0 28 6.268 28 14 C 28 21.732 21.732 28 14 28 C 6.268 28 0 21.732 0 14 Z M 14 2 C 7.373 2 2 7.373 2 14 C 2 20.627 7.373 26 14 26 C 20.627 26 26 20.627 26 14 C 26 7.373 20.627 2 14 2 Z M 14 6 C 14.552 6 15 6.448 15 7 L 15 13 L 21 13 C 21.552 13 22 13.448 22 14 C 22 14.552 21.552 15 21 15 L 15 15 L 15 21 C 15 21.552 14.552 22 14 22 C 13.448 22 13 21.552 13 21 L 13 15 L 7 15 C 6.448 15 6 14.552 6 14 C 6 13.448 6.448 13 7 13 L 13 13 L 13 7 C 13 6.448 13.448 6 14 6 Z" fill-rule="evenodd"></path></svg>
+                Create Task
+              </button>
+              <div style="display:flex;align-items:center;gap:14px;">
+                <button title="Previous" style="width:34px;height:34px;border-radius:6px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--label-tertiary);" style-hover="background:var(--kw-neutral-100);"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M 9.293 0.293 C 9.683 -0.098 10.317 -0.098 10.707 0.293 C 11.098 0.683 11.098 1.317 10.707 1.707 L 3.414 9 L 27 9 C 27.552 9 28 9.448 28 10 C 28 10.552 27.552 11 27 11 L 3.414 11 L 10.707 18.293 C 11.098 18.683 11.098 19.317 10.707 19.707 C 10.317 20.098 9.683 20.098 9.293 19.707 L 0.293 10.707 C -0.098 10.317 -0.098 9.683 0.293 9.293 L 9.293 0.293 Z" fill-rule="evenodd" transform="translate(2 6)"></path></svg></button>
+                <span style="font:var(--fw-regular) 14px/1 var(--font-sans);color:var(--label-secondary);"><span style="font:var(--fw-extrabold) 14px/1 var(--font-sans);color:var(--action);">1-50</span> of 438</span>
+                <button title="Next" style="width:34px;height:34px;border-radius:6px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--action);" style-hover="background:var(--action-hover-fill);"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M 18.707 0.293 C 18.317 -0.098 17.683 -0.098 17.293 0.293 C 16.902 0.683 16.902 1.317 17.293 1.707 L 24.586 9 L 1 9 C 0.448 9 0 9.448 0 10 C 0 10.552 0.448 11 1 11 L 24.586 11 L 17.293 18.293 C 16.902 18.683 16.902 19.317 17.293 19.707 C 17.683 20.098 18.317 20.098 18.707 19.707 L 27.707 10.707 C 28.098 10.317 28.098 9.683 27.707 9.293 L 18.707 0.293 Z" fill-rule="evenodd" transform="translate(2 6)"></path></svg></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GOALS CARD -->
+          <div style="background:#fff;border-radius:4px;box-shadow:var(--shadow04);overflow:hidden;">
+            <div style="display:flex;align-items:center;gap:12px;padding:18px 24px;border-bottom:1px solid var(--divider);">
+              <span style="color:var(--action);display:flex;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v4.5a5 5 0 0 1-10 0V4z"></path><path d="M7 5.5H4.5v1A3 3 0 0 0 7.5 9.5"></path><path d="M17 5.5h2.5v1a3 3 0 0 1-3 3"></path><path d="M12 13.5v3"></path><path d="M8.5 20h7"></path><path d="M9.5 17h5v3h-5z"></path></svg></span>
+              <span style="font:var(--fw-extrabold) 20px/24px var(--font-sans);color:var(--label-primary);margin-right:auto;">Goals</span>
+              <button style="display:flex;align-items:center;gap:6px;background:transparent;border:none;cursor:pointer;color:var(--action);font:var(--fw-bold) 14px/1 var(--font-sans);padding:6px;">Year to Date <svg width="12" height="12" viewBox="0 0 32 32" fill="currentColor"><path d="M 19.002 0 L 1.002 0 C 0.111 0 -0.335 1.077 0.295 1.707 L 9.295 10.707 C 9.685 11.098 10.319 11.098 10.709 10.707 L 19.709 1.707 C 20.339 1.077 19.893 0 19.002 0 Z" transform="translate(5.998 11)"></path></svg></button>
+            </div>
+            <div style="padding:20px 24px 28px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;">
+                <span style="width:9px;height:9px;border-radius:50%;background:var(--action);"></span>
+                <span style="font:var(--fw-bold) 14px/18px var(--font-sans);color:var(--label-secondary);">Lead Generation</span>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
+                <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;">
+                  <span><span style="display:block;font:var(--fw-extrabold) 15px/20px var(--font-sans);color:var(--label-primary);">Leads</span><span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);margin-top:2px;">0 YTD</span></span>
+                  <svg width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="36" fill="none" stroke="var(--kw-neutral-200)" stroke-width="9"></circle></svg>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;">
+                  <span><span style="display:block;font:var(--fw-extrabold) 15px/20px var(--font-sans);color:var(--label-primary);">Appointments</span><span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);margin-top:2px;">0 YTD</span></span>
+                  <svg width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="36" fill="none" stroke="var(--kw-neutral-200)" stroke-width="9"></circle></svg>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;">
+                  <span><span style="display:block;font:var(--fw-extrabold) 15px/20px var(--font-sans);color:var(--label-primary);">Under Contract</span><span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);margin-top:2px;">0 YTD</span></span>
+                  <svg width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="36" fill="none" stroke="var(--kw-neutral-200)" stroke-width="9"></circle></svg>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;">
+                  <span><span style="display:block;font:var(--fw-extrabold) 15px/20px var(--font-sans);color:var(--label-primary);">Closed Units</span><span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);margin-top:2px;">0 YTD</span></span>
+                  <svg width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="36" fill="none" stroke="var(--kw-neutral-200)" stroke-width="9"></circle></svg>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;">
+                  <span><span style="display:block;font:var(--fw-extrabold) 15px/20px var(--font-sans);color:var(--label-primary);">GCI Goal Breakdown</span><span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);margin-top:2px;">$0 YTD</span></span>
+                  <span style="font:italic var(--fw-regular) 13px/18px var(--font-sans);color:var(--label-tertiary);margin-top:18px;">(based on opportunities)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div style="display:flex;flex-direction:column;gap:24px;min-width:0;">
+
+          <!-- MARKET CENTER -->
+          <div style="background:#fff;border-radius:4px;box-shadow:var(--shadow04);overflow:hidden;">
+            <div style="display:flex;align-items:center;gap:11px;padding:16px 18px;">
+              <span style="color:var(--action);display:flex;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"></rect><path d="M3 9.5h18"></path><path d="M8 2.5v4"></path><path d="M16 2.5v4"></path></svg></span>
+              <span style="font:var(--fw-extrabold) 18px/22px var(--font-sans);color:var(--label-primary);margin-right:auto;">Demo Market Center</span>
+              <button style="display:flex;align-items:center;gap:6px;background:transparent;border:none;cursor:pointer;color:var(--action);font:var(--fw-bold) 14px/1 var(--font-sans);padding:4px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L18.5 9.5l-4-4L4 16v4z"></path><path d="M13.5 6.5l4 4"></path></svg>Edit</button>
+            </div>
+            <div style="position:relative;margin:0 16px;">
+              <div style="height:172px;border-radius:8px;background:linear-gradient(135deg,#cdb89f,#a98f76);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                <span style="font:var(--fw-extrabold) 40px/1 var(--font-sans);color:rgba(255,255,255,.75);letter-spacing:3px;">NYIMAK</span>
+              </div>
+              <button style="position:absolute;left:8px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:none;background:rgba(255,255,255,.92);box-shadow:var(--shadow12);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--action);"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M 19 4 L 9 14 L 19 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+              <button style="position:absolute;right:8px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:none;background:rgba(255,255,255,.92);box-shadow:var(--shadow12);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--action);"><svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M 13 4 L 23 14 L 13 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+            </div>
+            <div style="padding:14px 18px 18px;">
+              <span style="display:block;font:var(--fw-extrabold) 17px/22px var(--font-sans);color:var(--label-primary);">sell something</span>
+              <span style="display:block;margin-top:3px;font:var(--fw-regular) 14px/18px var(--font-sans);color:var(--label-tertiary);">Sponsored by <span style="color:var(--action);font-weight:700;cursor:pointer;">Joseph Smith</span></span>
+            </div>
+          </div>
+
+          <!-- PREFERRED PARTNERS -->
+          <div style="background:#fff;border-radius:4px;box-shadow:var(--shadow04);display:flex;align-items:center;gap:12px;padding:18px 18px;">
+            <span style="color:var(--action);display:flex;"><svg width="24" height="18" viewBox="0 0 28 20" fill="currentColor"><path d="M 14 0 C 13.735 0 13.48 0.105 13.293 0.293 L 11.586 2 L 8 2 C 7.735 2 7.48 2.105 7.293 2.293 L 4.586 5 L 3 5 C 1.343 5 0 6.343 0 8 L 0 15 C 0 16.657 1.343 18 3 18 L 4.792 18 C 4.938 18.062 5.129 18.143 5.365 18.239 C 5.838 18.431 6.495 18.687 7.234 18.944 C 8.668 19.443 10.563 20 12 20 C 13.64 20 15.266 19.09 16.612 18.061 C 17.052 17.726 17.478 17.364 17.885 16.993 C 17.923 16.998 17.961 17 18 17 L 20 17 C 20.952 17 21.85 16.689 22.469 16.414 C 22.787 16.272 23.051 16.131 23.281 16 L 25 16 C 26.657 16 28 14.657 28 13 L 28 6 C 28 4.343 26.657 3 25 3 L 23.414 3 L 20.707 0.293 C 20.52 0.105 20.265 0 20 0 L 14 0 Z M 19.847 15 L 20 15 C 20.548 15 21.15 14.811 21.656 14.586 C 22.105 14.369 22.404 14.194 22.446 14.168 C 22.61 14.058 22.803 14 23 14 L 25 14 C 25.552 14 26 13.552 26 13 L 26 6 C 26 5.448 25.552 5 25 5 L 23 5 C 22.735 5 22.48 4.895 22.293 4.707 L 19.586 2 L 14.414 2 L 12.706 3.708 L 10.624 5.791 C 9.997 6.509 10.025 7.602 10.71 8.287 C 11.425 9.001 12.583 9.001 13.298 8.287 L 15.293 6.293 C 15.684 5.902 16.317 5.902 16.707 6.293 L 19.91 9.496 C 21.281 10.867 21.506 13.095 20.167 14.637 C 20.064 14.755 19.958 14.876 19.847 15 Z M 5.406 16.086 C 5.278 16.029 5.14 16 5 16 L 3 16 C 2.448 16 2 15.552 2 15 L 2 8 C 2 7.448 2.448 7 3 7 L 5 7 C 5.265 7 5.52 6.895 5.707 6.707 L 8.414 4 L 9.581 4 L 9.157 4.432 C 7.802 5.959 7.855 8.26 9.296 9.701 C 10.792 11.197 13.216 11.197 14.712 9.701 L 16 8.414 L 18.496 10.91 C 19.199 11.613 19.241 12.653 18.657 13.325 C 17.779 14.336 16.626 15.534 15.398 16.472 C 14.137 17.435 12.957 18 12 18 C 10.937 18 9.332 17.557 7.891 17.056 C 7.193 16.813 6.569 16.569 6.119 16.386 C 5.895 16.295 5.714 16.219 5.591 16.166 L 5.406 16.086 Z" fill-rule="evenodd"></path></svg></span>
+            <span style="font:var(--fw-extrabold) 17px/22px var(--font-sans);color:var(--label-primary);margin-right:auto;">Explore Preferred Partners</span>
+            <button title="Open" style="border:none;background:transparent;cursor:pointer;display:flex;color:var(--action);padding:4px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+            <button style="display:flex;align-items:center;gap:6px;background:transparent;border:none;cursor:pointer;color:var(--action);font:var(--fw-bold) 14px/1 var(--font-sans);padding:4px;border-left:1px solid var(--divider);padding-left:14px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L18.5 9.5l-4-4L4 16v4z"></path><path d="M13.5 6.5l4 4"></path></svg>Edit</button>
+          </div>
+
+          <!-- RECENT LEADS -->
+          <div style="background:#fff;border-radius:4px;box-shadow:var(--shadow04);overflow:hidden;">
+            <div style="display:flex;align-items:center;gap:11px;padding:16px 18px;border-bottom:1px solid var(--divider);">
+              <span style="width:28px;height:28px;flex:none;border-radius:50%;border:2px solid var(--action);color:var(--action);display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 13px/1 var(--font-sans);">L</span>
+              <span style="font:var(--fw-extrabold) 18px/22px var(--font-sans);color:var(--label-primary);">Recent Leads</span>
+            </div>
+            <div data-lead-row="" style="display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--divider);">
+              <button data-lead-check="" style="width:20px;height:20px;flex:none;border-radius:4px;border:1.5px solid var(--label-tertiary);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;"></button>
+              <span style="min-width:0;"><span style="display:block;font:var(--fw-bold) 15px/20px var(--font-sans);color:var(--label-primary);">Carter Dean</span><span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);">Facebook Ad Lead</span></span>
+              <span style="background:var(--kw-neutral-200);color:var(--label-secondary);font:var(--fw-bold) 12px/1 var(--font-sans);padding:6px 12px;border-radius:999px;white-space:nowrap;">5 Days ago</span>
+              <button title="More" style="border:none;background:transparent;cursor:pointer;padding:2px;display:flex;color:var(--label-tertiary);"><svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M 3 6 C 1.343 6 0 4.657 0 3 C 0 1.343 1.343 0 3 0 C 4.657 0 6 1.343 6 3 C 6 4.657 4.657 6 3 6 Z" transform="translate(13 2)"></path><path d="M 0 14 C 0 15.657 1.343 17 3 17 C 4.657 17 6 15.657 6 14 C 6 12.343 4.657 11 3 11 C 1.343 11 0 12.343 0 14 Z" transform="translate(13 2)"></path><path d="M 0 25 C 0 26.657 1.343 28 3 28 C 4.657 28 6 26.657 6 25 C 6 23.343 4.657 22 3 22 C 1.343 22 0 23.343 0 25 Z" transform="translate(13 2)"></path></svg></button>
+            </div>
+            <div data-lead-row="" style="display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--divider);">
+              <button data-lead-check="" style="width:20px;height:20px;flex:none;border-radius:4px;border:1.5px solid var(--label-tertiary);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;"></button>
+              <span style="min-width:0;"><span style="display:block;font:var(--fw-bold) 15px/20px var(--font-sans);color:var(--label-primary);">Alexis Nichols</span><span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);">Facebook Ad Lead</span></span>
+              <span style="background:var(--kw-neutral-200);color:var(--label-secondary);font:var(--fw-bold) 12px/1 var(--font-sans);padding:6px 12px;border-radius:999px;white-space:nowrap;">5 Days ago</span>
+              <button title="More" style="border:none;background:transparent;cursor:pointer;padding:2px;display:flex;color:var(--label-tertiary);"><svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M 3 6 C 1.343 6 0 4.657 0 3 C 0 1.343 1.343 0 3 0 C 4.657 0 6 1.343 6 3 C 6 4.657 4.657 6 3 6 Z" transform="translate(13 2)"></path><path d="M 0 14 C 0 15.657 1.343 17 3 17 C 4.657 17 6 15.657 6 14 C 6 12.343 4.657 11 3 11 C 1.343 11 0 12.343 0 14 Z" transform="translate(13 2)"></path><path d="M 0 25 C 0 26.657 1.343 28 3 28 C 4.657 28 6 26.657 6 25 C 6 23.343 4.657 22 3 22 C 1.343 22 0 23.343 0 25 Z" transform="translate(13 2)"></path></svg></button>
+            </div>
+            <div data-lead-row="" style="display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:14px;padding:14px 18px;">
+              <button data-lead-check="" style="width:20px;height:20px;flex:none;border-radius:4px;border:1.5px solid var(--label-tertiary);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;"></button>
+              <span style="min-width:0;"><span style="display:block;font:var(--fw-bold) 15px/20px var(--font-sans);color:var(--label-primary);">Joanne Rice</span><span style="display:block;font:var(--fw-regular) 13px/16px var(--font-sans);color:var(--label-tertiary);">Facebook Ad Lead</span></span>
+              <span style="background:var(--kw-neutral-200);color:var(--label-secondary);font:var(--fw-bold) 12px/1 var(--font-sans);padding:6px 12px;border-radius:999px;white-space:nowrap;">6 Days ago</span>
+              <button title="More" style="border:none;background:transparent;cursor:pointer;padding:2px;display:flex;color:var(--label-tertiary);"><svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M 3 6 C 1.343 6 0 4.657 0 3 C 0 1.343 1.343 0 3 0 C 4.657 0 6 1.343 6 3 C 6 4.657 4.657 6 3 6 Z" transform="translate(13 2)"></path><path d="M 0 14 C 0 15.657 1.343 17 3 17 C 4.657 17 6 15.657 6 14 C 6 12.343 4.657 11 3 11 C 1.343 11 0 12.343 0 14 Z" transform="translate(13 2)"></path><path d="M 0 25 C 0 26.657 1.343 28 3 28 C 4.657 28 6 26.657 6 25 C 6 23.343 4.657 22 3 22 C 1.343 22 0 23.343 0 25 Z" transform="translate(13 2)"></path></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================== KWIQ COPILOT DRAWER ===================== -->
+  <div data-kwiq-overlay="" style="position:fixed;inset:0;background:var(--overlay-darken);opacity:0;pointer-events:none;transition:opacity .28s ease;z-index:90;"></div>
+  <aside data-kwiq-drawer="" style="position:fixed;top:64px;left:64px;right:0;bottom:0;width:auto;height:calc(100vh - 64px);background:var(--page-background);z-index:70;transform:translateY(14px);opacity:0;pointer-events:none;transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .26s ease;display:flex;flex-direction:column;overflow:hidden;">
+
+    <div style="flex:none;display:flex;align-items:center;padding:14px 20px 0;">
+      <button data-kwiq-close="" title="Back to dashboard" style="display:flex;align-items:center;gap:8px;background:transparent;border:none;cursor:pointer;border-radius:8px;padding:8px 13px 8px 9px;font:var(--fw-bold) 14px/1 var(--font-sans);color:var(--label-secondary);" style-hover="background:var(--kw-neutral-100);">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+        Back to dashboard
+      </button>
+    </div>
+
+    <div data-kwiq-messages="" style="flex:1;min-height:0;overflow-y:auto;padding:32px 24px;display:flex;flex-direction:column;gap:14px;width:100%;max-width:840px;margin:0 auto;">
+      <div data-kwiq-empty="" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0;padding:8px 6px 4px;max-width:760px;margin:0 auto;">
+        <span data-kwiq-eyebrow="" style="font:var(--fw-extrabold) 13px/1 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--action);margin-bottom:8px;">Good morning</span>
+        <span data-kwiq-hello="" style="font:var(--fw-extrabold) 34px/42px var(--font-sans);letter-spacing:-.02em;color:var(--label-primary);">Good morning, Nina</span>
+        <span data-kwiq-sub="" style="font:var(--fw-regular) 18px/26px var(--font-sans);color:var(--label-secondary);margin-top:12px;max-width:440px;">I've got your pipeline and calendar ready. What would you like to tackle first?</span>
+        <div data-kwiq-composer-slot="" style="width:100%;margin-top:32px;margin-bottom:24px;"></div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;width:100%;">
+          <button data-kwiq-prompt="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--divider);border-radius:999px;padding:9px 15px;cursor:pointer;font:var(--fw-bold) 13.5px/18px var(--font-sans);color:var(--label-secondary);">
+            <span style="display:flex;color:var(--action);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 4.3v8.6L12 20.2 4.5 15.9V7.3z"></path><path d="M4.7 7.4L12 11.6l7.3-4.2"></path><path d="M12 11.6V20"></path></svg></span>
+            Summarize my pipeline
+          </button>
+          <button data-kwiq-prompt="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--divider);border-radius:999px;padding:9px 15px;cursor:pointer;font:var(--fw-bold) 13.5px/18px var(--font-sans);color:var(--label-secondary);">
+            <span style="display:flex;color:var(--action);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.3"></circle><path d="M5 20c0-3.7 3.2-5.7 7-5.7s7 2 7 5.7"></path></svg></span>
+            Find contacts to call today
+          </button>
+          <button data-kwiq-prompt="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--divider);border-radius:999px;padding:9px 15px;cursor:pointer;font:var(--fw-bold) 13.5px/18px var(--font-sans);color:var(--label-secondary);">
+            <span style="display:flex;color:var(--action);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L18 10l-4-4L4 16z"></path><path d="M13 5l4 4"></path></svg></span>
+            Draft a listing description
+          </button>
+          <button data-kwiq-prompt="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--divider);border-radius:999px;padding:9px 15px;cursor:pointer;font:var(--fw-bold) 13.5px/18px var(--font-sans);color:var(--label-secondary);">
+            <span style="display:flex;color:var(--action);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg></span>
+            Generate social post for a listing
+          </button>
+          <button data-kwiq-prompt="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--divider);border-radius:999px;padding:9px 15px;cursor:pointer;font:var(--fw-bold) 13.5px/18px var(--font-sans);color:var(--label-secondary);">
+            <span style="display:flex;color:var(--action);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="4.5" cy="6" r="1.1"></circle><circle cx="4.5" cy="12" r="1.1"></circle><circle cx="4.5" cy="18" r="1.1"></circle><path d="M9 6h11M9 12h11M9 18h11"></path></svg></span>
+            Follow up with leads
+          </button>
+          <button data-kwiq-prompt="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--divider);border-radius:999px;padding:9px 15px;cursor:pointer;font:var(--fw-bold) 13.5px/18px var(--font-sans);color:var(--label-secondary);">
+            <span style="display:flex;color:var(--action);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"></path><path d="M6 20V11"></path><path d="M12 20V5"></path><path d="M18 20v-6"></path></svg></span>
+            Write a market update email
+          </button>
+          <button data-kwiq-prompt="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--divider);border-radius:999px;padding:9px 15px;cursor:pointer;font:var(--fw-bold) 13.5px/18px var(--font-sans);color:var(--label-secondary);">
+            <span style="display:flex;color:var(--action);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>
+            Analyze a recent comp
+          </button>
+          <button data-kwiq-prompt="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--divider);border-radius:999px;padding:9px 15px;cursor:pointer;font:var(--fw-bold) 13.5px/18px var(--font-sans);color:var(--label-secondary);">
+            <span style="display:flex;color:var(--action);"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 8h6M9 12h6M9 16h4"></path></svg></span>
+            Create a smart plan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div data-kwiq-composer="" style="flex:none;padding:8px 24px 24px;background:transparent;width:100%;max-width:760px;margin:0 auto;">
+      <div data-kwiq-cbox="" style="border:1.5px solid var(--divider);border-radius:16px;background:#fff;box-shadow:var(--shadow12);">
+        <div style="padding:16px 18px 12px;">
+          <input data-kwiq-input="" placeholder="Tell me what you need…" style="width:100%;border:none;outline:none;background:transparent;font:var(--fw-regular) 16px/24px var(--font-sans);color:var(--label-primary);">
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:0 12px 12px;gap:8px;">
+          <button data-kwiq-ctx="" title="Add a tab or file" style="display:inline-flex;align-items:center;gap:8px;background:var(--kw-system-tint);color:var(--action);border:none;border-radius:999px;padding:8px 14px;cursor:pointer;font:var(--fw-extrabold) 13px/1 var(--font-sans);white-space:nowrap;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+            Add a tab or file
+          </button>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <button data-kwiq-model="" title="Model" style="display:flex;align-items:center;gap:5px;background:transparent;border:none;cursor:pointer;border-radius:8px;padding:6px 8px;font:var(--fw-bold) 13px/18px var(--font-sans);color:var(--label-secondary);white-space:nowrap;">
+              KWIQ Flash
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+            </button>
+            <button data-kwiq-voice="" title="Voice input" style="width:38px;height:38px;flex:none;border:none;border-radius:10px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--action);">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg>
+            </button>
+            <button data-kwiq-send="" title="Send" style="width:38px;height:38px;flex:none;border:none;border-radius:10px;background:var(--action);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14.5v-3"></path><path d="M11 17V8"></path><path d="M16 13.5v-3"></path><path d="M19.6 6.3l.45 1.35 1.35.45-1.35.45-.45 1.35-.45-1.35-1.35-.45 1.35-.45z" fill="currentColor" stroke="none"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================== KWIQ PITCH DECK VIEWER ===================== -->
+  <div data-deck-overlay="" style="position:fixed;inset:0;background:rgba(16,18,24,.82);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:120;display:flex;align-items:center;justify-content:center;padding:28px;">
+    <div style="width:min(960px,94vw);display:flex;flex-direction:column;gap:16px;align-items:center;">
+      <div data-deck-stage="" style="position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;box-shadow:var(--shadow32);overflow:hidden;background:#fff;">
+        <div data-deck-frame="" style="position:absolute;top:0;left:0;width:960px;height:540px;transform-origin:top left;"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px;">
+        <button data-deck-prev="" data-deck-nav="" title="Previous" style="width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .12s;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></button>
+        <span data-deck-counter="" style="color:#fff;font:var(--fw-bold) 14px/1 var(--font-sans);min-width:56px;text-align:center;">1 / 8</span>
+        <button data-deck-next="" data-deck-nav="" title="Next" style="width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .12s;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></button>
+      </div>
+    </div>
+    <button data-deck-close="" data-deck-nav="" title="Close" style="position:absolute;top:18px;right:20px;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .12s;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></button>
+  </div>
+
+  <!-- ===================== CMA PDF PREVIEW ===================== -->
+  <div data-cma-overlay="" style="position:fixed;inset:0;background:rgba(16,18,24,.82);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:130;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:14px;">
+    <div style="width:min(900px,94vw);display:flex;align-items:center;gap:12px;color:#fff;">
+      <span style="width:34px;height:40px;flex:none;border-radius:6px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 10px/1 var(--font-sans);letter-spacing:.5px;">PDF</span>
+      <div style="flex:1;min-width:0;"><div style="font:var(--fw-bold) 16px/20px var(--font-sans);">Rollingwood CMA</div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);opacity:.7;">Comparative Market Analysis</div></div>
+      <a data-cma-dl-overlay="" href="#" download="Rollingwood CMA.pdf" title="Download" style="height:38px;display:flex;align-items:center;gap:8px;padding:0 16px;border-radius:8px;background:rgba(255,255,255,.16);color:#fff;text-decoration:none;font:var(--fw-bold) 13px/1 var(--font-sans);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"></path><path d="M7 11l5 5 5-5"></path><path d="M5 20h14"></path></svg>Download</a>
+      <button data-cma-close="" title="Close" style="width:38px;height:38px;flex:none;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></button>
+    </div>
+    <div data-cma-scroll="" style="width:min(900px,94vw);flex:1;min-height:0;border-radius:12px;overflow-y:auto;overflow-x:hidden;box-shadow:var(--shadow32);background:var(--kw-neutral-200);padding:18px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+      <div data-cma-pages="" style="display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;"></div>
+      <div data-cma-loading="" style="display:none;flex-direction:column;align-items:center;gap:12px;color:var(--label-secondary);padding:60px 0;">
+        <span style="width:26px;height:26px;border:3px solid var(--kw-neutral-300);border-top-color:var(--action);border-radius:50%;animation:kwiqSpin .7s linear infinite;"></span>
+        <span style="font:var(--fw-bold) 13px/18px var(--font-sans);">Loading CMA…</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{
+  &quot;accent&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#006C84&quot;, &quot;options&quot;: [&quot;#006C84&quot;, &quot;#0F5EAD&quot;, &quot;#6730B4&quot;, &quot;#026E24&quot;, &quot;#CE011F&quot;]},
+  &quot;agentFirstName&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Nina&quot;},
+  &quot;unreadCount&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 211, &quot;min&quot;: 0, &quot;max&quot;: 999}
+}">
+class Component extends DCLogic {
+  hexToRgba(hex, a) {
+    if (!hex || hex[0] !== '#') return 'rgba(0,108,132,' + a + ')';
+    let h = hex.slice(1);
+    if (h.length === 3) h = h.split('').map(c => c + c).join('');
+    const n = parseInt(h, 16);
+    return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+  }
+
+  applyProps() {
+    const root = document.querySelector('[data-dash-root]');
+    if (!root) return;
+    const a = this.props.accent || '#006C84';
+    root.style.setProperty('--action', a);
+    root.style.setProperty('--action-hover', a);
+    root.style.setProperty('--action-hover-fill', this.hexToRgba(a, 0.1));
+    const g = root.querySelector('[data-greeting]');
+    if (g) g.textContent = 'Welcome Home, ' + (this.props.agentFirstName || 'Nina');
+    const name = this.props.agentFirstName || 'Nina';
+    const hr = (typeof Date !== 'undefined' && new Date().getHours) ? new Date().getHours() : 9;
+    let greet = 'Good morning';
+    if (hr >= 12 && hr < 17) greet = 'Good afternoon';
+    else if (hr >= 17) greet = 'Good evening';
+    const eb = root.querySelector('[data-kwiq-eyebrow]');
+    if (eb) eb.textContent = greet;
+    const hi = root.querySelector('[data-kwiq-hello]');
+    if (hi) hi.textContent = greet + ', ' + name;
+    const u = root.querySelector('[data-unread]');
+    if (u) {
+      const n = (this.props.unreadCount === undefined || this.props.unreadCount === null) ? 211 : this.props.unreadCount;
+      if (n > 0) { u.textContent = n; u.style.display = ''; }
+      else { u.style.display = 'none'; }
+    }
+  }
+
+  wire() {
+    const root = document.querySelector('[data-dash-root]');
+    if (!root || this._wired) return;
+    this._wired = true;
+    const checkSvg = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>';
+
+    const setSeg = (which) => {
+      const my = root.querySelector('[data-seg="my"]');
+      const team = root.querySelector('[data-seg="team"]');
+      const act = (el) => { el.style.background = '#fff'; el.style.color = 'var(--action)'; el.style.boxShadow = 'inset 0 0 0 1.5px var(--action)'; };
+      const ina = (el) => { el.style.background = 'transparent'; el.style.color = 'var(--label-secondary)'; el.style.boxShadow = 'none'; };
+      if (which === 'my') { act(my); ina(team); } else { act(team); ina(my); }
+    };
+
+    root.addEventListener('click', (e) => {
+      const seg = e.target.closest('[data-seg]');
+      if (seg) { setSeg(seg.dataset.seg); return; }
+
+      const tc = e.target.closest('[data-task-check]');
+      if (tc) {
+        const row = tc.closest('[data-task-row]');
+        const name = row && row.querySelector('[data-task-name]');
+        if (tc.dataset.done === '1') {
+          tc.dataset.done = '0';
+          tc.style.color = 'var(--label-tertiary)';
+          if (name) { name.style.textDecoration = 'none'; name.style.color = 'var(--label-primary)'; }
+        } else {
+          tc.dataset.done = '1';
+          tc.style.color = 'var(--kw-green)';
+          if (name) { name.style.textDecoration = 'line-through'; name.style.color = 'var(--label-tertiary)'; }
+        }
+        return;
+      }
+
+      const lc = e.target.closest('[data-lead-check]');
+      if (lc) {
+        if (lc.dataset.on === '1') {
+          lc.dataset.on = '0';
+          lc.style.background = '#fff';
+          lc.style.borderColor = 'var(--label-tertiary)';
+          lc.innerHTML = '';
+        } else {
+          lc.dataset.on = '1';
+          lc.style.background = 'var(--action)';
+          lc.style.borderColor = 'var(--action)';
+          lc.innerHTML = checkSvg;
+        }
+        return;
+      }
+
+      if (e.target.closest('[data-kwiq-open]')) { this.kwiqOpen(); return; }
+      if (e.target.closest('[data-kwiq-expand]')) { this.kwiqPopOut(); return; }
+      if (e.target.closest('[data-kwiq-chrome-close]')) { if (this._kwiqExpanded) this.kwiqToggleExpand(); return; }
+      if (e.target.closest('[data-kwiq-close]') || e.target.closest('[data-kwiq-overlay]')) { this.kwiqClose(); return; }
+      if (e.target.closest('[data-kwiq-newchat]')) { this.kwiqNewChat(); return; }
+      const la = e.target.closest('[data-lead-action]');
+      if (la) {
+        const name = la.getAttribute('data-lead-name');
+        const act = la.getAttribute('data-lead-action');
+        if (act === 'email') {
+          if (!this._kwiqOpen) this.kwiqOpen();
+          this.kwiqEmailDraft(name);
+          return;
+        }
+        const verb = act === 'call' ? 'Starting a call to' : 'Opening a text to';
+        const msgs = root.querySelector('[data-kwiq-messages]');
+        const empty = root.querySelector('[data-kwiq-empty]');
+        this.kwiqEnterChat();
+        msgs.appendChild(this.kwiqMakeKwiq(verb + ' ' + name + '…'));
+        msgs.scrollTop = msgs.scrollHeight;
+        return;
+      }
+      const et = e.target.closest('[data-email-tone]');
+      if (et) { this.kwiqEmailPick(et); return; }
+      const eu = e.target.closest('[data-email-use]');
+      if (eu) {
+        const m = root.querySelector('[data-kwiq-messages]');
+        m.appendChild(this.kwiqMakeKwiq('Done — the email is open in your drafts, ready to review and send.'));
+        m.scrollTop = m.scrollHeight;
+        return;
+      }
+      if (e.target.closest('[data-deck-open]')) { this.kwiqDeckOpen(); return; }
+      if (e.target.closest('[data-deck-download]')) { const m = root.querySelector('[data-kwiq-messages]'); m.appendChild(this.kwiqMakeKwiq('Your presentation is downloading as a PDF — I also saved a copy to your Designs.')); m.scrollTop = m.scrollHeight; return; }
+      if (e.target.closest('[data-deck-prev]')) { this.kwiqDeckGo((this._deckIdx || 0) - 1); return; }
+      if (e.target.closest('[data-deck-next]')) { this.kwiqDeckGo((this._deckIdx || 0) + 1); return; }
+      if (e.target.closest('[data-deck-close]') || e.target === root.querySelector('[data-deck-overlay]')) { this.kwiqDeckClose(); return; }
+      const cmaOpt = e.target.closest('[data-cma-opt]');
+      if (cmaOpt) { this.kwiqCmaPick(cmaOpt); return; }
+      const cmaCont = e.target.closest('[data-cma-continue]');
+      if (cmaCont) { this.kwiqCmaContinue(cmaCont); return; }
+      const cmaCreate = e.target.closest('[data-cma-create]');
+      if (cmaCreate) { this.kwiqCmaCreateDraft(cmaCreate); return; }
+      const cmaAdjust = e.target.closest('[data-cma-adjust]');
+      if (cmaAdjust) { this.kwiqCmaAdjust(cmaAdjust); return; }
+      if (e.target.closest('[data-cma-open]')) { this.kwiqCmaPreview(); return; }
+      if (e.target.closest('[data-cma-close]') || e.target === root.querySelector('[data-cma-overlay]')) { this.kwiqCmaClose(); return; }
+      const pr = e.target.closest('[data-kwiq-prompt]');
+      if (pr) { this.kwiqSend(pr.textContent); return; }
+      if (e.target.closest('[data-kwiq-send]')) { const i = root.querySelector('[data-kwiq-input]'); this.kwiqSend(i && i.value); return; }
+    });
+
+    const inp = root.querySelector('[data-kwiq-input]');
+    if (inp) inp.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); this.kwiqSend(inp.value); }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (this._deckOpen) {
+        if (e.key === 'Escape') { this.kwiqDeckClose(); return; }
+        if (e.key === 'ArrowRight') { this.kwiqDeckGo((this._deckIdx || 0) + 1); return; }
+        if (e.key === 'ArrowLeft') { this.kwiqDeckGo((this._deckIdx || 0) - 1); return; }
+        return;
+      }
+      if (e.key === 'Escape') this.kwiqClose();
+    });
+    window.addEventListener('resize', () => { if (this._deckOpen) this.kwiqDeckScale(); if (this._kwiqOpen) this.kwiqApply(); });
+  }
+
+  kwiqSparkle() {
+    return '<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M8.5 2 Q8.5 9 15.5 9 Q8.5 9 8.5 16 Q8.5 9 1.5 9 Q8.5 9 8.5 2 Z M18 2 Q18 6 22 6 Q18 6 18 10 Q18 6 14 6 Q18 6 18 2 Z M14 15 Q14 18.5 17.5 18.5 Q14 18.5 14 22 Q14 18.5 10.5 18.5 Q14 18.5 14 15 Z"/></svg>';
+  }
+  kwiqApply() {
+    const root = document.querySelector('[data-dash-root]');
+    if (!root) return;
+    const dr = root.querySelector('[data-kwiq-drawer]');
+    const ov = root.querySelector('[data-kwiq-overlay]');
+    const bodyRow = root.querySelector('[data-body-row]');
+    const open = this._kwiqOpen;
+    // Full-screen AI takeover: the overlay covers the whole app.
+    dr.style.transform = open ? 'translateY(0)' : 'translateY(14px)';
+    dr.style.opacity = open ? '1' : '0';
+    dr.style.pointerEvents = open ? 'auto' : 'none';
+    // Dashboard is fully covered — no inline shrink, no dim layer needed.
+    if (bodyRow) bodyRow.style.marginRight = '0';
+    if (ov) { ov.style.opacity = '0'; ov.style.pointerEvents = 'none'; }
+    // Lock background scroll while KWIQ owns the screen.
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+  }
+  kwiqSetExpandIcon() {
+    const root = document.querySelector('[data-dash-root]');
+    const btn = root && root.querySelector('[data-kwiq-expand]');
+    if (!btn) return;
+    const out = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-8 8"/><path d="M19 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4"/></svg>';
+    const inn = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="M14 9l-4 3 4 3" /></svg>';
+    btn.innerHTML = this._kwiqExpanded ? inn : out;
+    btn.title = this._kwiqExpanded ? 'Dock to side' : 'Open in new window';
+  }
+  kwiqToggleExpand() {
+    this._kwiqExpanded = !this._kwiqExpanded;
+    this.kwiqApply();
+    this.kwiqSetExpandIcon();
+  }
+  kwiqPopOut() {
+    // If a popped-out window is already open, just focus it.
+    if (this._kwiqWin && !this._kwiqWin.closed) { this._kwiqWin.focus(); return; }
+    const root = document.querySelector('[data-dash-root]');
+    const cssEl = document.querySelector('link[href*="colors_and_type"]');
+    const cssHref = cssEl ? cssEl.href : 'colors_and_type.css';
+    const sparkle = this.kwiqSparkle();
+    // Reuse the live workspace markup so styling stays identical.
+    const msgsEl = root.querySelector('[data-kwiq-messages]');
+    const composerEl = root.querySelector('[data-kwiq-composer]');
+    const msgsHTML = msgsEl ? msgsEl.outerHTML : '';
+    const composerHTML = composerEl ? composerEl.outerHTML : '';
+    const W = 560, H = 760;
+    const left = (window.screen && window.screen.availWidth ? window.screen.availWidth - W - 40 : 80);
+    const feats = 'popup=yes,noopener=no,width=' + W + ',height=' + H + ',left=' + left + ',top=80';
+    const win = window.open('', 'kwiqWorkspace', feats);
+    if (!win) {
+      // Popups blocked — fall back to the in-page window so KWIQ still opens.
+      if (!this._kwiqExpanded) this.kwiqToggleExpand();
+      return;
+    }
+    this._kwiqWin = win;
+    const doc =
+'<!DOCTYPE html><html><head><meta charset="utf-8">' +
+'<meta name="viewport" content="width=device-width, initial-scale=1">' +
+'<title>KWIQ Workspace</title>' +
+'<link rel="stylesheet" href="' + cssHref + '">' +
+'<style>' +
+'*{box-sizing:border-box;}html,body{margin:0;padding:0;height:100%;}' +
+'body{font-family:var(--font-sans);background:#fff;color:var(--label-primary);display:flex;flex-direction:column;}' +
+'*::-webkit-scrollbar{width:10px;height:10px;}*::-webkit-scrollbar-thumb{background:var(--kw-neutral-300);border-radius:8px;border:2px solid #fff;}' +
+'@keyframes kwiqDot{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-4px);opacity:1}}' +
+'[data-kwiq-prompt]{transition:background .14s ease,color .14s ease,box-shadow .14s ease,transform .14s ease;}' +
+'[data-kwiq-prompt]:hover{background:var(--kw-system-tint)!important;color:var(--action)!important;box-shadow:var(--shadow04);transform:translateY(-1px);}' +
+'[data-kwiq-prompt]:active{transform:translateY(0);box-shadow:none;}' +
+'.kw-bar{flex:none;display:flex;align-items:center;gap:10px;height:52px;padding:0 18px;border-bottom:1px solid var(--divider);background:#fff;}' +
+'.kw-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#00b4d2,#006c84);display:flex;align-items:center;justify-content:center;}' +
+'.kw-mark svg{width:18px;height:18px;}' +
+'</style></head><body>' +
+'<div class="kw-bar"><span class="kw-mark">' + sparkle + '</span>' +
+'<span style="font:var(--fw-extrabold) 17px/1 var(--font-sans);color:var(--label-primary);letter-spacing:.2px;">KWIQ</span>' +
+'<span style="font:var(--fw-regular) 13px/1 var(--font-sans);color:var(--label-tertiary);">Workspace</span></div>' +
+msgsHTML + composerHTML +
+'<script>(function(){' +
+'var msgs=document.querySelector("[data-kwiq-messages]");' +
+'var empty=document.querySelector("[data-kwiq-empty]");' +
+'var input=document.querySelector("[data-kwiq-input]");' +
+'var SP=' + JSON.stringify(sparkle) + ';' +
+'function userBubble(t){var d=document.createElement("div");d.style.cssText="align-self:flex-end;max-width:84%;background:var(--action);color:#fff;padding:11px 15px;border-radius:16px 16px 4px 16px;font:var(--fw-regular) 14px/20px var(--font-sans);";d.textContent=t;return d;}' +
+'function kwiqBubble(t){var row=document.createElement("div");row.style.cssText="display:flex;gap:10px;align-items:flex-start;";var av=document.createElement("span");av.style.cssText="width:28px;height:28px;flex:none;border-radius:8px;background:linear-gradient(135deg,#00b4d2,#006c84);display:flex;align-items:center;justify-content:center;margin-top:2px;";av.innerHTML=SP;var b=document.createElement("div");b.style.cssText="background:#fff;box-shadow:var(--shadow04);color:var(--label-primary);padding:11px 15px;border-radius:4px 16px 16px 16px;font:var(--fw-regular) 14px/20px var(--font-sans);max-width:84%;";b.textContent=t;row.appendChild(av);row.appendChild(b);return row;}' +
+'function send(t){t=(t||"").trim();if(!t)return;if(empty)empty.style.display="none";msgs.appendChild(userBubble(t));msgs.scrollTop=msgs.scrollHeight;setTimeout(function(){msgs.appendChild(kwiqBubble("Working on it — here in your KWIQ workspace. Drag this window to your second monitor and keep it open alongside Command."));msgs.scrollTop=msgs.scrollHeight;},650);}' +
+'document.addEventListener("click",function(e){var c=e.target.closest("[data-kwiq-prompt]");if(c){send(c.textContent);if(input)input.value="";return;}var s=e.target.closest("[data-kwiq-send]");if(s){send(input&&input.value);if(input)input.value="";return;}var sc=e.target.closest("[data-kwiq-sharing-close]");if(sc){var bar=sc.closest("[data-kwiq-sharing]");if(bar)bar.style.display="none";return;}});' +
+'if(input)input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();send(input.value);input.value="";}});' +
+'window.focus();if(input)input.focus();' +
+'})();<\/script>' +
+'</body></html>';
+    win.document.open();
+    win.document.write(doc);
+    win.document.close();
+    // KWIQ now lives in its own window — close the in-dashboard panel.
+    this._kwiqExpanded = false;
+    this.kwiqClose();
+    this.kwiqSetExpandIcon();
+  }
+  kwiqChime() {
+    // Soft two-note Web Audio cue (D5 → A5) played once on open — motion for the ears.
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      const ctx = this._actx || (this._actx = new Ctx());
+      if (ctx.state === 'suspended') ctx.resume();
+      const now = ctx.currentTime;
+      [[587.33, 0], [880, 0.12]].forEach((n) => {
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.value = n[0];
+        const t = now + n[1];
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(0.12, t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
+        o.connect(g); g.connect(ctx.destination);
+        o.start(t); o.stop(t + 0.55);
+      });
+    } catch (e) {}
+  }
+  kwiqPlayEntrance() {
+    // Staggered fade+rise cascade over the welcome surface, top to bottom:
+    // salutation → composer → prompt chips. Replays on every open, self-cleans.
+    const root = document.querySelector('[data-dash-root]');
+    const empty = root && root.querySelector('[data-kwiq-empty]');
+    if (!empty || getComputedStyle(empty).display === 'none') return;
+    const seq = [
+      empty.querySelector('[data-kwiq-eyebrow]'),
+      empty.querySelector('[data-kwiq-hello]'),
+      empty.querySelector('[data-kwiq-sub]'),
+      empty.querySelector('[data-kwiq-composer-slot]'),
+    ].concat(Array.from(empty.querySelectorAll('[data-kwiq-prompt]'))).filter(Boolean);
+    seq.forEach((el, i) => {
+      el.style.animation = 'none';
+      void el.offsetWidth; // force reflow so the animation can replay
+      el.style.animation = 'kwiqIn .6s cubic-bezier(.16,1,.3,1) ' + (i * 0.07).toFixed(3) + 's both';
+      const clean = () => {
+        el.style.animation = '';
+        el.style.opacity = '';
+        el.style.transform = '';
+        el.removeEventListener('animationend', clean);
+      };
+      el.addEventListener('animationend', clean);
+    });
+  }
+  kwiqOpen() {
+    this._kwiqOpen = true;
+    this.kwiqApply();
+    this.kwiqWelcomeLayout();
+    this.kwiqChime();
+    const root = document.querySelector('[data-dash-root]');
+    requestAnimationFrame(() => requestAnimationFrame(() => this.kwiqPlayEntrance()));
+    setTimeout(() => { const i = root.querySelector('[data-kwiq-input]'); if (i) i.focus(); }, 320);
+  }
+  kwiqClose() {
+    this._kwiqOpen = false;
+    this.kwiqApply();
+  }
+  kwiqNewChat() {
+    this._cmaAwaitingAddr = false;
+    const root = document.querySelector('[data-dash-root]');
+    const msgs = root.querySelector('[data-kwiq-messages]');
+    const empty = root.querySelector('[data-kwiq-empty]');
+    [...msgs.children].forEach(c => { if (c !== empty) c.remove(); });
+    if (empty) empty.style.display = 'flex';
+    this.kwiqWelcomeLayout();
+  }
+  kwiqWelcomeLayout() {
+    // Welcome surface: input sits centered, above the prompt chips.
+    const root = document.querySelector('[data-dash-root]');
+    const slot = root.querySelector('[data-kwiq-composer-slot]');
+    const comp = root.querySelector('[data-kwiq-composer]');
+    if (slot && comp && comp.parentElement !== slot) slot.appendChild(comp);
+  }
+  kwiqEnterChat() {
+    // Conversation surface: dock the input back to the bottom, hide welcome.
+    const root = document.querySelector('[data-dash-root]');
+    const drawer = root.querySelector('[data-kwiq-drawer]');
+    const comp = root.querySelector('[data-kwiq-composer]');
+    const empty = root.querySelector('[data-kwiq-empty]');
+    if (comp && drawer && comp.parentElement !== drawer) drawer.appendChild(comp);
+    if (empty) empty.style.display = 'none';
+  }
+  kwiqMakeUser(text) {
+    const w = document.createElement('div');
+    w.style.cssText = 'align-self:flex-end;max-width:82%;background:var(--action);color:#fff;padding:11px 15px;border-radius:16px 16px 4px 16px;font:var(--fw-regular) 14px/20px var(--font-sans);white-space:pre-wrap;word-break:break-word;';
+    w.textContent = text;
+    return w;
+  }
+  kwiqMakeRow(inner) {
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:10px;align-items:flex-start;max-width:92%;align-self:flex-start;';
+    const av = document.createElement('span');
+    av.style.cssText = 'width:28px;height:28px;flex:none;border-radius:8px;background:linear-gradient(135deg,#00b4d2,#006c84);display:flex;align-items:center;justify-content:center;margin-top:2px;';
+    av.innerHTML = this.kwiqSparkle();
+    row.appendChild(av);
+    row.appendChild(inner);
+    return row;
+  }
+  kwiqMakeKwiq(text) {
+    const b = document.createElement('div');
+    b.style.cssText = 'background:#fff;box-shadow:var(--shadow04);color:var(--label-primary);padding:11px 15px;border-radius:4px 16px 16px 16px;font:var(--fw-regular) 14px/20px var(--font-sans);white-space:pre-wrap;word-break:break-word;';
+    b.textContent = text;
+    return this.kwiqMakeRow(b);
+  }
+  kwiqMakeTyping() {
+    const b = document.createElement('div');
+    b.style.cssText = 'background:#fff;box-shadow:var(--shadow04);padding:14px 16px;border-radius:4px 16px 16px 16px;display:flex;gap:5px;align-items:center;';
+    b.innerHTML = '<span style="width:7px;height:7px;border-radius:50%;background:var(--label-tertiary);animation:kwiqDot 1.2s infinite;"></span><span style="width:7px;height:7px;border-radius:50%;background:var(--label-tertiary);animation:kwiqDot 1.2s infinite .2s;"></span><span style="width:7px;height:7px;border-radius:50%;background:var(--label-tertiary);animation:kwiqDot 1.2s infinite .4s;"></span>';
+    return this.kwiqMakeRow(b);
+  }
+  kwiqIsCMA(text) {
+    const t = (text || '').toLowerCase();
+    return t.includes('cma') || (t.includes('comparative market') ) || (t.includes('rollingwood') && (t.includes('analysis') || t.includes('saved search') || t.includes('comp')));
+  }
+  kwiqIsOpenHouse(text) {
+    const t = (text || '').toLowerCase();
+    return t.includes('rosewood') || t.includes('6578') || (t.includes('open house') && t.includes('lead'));
+  }
+  kwiqLeadCard(name, detail, color) {
+    const card = document.createElement('div');
+    card.style.cssText = 'display:flex;align-items:center;gap:11px;background:#fff;box-shadow:var(--shadow04);border-radius:12px;padding:9px 11px;';
+    const init = name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
+    const av = document.createElement('span');
+    av.style.cssText = 'width:38px;height:38px;flex:none;border-radius:50%;background:' + color + ';color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 13px/1 var(--font-sans);';
+    av.textContent = init;
+    const info = document.createElement('div');
+    info.style.cssText = 'flex:1;min-width:0;';
+    info.innerHTML = '<div style="font:var(--fw-bold) 14px/18px var(--font-sans);color:var(--label-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + name + '</div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + detail + '</div>';
+    const phone = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l1.6 4-2 1.4a11 11 0 0 0 5 5l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16 16 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg>';
+    const chat = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a7.5 7.5 0 0 1-10.8 6.7L4 20l1.8-5.2A7.5 7.5 0 1 1 21 11.5z"/></svg>';
+    const mail = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>';
+    const btn = (action, svg, title) => '<button data-lead-action="' + action + '" data-lead-name="' + name + '" title="' + title + '" style="width:34px;height:34px;border:none;border-radius:8px;background:var(--kw-system-tint);color:var(--action);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .12s,color .12s;">' + svg + '</button>';
+    const acts = document.createElement('div');
+    acts.style.cssText = 'display:flex;gap:5px;flex:none;';
+    acts.innerHTML = btn('call', phone, 'Call ' + name) + btn('text', chat, 'Text ' + name) + btn('email', mail, 'Email ' + name);
+    card.appendChild(av); card.appendChild(info); card.appendChild(acts);
+    return card;
+  }
+  kwiqMakeOpenHouseLeads() {
+    const col = document.createElement('div');
+    col.style.cssText = 'display:flex;flex-direction:column;gap:10px;flex:1;min-width:0;';
+    const intro = document.createElement('div');
+    intro.style.cssText = 'background:#fff;box-shadow:var(--shadow04);color:var(--label-primary);padding:11px 15px;border-radius:4px 16px 16px 16px;font:var(--fw-regular) 14px/20px var(--font-sans);';
+    intro.textContent = "Here are the 5 leads who signed in at the 6578 Rosewood Avenue open house. Reach out while it's still fresh:";
+    col.appendChild(intro);
+    const leads = [
+      ['Jordan Blake', 'Visited 1:05 PM · Pre-approved buyer', '#006C84'],
+      ['Maria Chen', 'Visited 1:40 PM · Browsing, no agent', '#6730B4'],
+      ['Devin Carter', 'Visited 2:15 PM · Relocating buyer', '#A73B06'],
+      ['Priya Nair', 'Visited 2:50 PM · Cash buyer', '#0F5EAD'],
+      ['Tom Walsh', 'Visited 3:25 PM · Needs to sell first', '#026E24'],
+    ];
+    leads.forEach(([n, d, c]) => col.appendChild(this.kwiqLeadCard(n, d, c)));
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:10px;align-items:flex-start;align-self:stretch;';
+    const av = document.createElement('span');
+    av.style.cssText = 'width:28px;height:28px;flex:none;border-radius:8px;background:linear-gradient(135deg,#00b4d2,#006c84);display:flex;align-items:center;justify-content:center;margin-top:2px;';
+    av.innerHTML = this.kwiqSparkle();
+    row.appendChild(av); row.appendChild(col);
+    return row;
+  }
+  kwiqIsCallList(text) {
+    const t = (text || '').toLowerCase();
+    return t.includes('contacts to call') || t.includes('find contacts') || (t.includes('call') && t.includes('today')) || (t.includes('who') && t.includes('call'));
+  }
+  kwiqCallCard(name, tag, reason, opener, color) {
+    const card = document.createElement('div');
+    card.style.cssText = 'background:#fff;box-shadow:var(--shadow04);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:9px;';
+    const init = name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
+    const phone = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l1.6 4-2 1.4a11 11 0 0 0 5 5l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16 16 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg>';
+    const chat = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a7.5 7.5 0 0 1-10.8 6.7L4 20l1.8-5.2A7.5 7.5 0 1 1 21 11.5z"/></svg>';
+    const mail = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>';
+    const btn = (action, svg, title) => '<button data-lead-action="' + action + '" data-lead-name="' + name + '" title="' + title + '" style="width:34px;height:34px;border:none;border-radius:8px;background:var(--kw-system-tint);color:var(--action);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .12s,color .12s;">' + svg + '</button>';
+    card.innerHTML =
+      '<div style="display:flex;align-items:center;gap:10px;">'
+        + '<span style="width:36px;height:36px;flex:none;border-radius:50%;background:' + color + ';color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 13px/1 var(--font-sans);">' + init + '</span>'
+        + '<div style="flex:1;min-width:0;"><div style="font:var(--fw-bold) 14px/18px var(--font-sans);color:var(--label-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + name + '</div></div>'
+        + '<span style="font:var(--fw-bold) 11px/14px var(--font-sans);color:var(--action);background:var(--kw-system-tint);padding:3px 9px;border-radius:999px;white-space:nowrap;">' + tag + '</span>'
+      + '</div>'
+      + '<div style="font:var(--fw-regular) 13px/18px var(--font-sans);color:var(--label-secondary);"><span style="font-weight:700;color:var(--label-primary);">Why call: </span>' + reason + '</div>'
+      + '<div style="background:var(--kw-neutral-100);border-radius:8px;padding:9px 11px;font:var(--fw-regular) 13px/18px var(--font-sans);color:var(--label-secondary);"><span style="font-weight:700;color:var(--label-primary);">Try opening with: </span>&ldquo;' + opener + '&rdquo;</div>'
+      + '<div style="display:flex;gap:6px;">' + btn('call', phone, 'Call ' + name) + btn('text', chat, 'Text ' + name) + btn('email', mail, 'Email ' + name) + '</div>';
+    return card;
+  }
+  kwiqMakeCallList() {
+    const col = document.createElement('div');
+    col.style.cssText = 'display:flex;flex-direction:column;gap:10px;flex:1;min-width:0;';
+    const intro = document.createElement('div');
+    intro.style.cssText = 'background:#fff;box-shadow:var(--shadow04);color:var(--label-primary);padding:11px 15px;border-radius:4px 16px 16px 16px;font:var(--fw-regular) 14px/20px var(--font-sans);';
+    intro.textContent = "These four contacts are worth a call today. Here's why each matters and a quick way to open the conversation:";
+    col.appendChild(intro);
+    const list = [
+      ['Carter Dean', 'New lead', 'A Facebook lead from 5 days ago that still has no first touch — calling now, before another agent does, gives you the best shot at converting.', "Hi Carter, thanks for your interest! What kind of home are you hoping to find?", '#006C84'],
+      ['Alexis Nichols', 'New lead', 'Also a 5-day-old Facebook lead with no contact yet. A quick call shows responsiveness and starts building trust early.', "Hi Alexis, I saw you were browsing homes — want me to send a few that fit what you're after?", '#6730B4'],
+      ['Joanne Rice', 'Going cold', "Joanne came in 6 days ago and hasn't heard back. Reach her today to re-engage before the lead goes stale.", "Hi Joanne, just checking in — are you still looking in the area? Happy to help however I can.", '#A73B06'],
+      ['Marcus Webb', 'Past client', 'Closed about 11 months ago. A near-anniversary check-in is a natural, low-pressure moment to nurture the relationship and ask for referrals.', "Hi Marcus, hard to believe it's almost a year in the new place! How's it treating you?", '#026E24'],
+    ];
+    list.forEach(([n, tag, r, o, c]) => col.appendChild(this.kwiqCallCard(n, tag, r, o, c)));
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:10px;align-items:flex-start;align-self:stretch;';
+    const av = document.createElement('span');
+    av.style.cssText = 'width:28px;height:28px;flex:none;border-radius:8px;background:linear-gradient(135deg,#00b4d2,#006c84);display:flex;align-items:center;justify-content:center;margin-top:2px;';
+    av.innerHTML = this.kwiqSparkle();
+    row.appendChild(av); row.appendChild(col);
+    return row;
+  }
+  kwiqIsDeck(text) {
+    const t = (text || '').toLowerCase();
+    return t.includes('pitch deck') || t.includes('listing presentation') || t.includes('presentation') || t.includes('deck');
+  }
+  kwiqDeckBuildSlides() {
+    const agent = (this.props.agentFirstName || 'Nina') + ' Royals';
+    const A = 'var(--action)';
+    const s = [];
+    s.push(`<div style="width:100%;height:100%;background:linear-gradient(135deg,#0c6f88,#062f3a);color:#fff;padding:60px 70px;display:flex;flex-direction:column;justify-content:space-between;font-family:var(--font-sans);box-sizing:border-box;">
+      <div style="display:flex;align-items:center;gap:13px;"><span style="width:42px;height:42px;border-radius:9px;background:#CE011F;display:flex;align-items:center;justify-content:center;font:800 18px/1 var(--font-sans);color:#fff;">kw</span><span style="font:700 15px/1 var(--font-sans);letter-spacing:2.5px;text-transform:uppercase;opacity:.85;">${agent} Team</span></div>
+      <div><div style="font:800 62px/62px var(--font-sans);letter-spacing:-1.5px;">Listing<br>Presentation</div><div style="margin-top:20px;font:400 22px/30px var(--font-sans);opacity:.92;">Prepared for the sellers of<br><span style="font-weight:700;">6578 Rosewood Avenue</span></div></div>
+      <div style="font:700 18px/24px var(--font-sans);">${agent}<span style="font-weight:400;opacity:.8;"> · Listing Specialist</span></div>
+    </div>`);
+    s.push(`<div style="width:100%;height:100%;background:#fff;padding:54px 64px;display:flex;flex-direction:column;gap:26px;font-family:var(--font-sans);color:var(--label-primary);box-sizing:border-box;">
+      <div style="font:800 42px/46px var(--font-sans);">Meet ${agent}</div>
+      <div style="display:flex;gap:34px;align-items:flex-start;"><span style="width:118px;height:118px;flex:none;border-radius:50%;background:linear-gradient(135deg,#0c6f88,#062f3a);color:#fff;display:flex;align-items:center;justify-content:center;font:800 40px/1 var(--font-sans);">NR</span><div style="flex:1;"><div style="font:400 19px/30px var(--font-sans);color:var(--label-secondary);">A lifelong resident of the area, I've helped over 120 families buy and sell with honesty, sharp negotiation, and white-glove service. Selling your home is deeply personal — and I treat it that way, every step of the way.</div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;">${['12 yrs experience','Top 1% local agent','500+ families served'].map(c=>`<span style="background:var(--kw-system-tint);color:${A};font:700 14px/18px var(--font-sans);padding:8px 16px;border-radius:999px;">${c}</span>`).join('')}</div></div></div>
+    </div>`);
+    const cols=[['Sharp Pricing','Data-driven CMAs that price your home to sell for top dollar.'],['Bold Marketing','Pro photography, video, and reach across 100+ channels.'],['True Advocacy','Expert negotiation that protects your bottom line.']];
+    s.push(`<div style="width:100%;height:100%;background:#fff;padding:50px 64px;display:flex;flex-direction:column;gap:26px;font-family:var(--font-sans);color:var(--label-primary);box-sizing:border-box;">
+      <div style="font:800 42px/46px var(--font-sans);">Why Sellers Choose Me</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;">${cols.map(([t,d],i)=>`<div style="background:var(--kw-neutral-100);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:11px;"><span style="width:44px;height:44px;border-radius:11px;background:${A};color:#fff;display:flex;align-items:center;justify-content:center;font:800 20px/1 var(--font-sans);">${i+1}</span><div style="font:800 22px/26px var(--font-sans);">${t}</div><div style="font:400 16px/23px var(--font-sans);color:var(--label-secondary);">${d}</div></div>`).join('')}</div>
+      <div style="background:var(--kw-system-tint);border-radius:12px;padding:16px 22px;font:400 17px/25px var(--font-sans);color:var(--label-primary);">&ldquo;${agent} sold our home in 9 days, over asking. We couldn't have asked for a better experience.&rdquo; <span style="font-weight:700;color:${A};">— The Hendersons</span></div>
+    </div>`);
+    const stats=[['120+','Homes Sold'],['18 days','Avg. on Market'],['99%','List-to-Sale Price'],['$48M','Total Volume']];
+    s.push(`<div style="width:100%;height:100%;background:linear-gradient(135deg,#0c6f88,#062f3a);color:#fff;padding:56px 64px;display:flex;flex-direction:column;gap:34px;font-family:var(--font-sans);box-sizing:border-box;">
+      <div style="font:800 42px/46px var(--font-sans);">My Track Record</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:26px;flex:1;">${stats.map(([n,l])=>`<div style="display:flex;flex-direction:column;justify-content:center;gap:6px;border-left:4px solid rgba(255,255,255,.4);padding-left:22px;"><div style="font:800 50px/52px var(--font-sans);">${n}</div><div style="font:400 18px/24px var(--font-sans);opacity:.85;">${l}</div></div>`).join('')}</div>
+    </div>`);
+    const mk=['Professional photography, video & 3D tours','Syndication to 100+ search sites','Targeted social media ad campaigns','Open houses & broker tours','Direct outreach to my buyer database'];
+    s.push(`<div style="width:100%;height:100%;background:#fff;padding:54px 64px;display:flex;flex-direction:column;gap:24px;font-family:var(--font-sans);color:var(--label-primary);box-sizing:border-box;">
+      <div style="font:800 42px/46px var(--font-sans);">How I'll Market Your Home</div>
+      <div style="display:flex;flex-direction:column;gap:14px;flex:1;justify-content:center;">${mk.map(m=>`<div style="display:flex;align-items:center;gap:16px;"><span style="width:32px;height:32px;flex:none;border-radius:50%;background:var(--kw-system-tint);color:${A};display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg></span><span style="font:600 20px/26px var(--font-sans);color:var(--label-primary);">${m}</span></div>`).join('')}</div>
+    </div>`);
+    s.push(`<div style="width:100%;height:100%;background:#fff;padding:54px 64px;display:flex;flex-direction:column;gap:22px;font-family:var(--font-sans);color:var(--label-primary);box-sizing:border-box;">
+      <div style="font:800 42px/46px var(--font-sans);">Pricing Your Home Right</div>
+      <div style="font:400 19px/28px var(--font-sans);color:var(--label-secondary);max-width:740px;">Homes priced right sell faster and for more. I'll build a comparative market analysis from recent nearby sales to position 6578 Rosewood Avenue in the sweet spot — attracting strong offers without leaving money on the table.</div>
+      <div style="margin-top:14px;"><div style="height:18px;border-radius:999px;background:linear-gradient(90deg,#cfe9ef,${A},#cfe9ef);position:relative;"><span style="position:absolute;left:50%;top:-9px;transform:translateX(-50%);width:4px;height:36px;border-radius:3px;background:var(--label-primary);"></span></div><div style="display:flex;justify-content:space-between;margin-top:12px;font:700 15px/20px var(--font-sans);color:var(--label-tertiary);"><span>Underpriced</span><span style="color:${A};">The Sweet Spot</span><span>Overpriced</span></div></div>
+    </div>`);
+    const steps=['Prepare & Stage','Launch & Market','Show & Tour','Review Offers','Close & Celebrate'];
+    s.push(`<div style="width:100%;height:100%;background:#fff;padding:54px 64px;display:flex;flex-direction:column;gap:34px;font-family:var(--font-sans);color:var(--label-primary);box-sizing:border-box;">
+      <div style="font:800 42px/46px var(--font-sans);">The Path to Sold</div>
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex:1;">${steps.map((st,i)=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;"><span style="width:54px;height:54px;border-radius:50%;background:${A};color:#fff;display:flex;align-items:center;justify-content:center;font:800 22px/1 var(--font-sans);">${i+1}</span><span style="font:700 16px/22px var(--font-sans);">${st}</span></div>`).join('')}</div>
+    </div>`);
+    s.push(`<div style="width:100%;height:100%;background:linear-gradient(135deg,#0c6f88,#062f3a);color:#fff;padding:64px 70px;display:flex;flex-direction:column;justify-content:center;gap:22px;font-family:var(--font-sans);box-sizing:border-box;">
+      <div style="font:800 54px/58px var(--font-sans);letter-spacing:-1px;">Let's Get Your<br>Home Sold</div>
+      <div style="font:400 22px/30px var(--font-sans);opacity:.9;">Ready when you are. Let's talk strategy and timeline.</div>
+      <div style="margin-top:14px;font:700 19px/30px var(--font-sans);">${agent}<br><span style="font-weight:400;opacity:.85;">(555) 123-4567 · nina@ninaroyalsteam.com</span></div>
+    </div>`);
+    return s;
+  }
+  kwiqMakeDeckCard() {
+    const col = document.createElement('div');
+    col.style.cssText = 'display:flex;flex-direction:column;gap:10px;flex:1;min-width:0;';
+    const intro = document.createElement('div');
+    intro.style.cssText = 'background:#fff;box-shadow:var(--shadow04);color:var(--label-primary);padding:11px 15px;border-radius:4px 16px 16px 16px;font:var(--fw-regular) 14px/20px var(--font-sans);';
+    intro.textContent = "I built a listing presentation you can use to win the listing — your story, track record, and marketing plan in 8 slides. Preview it below, then open to present or download to share.";
+    col.appendChild(intro);
+    const card = document.createElement('div');
+    card.style.cssText = 'background:#fff;box-shadow:var(--shadow04);border-radius:12px;overflow:hidden;';
+    card.innerHTML =
+      '<div style="aspect-ratio:16/9;background:linear-gradient(135deg,#0c6f88,#062f3a);color:#fff;padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between;">'
+        + '<span style="font:800 11px/1 var(--font-sans);letter-spacing:2px;text-transform:uppercase;opacity:.85;">Nina Royals Team</span>'
+        + '<span style="font:800 26px/28px var(--font-sans);">Listing<br>Presentation</span>'
+        + '<span style="font:600 12px/16px var(--font-sans);opacity:.85;">6578 Rosewood Avenue</span>'
+      + '</div>'
+      + '<div style="padding:11px 13px;display:flex;align-items:center;gap:10px;">'
+        + '<div style="flex:1;min-width:0;"><div style="font:var(--fw-bold) 14px/18px var(--font-sans);color:var(--label-primary);">Listing Presentation</div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);">8 slides · PDF</div></div>'
+        + '<button data-deck-download title="Download" style="width:36px;height:36px;border:none;border-radius:8px;background:var(--kw-neutral-100);color:var(--label-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></button>'
+        + '<button data-deck-open style="border:none;border-radius:8px;background:var(--action);color:#fff;cursor:pointer;font:var(--fw-bold) 14px/1 var(--font-sans);padding:10px 18px;">Open</button>'
+      + '</div>';
+    col.appendChild(card);
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:10px;align-items:flex-start;align-self:stretch;';
+    const av = document.createElement('span');
+    av.style.cssText = 'width:28px;height:28px;flex:none;border-radius:8px;background:linear-gradient(135deg,#00b4d2,#006c84);display:flex;align-items:center;justify-content:center;margin-top:2px;';
+    av.innerHTML = this.kwiqSparkle();
+    row.appendChild(av); row.appendChild(col);
+    return row;
+  }
+  kwiqCmaPdfHref() { return (window.__resources && window.__resources.cmaPdf) ? window.__resources.cmaPdf : encodeURI('assets/Rollingwood CMA.pdf'); }
+  async kwiqCmaBlobUrl() {
+    if (this._cmaBlobUrl) return this._cmaBlobUrl;
+    const href = this.kwiqCmaPdfHref();
+    if (/^blob:/.test(href)) { this._cmaBlobUrl = href; return href; }
+    try {
+      const res = await fetch(href);
+      const blob = await res.blob();
+      this._cmaBlobUrl = URL.createObjectURL(blob);
+    } catch (err) {
+      this._cmaBlobUrl = href;
+    }
+    return this._cmaBlobUrl;
+  }
+  kwiqLoadPdfJs() { return Promise.resolve(null); }
+  kwiqCmaReportHTML() {
+    const subj = { addr: this._cmaAddr || '1255 Kings Road', city: 'Austin, TX 78746', beds: 5, baths: 5.5, sqft: 5400, lot: 0.82, year: 2018, garage: 3 };
+    const sel = this._cmaSel || {};
+    const wantComps = parseInt(sel.comps, 10) || 5;
+    const statusLabel = sel.status && sel.status !== 'All' ? sel.status : 'Sold + active';
+    const money = (v) => '$' + Math.round(v).toLocaleString('en-US');
+    const big = (v) => '$' + (v / 1000000).toFixed(2).replace(/\.?0+$/, '') + 'M';
+    const signed = (v) => (v >= 0 ? '+' : '−') + '$' + Math.abs(v).toLocaleString('en-US');
+    const round25 = (v) => Math.round(v / 25000) * 25000;
+    const statusColor = (s) => s === 'Active' ? { c: 'var(--kw-green)', b: 'var(--kw-green-tint)' } : s === 'Pending' ? { c: 'var(--kw-yellow-hover)', b: 'var(--kw-yellow-tint)' } : { c: 'var(--action)', b: 'var(--kw-system-tint)' };
+    let comps = [
+      { addr: '208 Ashworth Drive', city: 'Austin, TX 78746', status: 'Sold', price: 9250000, beds: 6, bath: 7, area: 6662, lot: 0.40, sold: 'Mar 2026' },
+      { addr: '3111 Stratford Place', city: 'Austin, TX 78746', status: 'Sold', price: 8995000, beds: 5, bath: 6, area: 6026, lot: 1.17, sold: 'Feb 2026' },
+      { addr: '101 Stratford Reserve', city: 'Austin, TX 78746', status: 'Sold', price: 7950000, beds: 6, bath: 6, area: 6021, lot: 1.56, sold: 'Jan 2026' },
+      { addr: '2308 Bridle Path', city: 'Austin, TX 78703', status: 'Pending', price: 8750000, beds: 5, bath: 6, area: 5810, lot: 0.74, sold: 'Listed' },
+      { addr: '400 Academy Drive', city: 'Austin, TX 78746', status: 'Active', price: 8400000, beds: 5, bath: 5, area: 5210, lot: 1.00, sold: 'Active' },
+      { addr: '1810 Wood Hollow', city: 'Austin, TX 78746', status: 'Sold', price: 7650000, beds: 5, bath: 5, area: 5040, lot: 0.66, sold: 'Dec 2025' },
+    ].slice(0, Math.min(wantComps, 6));
+    const R = { sqft: 300, bed: 50000, bath: 30000, lot: 400000 };
+    comps = comps.map((c, i) => {
+      const adj = { sqft: Math.round((subj.sqft - c.area) * R.sqft), bed: (subj.beds - c.beds) * R.bed, bath: Math.round((subj.baths - c.bath) * R.bath), lot: Math.round((subj.lot - c.lot) * R.lot) };
+      adj.total = adj.sqft + adj.bed + adj.bath + adj.lot;
+      return Object.assign({ n: i + 1, adj: adj, adjusted: c.price + adj.total }, c);
+    });
+    const adjVals = comps.map(c => c.adjusted);
+    const avg = adjVals.reduce((s, v) => s + v, 0) / adjVals.length;
+    const estimate = round25(avg);
+    const low = round25(estimate * 0.94), high = round25(estimate * 1.06);
+    const suggested = round25(estimate * 0.99);
+    const pos = Math.max(5, Math.min(95, ((estimate - low) / (high - low)) * 100));
+
+    // --- price positioning chart (SVG) ---
+    const dmin = Math.min.apply(null, adjVals.concat([low]));
+    const dmax = Math.max.apply(null, adjVals.concat([high]));
+    const CW = 760, padX = 46;
+    const X = (v) => padX + ((v - dmin) / (dmax - dmin)) * (CW - padX * 2);
+    const dots = comps.map(c => '<circle cx="' + X(c.adjusted).toFixed(1) + '" cy="64" r="6.5" fill="var(--action)" opacity="0.85"></circle>').join('');
+    const estX = X(estimate).toFixed(1);
+    const chart = '<svg viewBox="0 0 ' + CW + ' 110" width="100%" style="display:block;">'
+      + '<line x1="' + padX + '" y1="64" x2="' + (CW - padX) + '" y2="64" stroke="var(--divider)" stroke-width="2"></line>'
+      + '<rect x="' + X(low).toFixed(1) + '" y="61" width="' + (X(high) - X(low)).toFixed(1) + '" height="6" rx="3" fill="var(--kw-system-tint)"></rect>'
+      + dots
+      + '<line x1="' + estX + '" y1="30" x2="' + estX + '" y2="86" stroke="var(--action)" stroke-width="2.5" stroke-dasharray="4 3"></line>'
+      + '<circle cx="' + estX + '" cy="64" r="8" fill="#fff" stroke="var(--action)" stroke-width="3"></circle>'
+      + '<text x="' + estX + '" y="22" text-anchor="middle" font-family="var(--font-sans)" font-size="12" font-weight="800" fill="var(--action)">Subject est. ' + big(estimate) + '</text>'
+      + '<text x="' + padX + '" y="100" text-anchor="start" font-family="var(--font-sans)" font-size="11" fill="var(--label-tertiary)">' + big(dmin) + '</text>'
+      + '<text x="' + (CW - padX) + '" y="100" text-anchor="end" font-family="var(--font-sans)" font-size="11" fill="var(--label-tertiary)">' + big(dmax) + '</text>'
+      + '</svg>';
+
+    const sectionLabel = (t) => '<div style="font:var(--fw-extrabold) 12px/16px var(--font-sans);letter-spacing:.07em;text-transform:uppercase;color:var(--label-tertiary);margin-bottom:14px;">' + t + '</div>';
+    const specTile = (label, val) => '<div style="flex:1;min-width:96px;text-align:center;padding:14px 10px;background:var(--kw-neutral-100);border-radius:10px;"><div style="font:var(--fw-extrabold) 20px/24px var(--font-sans);color:var(--label-primary);">' + val + '</div><div style="margin-top:3px;font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.04em;">' + label + '</div></div>';
+    const kpiTile = (label, val, delta, tone) => {
+      const dc = tone === 'up' ? 'var(--kw-green)' : tone === 'down' ? 'var(--kw-red)' : 'var(--label-tertiary)';
+      return '<div style="flex:1;min-width:150px;padding:15px 16px;border:1px solid var(--divider);border-radius:10px;"><div style="font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.05em;">' + label + '</div><div style="margin-top:6px;font:var(--fw-extrabold) 22px/26px var(--font-sans);color:var(--label-primary);">' + val + '</div><div style="margin-top:3px;font:var(--fw-bold) 12px/16px var(--font-sans);color:' + dc + ';">' + delta + '</div></div>';
+    };
+    const houseIcon = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--label-tertiary)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>';
+    const compCard = (c) => {
+      const sc = statusColor(c.status);
+      const lines = [['Living area', c.adj.sqft], ['Beds', c.adj.bed], ['Baths', c.adj.bath], ['Lot size', c.adj.lot]].filter(x => x[1] !== 0);
+      const adjHTML = (lines.length ? lines.map(x => '<div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">' + x[0] + '</span><span style="font-weight:700;color:' + (x[1] > 0 ? 'var(--kw-green)' : 'var(--kw-red)') + ';">' + signed(x[1]) + '</span></div>').join('') : '<div style="font:var(--fw-regular) 12px/19px var(--font-sans);color:var(--label-tertiary);">No adjustments needed</div>')
+        + '<div style="display:flex;justify-content:space-between;gap:10px;margin-top:7px;padding-top:7px;border-top:1px solid var(--divider);font:var(--fw-bold) 13px/18px var(--font-sans);color:var(--label-primary);"><span>Adjusted</span><span>' + money(c.adjusted) + '</span></div>';
+      return '<div style="display:flex;gap:14px;padding:16px;border:1px solid var(--divider);border-radius:12px;background:#fff;flex-wrap:wrap;">'
+        + '<span style="width:84px;height:84px;flex:none;border-radius:10px;background:var(--kw-neutral-100);display:flex;align-items:center;justify-content:center;position:relative;">'
+        + '<span style="position:absolute;top:6px;left:6px;width:22px;height:22px;border-radius:50%;background:var(--action);color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 11px/1 var(--font-sans);">' + c.n + '</span>' + houseIcon + '</span>'
+        + '<div style="flex:1;min-width:170px;display:flex;flex-direction:column;gap:7px;">'
+        + '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;"><div style="font:var(--fw-bold) 15px/19px var(--font-sans);color:var(--label-primary);">' + c.addr + '</div><span style="padding:3px 10px;border-radius:999px;background:' + sc.b + ';color:' + sc.c + ';font:var(--fw-bold) 11px/16px var(--font-sans);">' + c.status + '</span></div>'
+        + '<div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);">' + c.city + ' · ' + c.sold + '</div>'
+        + '<div style="font:var(--fw-extrabold) 19px/24px var(--font-sans);color:var(--label-primary);">' + money(c.price) + '</div>'
+        + '<div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-secondary);">' + c.beds + ' bd · ' + c.bath + ' ba · ' + c.area.toLocaleString('en-US') + ' sq ft · ' + c.lot.toFixed(2) + ' ac</div>'
+        + '</div>'
+        + '<div style="width:210px;flex:1 1 180px;min-width:170px;border-left:1px solid var(--divider);padding-left:14px;"><div style="font:var(--fw-bold) 11px/16px var(--font-sans);text-transform:uppercase;letter-spacing:.05em;color:var(--label-tertiary);margin-bottom:6px;">Adjustments</div>' + adjHTML + '</div>'
+        + '</div>';
+    };
+
+    const pad = 'padding:0 30px;';
+    return '<div style="width:100%;max-width:820px;background:#fff;border-radius:14px;box-shadow:var(--shadow12);overflow:hidden;border-top:3px solid var(--action);">'
+      // Header
+      + '<div style="padding:26px 30px 22px;border-bottom:1px solid var(--divider);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;">'
+      + '<div><div style="font:var(--fw-extrabold) 12px/16px var(--font-sans);color:var(--action);text-transform:uppercase;letter-spacing:.08em;">KWIQ · Comparative Market Analysis</div>'
+      + '<div style="margin-top:5px;font:var(--fw-extrabold) 28px/32px var(--font-sans);color:var(--label-primary);">' + subj.addr + '</div>'
+      + '<div style="margin-top:3px;font:var(--fw-regular) 13px/18px var(--font-sans);color:var(--label-secondary);">' + subj.city + ' · ' + comps.length + ' comparables · ' + statusLabel + '</div></div>'
+      + '<div style="text-align:right;"><div style="font:var(--fw-bold) 14px/18px var(--font-sans);color:var(--label-primary);">Nina Royals</div>'
+      + '<div style="font:var(--fw-regular) 12px/17px var(--font-sans);color:var(--label-tertiary);">Royals Realtors<br>+1 (512) 465-1234<br>nina.royals@royalsrealtors.com<br>Prepared May 4, 2026</div></div>'
+      + '</div>'
+      // Estimated value hero + range bar
+      + '<div style="padding:26px 30px 24px;border-bottom:1px solid var(--divider);">'
+      + '<div style="font:var(--fw-extrabold) 12px/16px var(--font-sans);letter-spacing:.07em;text-transform:uppercase;color:var(--label-tertiary);">Estimated market value</div>'
+      + '<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:6px;"><div style="font:var(--fw-extrabold) 44px/48px var(--font-sans);color:var(--label-primary);letter-spacing:-.01em;">' + big(estimate) + '</div>'
+      + '<span style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;background:var(--kw-green-tint);color:var(--kw-green);font:var(--fw-bold) 12px/16px var(--font-sans);">High confidence</span></div>'
+      + '<div style="margin-top:20px;position:relative;height:8px;border-radius:999px;background:var(--kw-neutral-200);">'
+      + '<div style="position:absolute;left:0;right:0;top:0;bottom:0;border-radius:999px;background:var(--kw-system-tint);"></div>'
+      + '<div style="position:absolute;left:' + pos.toFixed(1) + '%;top:50%;width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid var(--action);transform:translate(-50%,-50%);box-shadow:var(--shadow04);"></div></div>'
+      + '<div style="margin-top:8px;display:flex;justify-content:space-between;font:var(--fw-bold) 12px/16px var(--font-sans);color:var(--label-secondary);"><span>Low ' + big(low) + '</span><span>High ' + big(high) + '</span></div>'
+      + '</div>'
+      // Subject specs
+      + '<div style="' + pad + 'padding-top:24px;">' + sectionLabel('Subject property')
+      + '<div style="display:flex;gap:10px;flex-wrap:wrap;">' + specTile('Beds', subj.beds) + specTile('Baths', subj.baths) + specTile('Living area', subj.sqft.toLocaleString('en-US')) + specTile('Lot (ac)', subj.lot.toFixed(2)) + specTile('Year built', subj.year) + specTile('Garage', subj.garage) + '</div></div>'
+      // Market KPIs
+      + '<div style="' + pad + 'padding-top:26px;">' + sectionLabel('Local market · 78746')
+      + '<div style="display:flex;gap:10px;flex-wrap:wrap;">'
+      + kpiTile('Median $/sq ft', '$1,604', '+3.2% MoM', 'up') + kpiTile('Median days on market', '38', '−6 vs. last qtr', 'up') + kpiTile('List-to-sold ratio', '98.4%', '+0.6%', 'up')
+      + kpiTile('Active inventory', '27 homes', '−4 MoM', 'down') + kpiTile('Median sold price', '$8.4M', '+5.1% YoY', 'up') + kpiTile('Months of supply', '3.1', 'Balanced market', 'flat')
+      + '</div></div>'
+      // Positioning chart
+      + '<div style="' + pad + 'padding-top:26px;">' + sectionLabel('Price positioning')
+      + '<div style="padding:6px 4px 4px;border:1px solid var(--divider);border-radius:12px;">' + chart + '</div>'
+      + '<div style="margin-top:8px;font:var(--fw-regular) 12px/18px var(--font-sans);color:var(--label-tertiary);">Each dot is a comparable’s price after adjustments. The dashed line marks the subject’s estimated value.</div></div>'
+      // Comparable sales
+      + '<div style="' + pad + 'padding-top:26px;">' + sectionLabel('Comparable sales · adjusted')
+      + '<div style="display:flex;flex-direction:column;gap:12px;">' + comps.map(compCard).join('') + '</div></div>'
+      // Suggested list price
+      + '<div style="' + pad + 'padding-top:26px;padding-bottom:6px;"><div style="padding:22px 24px;background:var(--kw-system-tint);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">'
+      + '<div><div style="font:var(--fw-extrabold) 12px/16px var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--action);">Suggested list price</div><div style="margin-top:4px;font:var(--fw-extrabold) 34px/38px var(--font-sans);color:var(--label-primary);">' + big(suggested) + '</div></div>'
+      + '<div style="flex:1;min-width:240px;font:var(--fw-regular) 13px/19px var(--font-sans);color:var(--label-secondary);">Based on ' + comps.length + ' adjusted comparables, list between <b>' + big(low) + '</b> and <b>' + big(estimate) + '</b> to draw competitive interest while protecting your seller’s equity.</div>'
+      + '</div></div>'
+      // Footer
+      + '<div style="padding:22px 30px 26px;font:var(--fw-regular) 12px/18px var(--font-sans);color:var(--label-tertiary);">Prepared by Nina Royals · Royals Realtors on May 4, 2026. Estimates derive from adjusted comparable sales and public records; they are not an appraisal. Figures are illustrative.</div>'
+      + '</div>';
+  }
+  async kwiqCmaPreview() {
+    const root = document.querySelector('[data-dash-root]');
+    const ov = root.querySelector('[data-cma-overlay]');
+    const pages = root.querySelector('[data-cma-pages]');
+    const loading = root.querySelector('[data-cma-loading]');
+    const dl = root.querySelector('[data-cma-dl-overlay]');
+    if (!ov) return;
+    ov.style.opacity = '1'; ov.style.pointerEvents = 'auto';
+    const url = await this.kwiqCmaBlobUrl();
+    if (dl) dl.href = url;
+    if (loading) loading.style.display = 'none';
+    const key = (this._cmaAddr || '') + '|' + JSON.stringify(this._cmaSel || {});
+    if (this._cmaRenderedKey !== key) {
+      pages.innerHTML = this.kwiqCmaReportHTML();
+      this._cmaRenderedKey = key;
+    }
+    const sc = root.querySelector('[data-cma-scroll]');
+    if (sc) sc.scrollTop = 0;
+  }
+  kwiqCmaClose() {
+    const root = document.querySelector('[data-dash-root]');
+    const ov = root.querySelector('[data-cma-overlay]');
+    if (ov) { ov.style.opacity = '0'; ov.style.pointerEvents = 'none'; }
+  }
+  // ============ CMA flow: ask → confirm → draft → present ============
+  kwiqCmaQuestions() {
+    return [
+      { key: 'comps', label: 'How many comps?', opts: ['3', '5', '6', '10'], def: '5' },
+      { key: 'status', label: 'What status?', opts: ['Sold', 'Active', 'Pending', 'All'], def: 'Sold' },
+      { key: 'area', label: 'Neighborhoods', opts: ['Kings Rd only', 'Include adjacent', 'Citywide'], def: 'Include adjacent' },
+      { key: 'bedbath', label: 'Match beds & baths?', opts: ['Exact', '± 1', 'Any'], def: '± 1' },
+    ];
+  }
+  kwiqCmaLabel(key) {
+    return { comps: 'Comps', status: 'Status', area: 'Neighborhoods', bedbath: 'Beds & baths' }[key] || key;
+  }
+  kwiqParseAddress(text) {
+    const re = /\b\d{1,6}\s+[A-Za-z0-9.'-]+(?:\s+[A-Za-z0-9.'-]+){0,3}\s+(?:Rd|Road|St|Street|Ave|Avenue|Dr|Drive|Ln|Lane|Blvd|Boulevard|Ct|Court|Way|Pl|Place|Ter|Terrace|Cir|Circle|Pkwy|Trl|Trail|Path|Hwy|Highway)\b\.?/i;
+    const m = (text || '').match(re);
+    return m ? m[0].trim().replace(/\.$/, '') : null;
+  }
+  kwiqScrollToCard(row) {
+    requestAnimationFrame(() => {
+      try { row.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      catch (e) {
+        const msgs = document.querySelector('[data-dash-root] [data-kwiq-messages]');
+        if (msgs) msgs.scrollTop = msgs.scrollHeight;
+      }
+    });
+  }
+  kwiqCmaChipStyle(on) {
+    return 'cursor:pointer;border-radius:999px;padding:7px 14px;font:var(--fw-bold) 13px/16px var(--font-sans);transition:background .12s,color .12s,border-color .12s;'
+      + (on ? 'border:1px solid var(--action);background:var(--action);color:#fff;' : 'border:1px solid var(--divider);background:#fff;color:var(--label-secondary);');
+  }
+  kwiqCmaIntro(text) {
+    const d = document.createElement('div');
+    d.style.cssText = 'background:#fff;box-shadow:var(--shadow04);color:var(--label-primary);padding:11px 15px;border-radius:4px 16px 16px 16px;font:var(--fw-regular) 14px/20px var(--font-sans);';
+    d.textContent = text;
+    return d;
+  }
+  kwiqCmaActionRow(buttons) {
+    const foot = document.createElement('div');
+    foot.style.cssText = 'display:flex;gap:8px;justify-content:flex-end;padding-top:4px;';
+    buttons.forEach(b => foot.appendChild(b));
+    return foot;
+  }
+  kwiqCmaButton(text, attr, primary) {
+    const b = document.createElement('button');
+    b.setAttribute(attr, '');
+    b.textContent = text;
+    b.style.cssText = 'border:none;cursor:pointer;border-radius:8px;padding:10px 18px;font:var(--fw-bold) 14px/1 var(--font-sans);'
+      + (primary ? 'background:var(--action);color:#fff;' : 'background:var(--kw-neutral-100);color:var(--label-secondary);');
+    return b;
+  }
+  kwiqMakeCmaQuestions(addr, preset) {
+    const col = document.createElement('div');
+    col.style.cssText = 'display:flex;flex-direction:column;gap:10px;flex:1;min-width:0;';
+    col.appendChild(this.kwiqCmaIntro('Happy to build a CMA for ' + addr + '. A few quick questions so it’s spot-on:'));
+    const card = document.createElement('div');
+    card.setAttribute('data-cma-card', 'questions');
+    card.style.cssText = 'background:#fff;box-shadow:var(--shadow04);border-radius:12px;padding:15px 16px 16px;display:flex;flex-direction:column;gap:15px;';
+    card.__addr = addr;
+    const sel = {};
+    this.kwiqCmaQuestions().forEach(q => {
+      sel[q.key] = (preset && preset[q.key]) || q.def;
+      const group = document.createElement('div');
+      const lab = document.createElement('div');
+      lab.style.cssText = 'font:var(--fw-bold) 13px/18px var(--font-sans);color:var(--label-primary);margin-bottom:9px;';
+      lab.textContent = q.label;
+      const chips = document.createElement('div');
+      chips.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;';
+      q.opts.forEach(opt => {
+        const on = sel[q.key] === opt;
+        const b = document.createElement('button');
+        b.setAttribute('data-cma-opt', '');
+        b.setAttribute('data-cma-q', q.key);
+        b.setAttribute('data-cma-val', opt);
+        b.textContent = opt;
+        b.style.cssText = this.kwiqCmaChipStyle(on);
+        chips.appendChild(b);
+      });
+      group.appendChild(lab); group.appendChild(chips);
+      card.appendChild(group);
+    });
+    card.__sel = sel;
+    card.appendChild(this.kwiqCmaActionRow([this.kwiqCmaButton('Continue', 'data-cma-continue', true)]));
+    col.appendChild(card);
+    return this.kwiqMakeRow(col);
+  }
+  kwiqCmaPick(el) {
+    const card = el.closest('[data-cma-card="questions"]');
+    if (!card) return;
+    const q = el.getAttribute('data-cma-q');
+    const v = el.getAttribute('data-cma-val');
+    card.__sel[q] = v;
+    card.querySelectorAll('[data-cma-opt][data-cma-q="' + q + '"]').forEach(b => {
+      b.style.cssText = this.kwiqCmaChipStyle(b.getAttribute('data-cma-val') === v);
+    });
+  }
+  kwiqMakeCmaConfirm(addr, sel) {
+    const col = document.createElement('div');
+    col.style.cssText = 'display:flex;flex-direction:column;gap:10px;flex:1;min-width:0;';
+    col.appendChild(this.kwiqCmaIntro('Here’s what I’ll use for ' + addr + ' — look right?'));
+    const card = document.createElement('div');
+    card.setAttribute('data-cma-card', 'confirm');
+    card.style.cssText = 'background:#fff;box-shadow:var(--shadow04);border-radius:12px;padding:6px 16px 14px;display:flex;flex-direction:column;';
+    card.__addr = addr; card.__sel = Object.assign({}, sel);
+    this.kwiqCmaQuestions().forEach(q => {
+      const r = document.createElement('div');
+      r.style.cssText = 'display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid var(--divider);';
+      r.innerHTML = '<span style="font:var(--fw-regular) 13px/18px var(--font-sans);color:var(--label-tertiary);">' + this.kwiqCmaLabel(q.key) + '</span>'
+        + '<span style="font:var(--fw-bold) 13px/18px var(--font-sans);color:var(--label-primary);text-align:right;">' + (sel[q.key] || q.def) + '</span>';
+      card.appendChild(r);
+    });
+    card.appendChild(this.kwiqCmaActionRow([
+      this.kwiqCmaButton('Adjust', 'data-cma-adjust', false),
+      this.kwiqCmaButton('Create draft', 'data-cma-create', true),
+    ]));
+    col.appendChild(card);
+    return this.kwiqMakeRow(col);
+  }
+  kwiqMsgs() { return document.querySelector('[data-dash-root] [data-kwiq-messages]'); }
+  kwiqCmaAsk(text) {
+    this.kwiqEnterChat();
+    const addr = this.kwiqParseAddress(text);
+    if (!addr) { this.kwiqCmaAskAddress(); return; }
+    this.kwiqCmaShowQuestions(addr);
+  }
+  kwiqCmaAskAddress() {
+    this._cmaAwaitingAddr = true;
+    const msgs = this.kwiqMsgs();
+    const typing = this.kwiqMakeTyping();
+    msgs.appendChild(typing);
+    msgs.scrollTop = msgs.scrollHeight;
+    setTimeout(() => {
+      typing.remove();
+      msgs.appendChild(this.kwiqMakeKwiq('Happy to put together a CMA. What’s the property address?'));
+      msgs.scrollTop = msgs.scrollHeight;
+    }, 600);
+  }
+  kwiqCmaShowQuestions(addr) {
+    const msgs = this.kwiqMsgs();
+    const typing = this.kwiqMakeTyping();
+    msgs.appendChild(typing);
+    msgs.scrollTop = msgs.scrollHeight;
+    setTimeout(() => {
+      typing.remove();
+      const row = this.kwiqMakeCmaQuestions(addr, null);
+      row.style.animation = 'kwiqIn .45s cubic-bezier(.16,1,.3,1) both';
+      msgs.appendChild(row);
+      this.kwiqScrollToCard(row);
+    }, 700);
+  }
+  kwiqCmaContinue(btn) {
+    const card = btn.closest('[data-cma-card="questions"]');
+    if (!card) return;
+    card.style.opacity = '.65'; card.style.pointerEvents = 'none';
+    const row = this.kwiqMakeCmaConfirm(card.__addr, card.__sel);
+    row.style.animation = 'kwiqIn .45s cubic-bezier(.16,1,.3,1) both';
+    this.kwiqMsgs().appendChild(row);
+    this.kwiqScrollToCard(row);
+  }
+  kwiqCmaAdjust(btn) {
+    const card = btn.closest('[data-cma-card="confirm"]');
+    if (!card) return;
+    card.style.opacity = '.65'; card.style.pointerEvents = 'none';
+    const row = this.kwiqMakeCmaQuestions(card.__addr, card.__sel);
+    row.style.animation = 'kwiqIn .45s cubic-bezier(.16,1,.3,1) both';
+    this.kwiqMsgs().appendChild(row);
+    this.kwiqScrollToCard(row);
+  }
+  // ============ Shared loading treatment: pulsing dots + cycling message ============
+  kwiqMakeLoader() {
+    const b = document.createElement('div');
+    b.style.cssText = 'background:#fff;box-shadow:var(--shadow04);padding:13px 16px;border-radius:4px 16px 16px 16px;display:flex;gap:11px;align-items:center;';
+    const dots = document.createElement('span');
+    dots.style.cssText = 'display:flex;gap:5px;align-items:center;flex:none;';
+    dots.innerHTML = '<span style="width:7px;height:7px;border-radius:50%;background:var(--label-tertiary);animation:kwiqDot 1.2s infinite;"></span><span style="width:7px;height:7px;border-radius:50%;background:var(--label-tertiary);animation:kwiqDot 1.2s infinite .2s;"></span><span style="width:7px;height:7px;border-radius:50%;background:var(--label-tertiary);animation:kwiqDot 1.2s infinite .4s;"></span>';
+    const msg = document.createElement('span');
+    msg.style.cssText = 'font:var(--fw-regular) 13px/18px var(--font-sans);color:var(--label-secondary);transition:opacity .18s ease;';
+    b.appendChild(dots); b.appendChild(msg);
+    const row = this.kwiqMakeRow(b);
+    return { row: row, set: (t) => { msg.style.opacity = '0'; setTimeout(() => { msg.textContent = t; msg.style.opacity = '1'; }, 130); } };
+  }
+  kwiqLoaderLines(kind) {
+    const sets = {
+      cma: ['Pulling comparable sales nearby…', 'Adjusting for beds, baths & lot size…', 'Checking recent neighborhood trends…', 'Formatting your CMA report…'],
+      leads: ['Scanning your recent activity…', 'Ranking who’s most worth reaching…', 'Pulling context for each contact…'],
+      deck: ['Gathering the listing highlights…', 'Laying out your slides…', 'Polishing the design…'],
+      email: ['Reviewing the contact’s history…', 'Finding the right angle…', 'Drafting a few options…'],
+      'default': ['Working on it…', 'Pulling the details together…', 'Almost there…'],
+    };
+    return sets[kind] || sets['default'];
+  }
+  // Appends a loader, cycles through `lines` over `duration` ms, then removes it and runs `done`.
+  kwiqRunLoader(lines, duration, done) {
+    const msgs = this.kwiqMsgs();
+    const loader = this.kwiqMakeLoader();
+    msgs.appendChild(loader.row);
+    msgs.scrollTop = msgs.scrollHeight;
+    let i = 0;
+    loader.set(lines[0]);
+    const step = Math.max(520, Math.floor(duration / lines.length));
+    const iv = setInterval(() => { i++; if (i < lines.length) loader.set(lines[i]); }, step);
+    setTimeout(() => {
+      clearInterval(iv);
+      loader.row.remove();
+      done();
+      msgs.scrollTop = msgs.scrollHeight;
+    }, duration);
+  }
+  kwiqCmaCreateDraft(btn) {
+    const card = btn.closest('[data-cma-card="confirm"]');
+    if (!card) return;
+    card.style.opacity = '.65'; card.style.pointerEvents = 'none';
+    this._cmaSel = Object.assign({}, card.__sel);
+    this._cmaAddr = card.__addr;
+    const lines = [
+      'Pulling comparable sales near ' + card.__addr + '…',
+      'Adjusting for beds, baths & lot size…',
+      'Checking recent neighborhood trends…',
+      'Formatting your CMA report…',
+    ];
+    this.kwiqRunLoader(lines, 2600, () => { this.kwiqMsgs().appendChild(this.kwiqMakeCMACard()); });
+  }
+  kwiqRunCMA() {
+    const root = document.querySelector('[data-dash-root]');
+    const msgs = root.querySelector('[data-kwiq-messages]');
+    const empty = root.querySelector('[data-kwiq-empty]');
+    this.kwiqEnterChat();
+    const steps = [
+      'Opening the Rollingwood saved search',
+      'Pulling 8 comparable sales nearby',
+      'Adjusting for beds, baths & lot size',
+      'Calculating the suggested price range',
+      'Formatting your CMA report',
+    ];
+    // Thinking card
+    const card = document.createElement('div');
+    card.style.cssText = 'background:#fff;box-shadow:var(--shadow04);border-radius:4px 16px 16px 16px;padding:13px 16px;display:flex;flex-direction:column;gap:11px;flex:1;min-width:0;';
+    const head = document.createElement('div');
+    head.style.cssText = 'display:flex;align-items:center;gap:9px;';
+    head.innerHTML = '<span data-cma-spin style="width:15px;height:15px;flex:none;border:2px solid var(--kw-neutral-200);border-top-color:var(--action);border-radius:50%;animation:kwiqSpin .7s linear infinite;"></span><span data-cma-head style="font:var(--fw-bold) 14px/18px var(--font-sans);color:var(--label-primary);">Thinking through your CMA…</span>';
+    const list = document.createElement('div');
+    list.style.cssText = 'display:flex;flex-direction:column;gap:9px;';
+    const items = steps.map((s) => {
+      const it = document.createElement('div');
+      it.style.cssText = 'display:flex;align-items:center;gap:10px;opacity:.35;transition:opacity .3s ease;';
+      it.innerHTML = '<span data-dot style="width:16px;height:16px;flex:none;border-radius:50%;border:2px solid var(--kw-neutral-300);box-sizing:border-box;"></span><span style="font:var(--fw-regular) 13px/18px var(--font-sans);color:var(--label-secondary);">' + s + '</span>';
+      list.appendChild(it);
+      return it;
+    });
+    card.appendChild(head); card.appendChild(list);
+    const row = this.kwiqMakeRow(card);
+    msgs.appendChild(row);
+    msgs.scrollTop = msgs.scrollHeight;
+    const check = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>';
+    const reveal = (i) => {
+      if (i >= items.length) return;
+      const it = items[i];
+      it.style.opacity = '1';
+      // mark previous step done
+      if (i > 0) {
+        const dot = items[i - 1].querySelector('[data-dot]');
+        dot.style.background = 'var(--kw-green)';
+        dot.style.borderColor = 'var(--kw-green)';
+        dot.style.display = 'flex'; dot.style.alignItems = 'center'; dot.style.justifyContent = 'center';
+        dot.innerHTML = check;
+      }
+      msgs.scrollTop = msgs.scrollHeight;
+      setTimeout(() => reveal(i + 1), 720);
+    };
+    reveal(0);
+    const finishMs = 720 * (items.length + 1);
+    setTimeout(() => {
+      // last step done
+      const dot = items[items.length - 1].querySelector('[data-dot]');
+      dot.style.background = 'var(--kw-green)'; dot.style.borderColor = 'var(--kw-green)';
+      dot.style.display = 'flex'; dot.style.alignItems = 'center'; dot.style.justifyContent = 'center';
+      dot.innerHTML = check;
+      const spin = head.querySelector('[data-cma-spin]');
+      if (spin) spin.outerHTML = '<span style="width:16px;height:16px;flex:none;border-radius:50%;background:var(--kw-green);display:flex;align-items:center;justify-content:center;">' + check + '</span>';
+      const h = head.querySelector('[data-cma-head]');
+      if (h) h.textContent = 'CMA ready';
+      msgs.appendChild(this.kwiqMakeCMACard());
+      msgs.scrollTop = msgs.scrollHeight;
+    }, finishMs);
+  }
+  kwiqMakeCMACard() {
+    const href = this.kwiqCmaPdfHref();
+    const col = document.createElement('div');
+    col.style.cssText = 'display:flex;flex-direction:column;gap:10px;flex:1;min-width:0;';
+    const intro = document.createElement('div');
+    intro.style.cssText = 'background:#fff;box-shadow:var(--shadow04);color:var(--label-primary);padding:11px 15px;border-radius:4px 16px 16px 16px;font:var(--fw-regular) 14px/20px var(--font-sans);';
+    intro.textContent = "Here's the comparative market analysis from your Rollingwood saved search — comps, pricing, and notes in one report. Open it to review, or download to share with your seller.";
+    col.appendChild(intro);
+    const card = document.createElement('div');
+    card.style.cssText = 'display:flex;align-items:center;gap:13px;background:#fff;box-shadow:var(--shadow04);border-radius:12px;padding:12px 14px;';
+    card.innerHTML =
+      '<span style="width:44px;height:52px;flex:none;border-radius:7px;background:var(--kw-red-tint);color:var(--kw-red);display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 11px/1 var(--font-sans);letter-spacing:.5px;">PDF</span>'
+      + '<div style="flex:1;min-width:0;"><div style="font:var(--fw-bold) 14px/18px var(--font-sans);color:var(--label-primary);">Rollingwood CMA</div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);">Saved search · Comparative Market Analysis</div></div>'
+      + '<a data-cma-download href="' + href + '" download="Rollingwood CMA.pdf" title="Download" style="width:36px;height:36px;flex:none;border-radius:8px;background:var(--kw-neutral-100);color:var(--label-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;text-decoration:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg></a>'
+      + '<button data-cma-open style="flex:none;border:none;border-radius:8px;background:var(--action);color:#fff;cursor:pointer;font:var(--fw-bold) 14px/1 var(--font-sans);padding:10px 18px;">Open</button>';
+    col.appendChild(card);
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:10px;align-items:flex-start;align-self:stretch;';
+    const av = document.createElement('span');
+    av.style.cssText = 'width:28px;height:28px;flex:none;border-radius:8px;background:linear-gradient(135deg,#00b4d2,#006c84);display:flex;align-items:center;justify-content:center;margin-top:2px;';
+    av.innerHTML = this.kwiqSparkle();
+    row.appendChild(av); row.appendChild(col);
+    return row;
+  }
+  kwiqDeckScale() {
+    const root = document.querySelector('[data-dash-root]');
+    const stage = root && root.querySelector('[data-deck-stage]');
+    const frame = root && root.querySelector('[data-deck-frame]');
+    if (!stage || !frame) return;
+    frame.style.transform = 'scale(' + (stage.clientWidth / 960) + ')';
+  }
+  kwiqDeckGo(n) {
+    const slides = this._deckSlides || (this._deckSlides = this.kwiqDeckBuildSlides());
+    const i = Math.max(0, Math.min(slides.length - 1, n));
+    this._deckIdx = i;
+    const root = document.querySelector('[data-dash-root]');
+    root.querySelector('[data-deck-frame]').innerHTML = slides[i];
+    const c = root.querySelector('[data-deck-counter]');
+    if (c) c.textContent = (i + 1) + ' / ' + slides.length;
+    this.kwiqDeckScale();
+  }
+  kwiqDeckOpen() {
+    this._deckOpen = true;
+    this.kwiqDeckGo(this._deckIdx || 0);
+    const ov = document.querySelector('[data-dash-root] [data-deck-overlay]');
+    ov.style.opacity = '1'; ov.style.pointerEvents = 'auto';
+    requestAnimationFrame(() => this.kwiqDeckScale());
+  }
+  kwiqDeckClose() {
+    this._deckOpen = false;
+    const ov = document.querySelector('[data-dash-root] [data-deck-overlay]');
+    if (ov) { ov.style.opacity = '0'; ov.style.pointerEvents = 'none'; }
+  }
+  kwiqReply(text) {
+    const t = (text || '').toLowerCase();
+    if (t.includes('organize') || t.includes('my day') || t.includes('schedule') || t.includes('prioritize') || t.includes('plan my day') || t.includes('focus')) return "Here's how I'd shape your day, Nina — pick the approach that fits:\n\n1. Lead-first power hour — start by reaching out to your 3 new Facebook leads (Carter, Alexis, Joanne) while they're still fresh.\n2. Knock out the High-priority task — Build Your Contacts Databank, then your two Medium tasks.\n3. Time-block the essentials — a morning prospecting block, midday calls/appointments, and a short admin wrap-up.\n\nWhy it matters: reaching new leads quickly is the single biggest driver of whether they convert — every hour you wait lowers your odds of connecting. Protecting dedicated time for lead gen and appointments is what keeps your pipeline full and grows your GCI, instead of letting admin work crowd out income-producing activity.\n\nWant me to turn one of these into tasks and block the time on your calendar?";
+    if (t.includes('pipeline')) return "Your pipeline is light right now — 0 opportunities logged YTD and 152 leads still waiting on first contact. The fastest way to fill it is to work those new leads today. Want me to pull the 3 newest and draft outreach?";
+    if (t.includes('call') || t.includes('contacts to call')) return "These are worth a call today: your 3 newest leads — Carter Dean, Alexis Nichols, and Joanne Rice. They're all fresh Facebook ad leads, so calling now gives you the best shot at connecting. Want a quick opening script for each?";
+    if (t.includes('social')) return "Happy to. Share the listing address and one or two highlights — price, a standout room, the neighborhood — and I'll write a ready-to-post caption with a few relevant hashtags.";
+    if (t.includes('listing')) return "Let's make it shine. Give me the address, beds/baths, square footage, and a couple of standout features, and I'll draft a polished listing description you can drop straight into the MLS and your marketing.";
+    if (t.includes('comp')) return "Send me the subject property and a recent nearby sale, and I'll compare price per square foot, beds/baths, and days on market so you can price or advise with confidence.";
+    if (t.includes('market update') || t.includes('market')) return "I'll draft a friendly market update email for your database. Tell me the area you want to feature and I'll pull in recent sales and trends, then close with a clear call to action.";
+    if (t.includes('lead')) return "You have 152 leads that haven't been contacted yet — 3 came in this week: Carter Dean, Alexis Nichols, and Joanne Rice, all from Facebook ads. Want me to draft a first-touch message or enroll them in a SmartPlan?";
+    if (t.includes('email') || t.includes('follow')) return "Here's a draft for Carter Dean:\n\nHi Carter, thanks for reaching out about your home search! I'd love to learn what you're looking for. Are you free for a quick call this week?\n\nWant me to adjust the tone or save it as a task?";
+    if (t.includes('task') || t.includes('due') || t.includes('today')) return "You have 3 open tasks: Build Your Contacts Databank (High), Connect Applications (Medium), and Launch Agent Site (Medium). Want me to reprioritize or mark any complete?";
+    if (t.includes('smartplan') || t.includes('plan')) return "A New Buyer SmartPlan usually runs a welcome email, a needs-assessment call task, and a weekly listings digest. Want me to set it up and enroll your 3 newest leads?";
+    if (t.includes('goal') || t.includes('gci')) return "You're at the start of the year — nothing logged YTD yet. Set a GCI target and I'll break it into the weekly leads and appointments you'll need to hit it.";
+    return "Happy to help. I can summarize your pipeline, draft outreach, surface today's tasks, or build a SmartPlan. Where would you like to start?";
+  }
+  kwiqSend(text) {
+    text = (text || '').trim();
+    if (!text) return;
+    const root = document.querySelector('[data-dash-root]');
+    const msgs = root.querySelector('[data-kwiq-messages]');
+    const empty = root.querySelector('[data-kwiq-empty]');
+    this.kwiqEnterChat();
+    const inp = root.querySelector('[data-kwiq-input]');
+    msgs.appendChild(this.kwiqMakeUser(text));
+    if (inp) inp.value = '';
+    msgs.scrollTop = msgs.scrollHeight;
+    if (this._cmaAwaitingAddr) {
+      this._cmaAwaitingAddr = false;
+      this.kwiqCmaShowQuestions(this.kwiqParseAddress(text) || text.trim());
+      return;
+    }
+    if (this.kwiqIsCMA(text)) { this.kwiqCmaAsk(text); return; }
+    let kind = 'default', make;
+    if (this.kwiqIsOpenHouse(text)) { kind = 'leads'; make = () => this.kwiqMakeOpenHouseLeads(); }
+    else if (this.kwiqIsCallList(text)) { kind = 'leads'; make = () => this.kwiqMakeCallList(); }
+    else if (this.kwiqIsDeck(text)) { kind = 'deck'; make = () => this.kwiqMakeDeckCard(); }
+    else { make = () => this.kwiqMakeKwiq(this.kwiqReply(text)); }
+    const dur = kind === 'default' ? 1300 : 1600;
+    this.kwiqRunLoader(this.kwiqLoaderLines(kind), dur, () => {
+      this.kwiqMsgs().appendChild(make());
+    });
+  }
+
+  kwiqEmailDrafts(name) {
+    const first = (name || '').split(' ')[0];
+    const known = {
+      'Marcus Webb': [
+        { tone: 'Warm check-in', subject: "Almost a year in the new place!", body: "Hi " + first + ",\n\nHard to believe it's almost a year since you got the keys — how's the home treating you? I'd love to hear how you've settled in.\n\nIf there's ever anything you need, from a trusted contractor to a quick value check, I'm only a message away.\n\nWarmly,\nNina" },
+        { tone: 'Referral ask', subject: "A quick hello — and a small favor", body: "Hi " + first + ",\n\nIt's hard to believe it's been nearly a year! I hope the place still feels like home.\n\nIf you know anyone thinking about buying or selling this year, I'd be grateful for the introduction — taking great care of your friends would mean a lot to me.\n\nAlways here if you need anything,\nNina" },
+        { tone: 'Brief', subject: "Checking in", body: "Hi " + first + ",\n\nAlmost a year in — just wanted to say hello and see how everything's going. Anything I can help with?\n\nNina" },
+      ],
+    };
+    if (known[name]) return known[name];
+    return [
+      { tone: 'Warm intro', subject: "Great to connect, " + first, body: "Hi " + first + ",\n\nThanks for reaching out about your home search! I'd love to learn what you're looking for and how I can help.\n\nAre you free for a quick call this week?\n\nTalk soon,\nNina" },
+      { tone: 'Direct', subject: "Your home search", body: "Hi " + first + ",\n\nI'd love to help with your search. What are the top things on your list — area, budget, and timing?\n\nReply here or grab a time that works and we'll go from there.\n\nNina" },
+      { tone: 'Value-first', subject: "A few homes you might like", body: "Hi " + first + ",\n\nBased on what you've been browsing, I can put together a short list of homes that fit — and flag new ones the moment they hit the market.\n\nWant me to send your first set this week?\n\nNina" },
+    ];
+  }
+  kwiqEmailCard(name, drafts) {
+    const card = document.createElement('div');
+    card.setAttribute('data-email-card', '');
+    card.__drafts = drafts;
+    card.style.cssText = 'display:flex;flex-direction:column;background:#fff;box-shadow:var(--shadow04);border-radius:12px;overflow:hidden;';
+    const tabs = document.createElement('div');
+    tabs.style.cssText = 'display:flex;gap:6px;flex-wrap:wrap;padding:11px 13px 2px;';
+    drafts.forEach((d, i) => {
+      const b = document.createElement('button');
+      b.setAttribute('data-email-tone', i);
+      b.textContent = d.tone;
+      const on = i === 0;
+      b.style.cssText = 'border:none;cursor:pointer;border-radius:999px;padding:6px 12px;font:var(--fw-bold) 12px/16px var(--font-sans);transition:background .12s,color .12s;' + (on ? 'background:var(--action);color:#fff;' : 'background:var(--kw-neutral-100);color:var(--label-secondary);');
+      tabs.appendChild(b);
+    });
+    const body = document.createElement('div');
+    body.style.cssText = 'padding:11px 14px 12px;display:flex;flex-direction:column;gap:7px;';
+    const to = document.createElement('div');
+    to.style.cssText = 'font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);';
+    to.innerHTML = '<span style="font-weight:700;color:var(--label-secondary);">To:</span> ' + name;
+    const subj = document.createElement('div');
+    subj.setAttribute('data-email-subject', '');
+    subj.style.cssText = 'font:var(--fw-bold) 15px/20px var(--font-sans);color:var(--label-primary);';
+    subj.textContent = drafts[0].subject;
+    const bodyText = document.createElement('div');
+    bodyText.setAttribute('data-email-body', '');
+    bodyText.style.cssText = 'font:var(--fw-regular) 14px/21px var(--font-sans);color:var(--label-secondary);white-space:pre-wrap;border-top:1px solid var(--divider);padding-top:9px;margin-top:2px;';
+    bodyText.textContent = drafts[0].body;
+    body.appendChild(to); body.appendChild(subj); body.appendChild(bodyText);
+    const foot = document.createElement('div');
+    foot.style.cssText = 'display:flex;gap:8px;padding:0 14px 13px;';
+    const use = document.createElement('button');
+    use.setAttribute('data-email-use', '');
+    use.textContent = 'Use this draft';
+    use.style.cssText = 'border:none;cursor:pointer;border-radius:8px;padding:9px 16px;font:var(--fw-bold) 13px/17px var(--font-sans);background:var(--action);color:#fff;';
+    foot.appendChild(use);
+    card.appendChild(tabs); card.appendChild(body); card.appendChild(foot);
+    return card;
+  }
+  kwiqMakeEmailDraft(name) {
+    const col = document.createElement('div');
+    col.style.cssText = 'display:flex;flex-direction:column;gap:10px;flex:1;min-width:0;';
+    const intro = document.createElement('div');
+    intro.style.cssText = 'background:#fff;box-shadow:var(--shadow04);color:var(--label-primary);padding:11px 15px;border-radius:4px 16px 16px 16px;font:var(--fw-regular) 14px/20px var(--font-sans);';
+    intro.textContent = "Here are a few drafts for " + name + " — pick the tone that fits. You can tweak any of them before sending:";
+    col.appendChild(intro);
+    col.appendChild(this.kwiqEmailCard(name, this.kwiqEmailDrafts(name)));
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;gap:10px;align-items:flex-start;align-self:stretch;';
+    const av = document.createElement('span');
+    av.style.cssText = 'width:28px;height:28px;flex:none;border-radius:8px;background:linear-gradient(135deg,#00b4d2,#006c84);display:flex;align-items:center;justify-content:center;margin-top:2px;';
+    av.innerHTML = this.kwiqSparkle();
+    row.appendChild(av); row.appendChild(col);
+    return row;
+  }
+  kwiqEmailDraft(name) {
+    this.kwiqEnterChat();
+    this.kwiqRunLoader(this.kwiqLoaderLines('email'), 1600, () => {
+      this.kwiqMsgs().appendChild(this.kwiqMakeEmailDraft(name));
+    });
+  }
+  kwiqEmailPick(el) {
+    const card = el.closest('[data-email-card]');
+    if (!card || !card.__drafts) return;
+    const idx = +el.getAttribute('data-email-tone');
+    const d = card.__drafts[idx];
+    if (!d) return;
+    card.querySelector('[data-email-subject]').textContent = d.subject;
+    card.querySelector('[data-email-body]').textContent = d.body;
+    card.querySelectorAll('[data-email-tone]').forEach((c, i) => {
+      const on = i === idx;
+      c.style.background = on ? 'var(--action)' : 'var(--kw-neutral-100)';
+      c.style.color = on ? '#fff' : 'var(--label-secondary)';
+    });
+  }
+
+  componentDidMount() { this.applyProps(); this.wire(); }
+  componentDidUpdate() { this.applyProps(); }
+  renderVals() { return {}; }
+}
+</script>
+
+
+</body></html>

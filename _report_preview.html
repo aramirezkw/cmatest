@@ -1,0 +1,290 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>/* ============================================================
+   kw XDS Design System — Colors & Type Foundations
+   Source: XDS-Master.fig (Color-Tokens, Typography pages) +
+   XDS Foundations.pdf. Light theme is the default (applets);
+   dark theme (.xds-dark) is used for Command shell/console chrome.
+   ============================================================ */
+
+/* ---------- Fonts ---------- */
+/* Mulish — sole interface font (Vernon Adams, via Google Fonts).
+   Shipped here as a variable TTF. IBM Plex Mono is the monospace
+   companion; IBM Plex Sans is used in design documentation only. */
+@font-face {
+  font-family: "Mulish";
+  src: url("71aa38b4-06b5-40ca-bf82-d0de6159d859") format("truetype");
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mulish";
+  src: url("c3d3d4cc-da21-4ccb-ad29-347afe58e67a") format("truetype");
+  font-weight: 200 1000;
+  font-style: italic;
+  font-display: swap;
+}
+/* IBM Plex Mono / Sans expected from Google Fonts CDN:
+   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet"> */
+
+:root {
+  /* ============================================================
+     RAW PALETTE — 8 palettes (2 core, 6 supplementary).
+     These are the underlying hues; prefer the semantic tokens below.
+     ============================================================ */
+  /* Neutral (gray) — default UI, text, inactive */
+  --kw-neutral-900: rgb(40,43,51);    /* #282B33 labelPrimary */
+  --kw-neutral-800: rgb(43,43,51);    /* #2B2B33 shell base / shadow source */
+  --kw-neutral-700: rgb(61,66,77);    /* #3D424D labelSecondary / neutral.action */
+  --kw-neutral-500: rgb(108,114,126); /* #6C727E labelTertiary */
+  --kw-neutral-400: rgb(174,178,186);
+  --kw-neutral-300: rgb(200,203,208);
+  --kw-neutral-200: rgb(228,229,231); /* #E4E5E7 containerTinted */
+  --kw-neutral-100: rgb(247,247,248); /* #F7F7F8 pageBackground */
+  --kw-neutral-000: rgb(255,255,255); /* #FFFFFF containerBackground */
+  --kw-shell-bg:    rgb(23,24,28);    /* #17181C dark pageBackground */
+
+  /* System (teal) — PRIMARY accent: buttons, links, active elements */
+  --kw-system:        rgb(0,108,132);   /* #006C84 */
+  --kw-system-hover:  rgb(14,78,93);    /* #0E4E5D */
+  --kw-system-active: rgb(1,124,152);   /* #017C98 */
+  --kw-system-tint:   rgb(213,247,255); /* #D5F7FF */
+
+  /* Red — danger / destructive / error */
+  --kw-red:        rgb(197,5,11);    /* #C5050B */
+  --kw-red-hover:  rgb(129,9,32);    /* #810920 */
+  --kw-red-active: rgb(222,33,33);
+  --kw-red-tint:   rgb(252,220,221);
+
+  /* Orange — warning */
+  --kw-orange:        rgb(167,59,6);  /* #A73B06 */
+  --kw-orange-hover:  rgb(119,49,15);
+  --kw-orange-tint:   rgb(254,223,207);
+
+  /* Yellow — pending / draft / in progress */
+  --kw-yellow:        rgb(153,94,0);  /* #995E00 */
+  --kw-yellow-hover:  rgb(112,69,0);
+  --kw-yellow-tint:   rgb(255,237,201);
+
+  /* Green — success */
+  --kw-green:        rgb(2,110,36);   /* #026E24 */
+  --kw-green-hover:  rgb(11,76,31);
+  --kw-green-tint:   rgb(214,242,223);
+
+  /* Blue — informative / low-stakes alerts */
+  --kw-blue:        rgb(15,94,173);   /* #0F5EAD */
+  --kw-blue-hover:  rgb(29,70,112);
+  --kw-blue-tint:   rgb(217,239,255);
+
+  /* Purple — help / support / onboarding */
+  --kw-purple:        rgb(103,48,180); /* #6730B4 */
+  --kw-purple-hover:  rgb(77,46,120);
+  --kw-purple-tint:   rgb(239,232,251);
+
+  /* Brand */
+  --kw-brand-red: #CE011F; /* kw logo square */
+
+  /* ============================================================
+     SEMANTIC TOKENS — LIGHT THEME (default; applets)
+     Use these in product UI, not the raw palette.
+     ============================================================ */
+  /* Labels / text */
+  --label-primary:   rgb(40,43,51);
+  --label-secondary: rgb(61,66,77);
+  --label-tertiary:  rgb(108,114,126);
+  --label-inverse:   rgb(255,255,255);
+
+  /* Backgrounds */
+  --page-background:        rgb(247,247,248);
+  --container-background:   rgb(255,255,255);
+  --container-tinted:       rgb(228,229,231);
+  --container-tinted-inverse: rgb(61,66,77);
+
+  /* Lines */
+  --outline:  rgba(61,66,77,0.2);
+  --divider:  rgba(43,43,51,0.1);
+
+  /* Actions — default palette is SYSTEM (teal) */
+  --action:               rgb(0,108,132);
+  --action-hover:         rgb(14,78,93);
+  --action-hover-fill:    rgba(0,108,132,0.1);
+  --action-active:        rgb(1,124,152);
+  --action-active-fill:   rgba(0,108,132,0.2);
+  --action-focus-outline: rgba(0,108,132,0.3);
+
+  /* Neutral actions (some buttons/inputs) */
+  --action-neutral:        rgb(61,66,77);
+  --action-neutral-hover:  rgb(40,43,51);
+  --action-neutral-active: rgb(87,94,107);
+
+  /* Overlays (neutral only) */
+  --overlay-darken:  rgba(43,43,51,0.6);
+  --overlay-lighten: rgba(247,247,248,0.6);
+
+  /* Semantic status (label-strength values, light theme) */
+  --status-danger:  rgb(197,5,11);
+  --status-warning: rgb(167,59,6);
+  --status-pending: rgb(153,94,0);
+  --status-success: rgb(2,110,36);
+  --status-info:    rgb(15,94,173);
+  --status-help:    rgb(103,48,180);
+
+  /* ============================================================
+     ELEVATION — container & bar shadows (light theme)
+     ============================================================ */
+  --shadow04: 0px 2px 4px 0px rgba(43,43,51,0.05), 0px 0px 1px 0px rgba(43,43,51,0.4);
+  --shadow12: 0px 6px 12px 0px rgba(43,43,51,0.05), 0px 3px 6px 0px rgba(43,43,51,0.05), 0px 0px 1px 0px rgba(43,43,51,0.2);
+  --shadow32: 0px 16px 32px 0px rgba(43,43,51,0.1), 0px 8px 16px 0px rgba(43,43,51,0.1), 0px 2px 4px 0px rgba(43,43,51,0.1), 0px 0px 1px 0px rgba(43,43,51,0.4);
+  --shadow04-inset: inset 0px 2px 4px 0px rgba(43,43,51,0.05), inset 0px 0px 1px 0px rgba(43,43,51,0.4);
+  --bar-header: 0px 1px 0px 0px rgba(43,43,51,0.1);
+  --bar-footer: 0px -1px 0px 0px rgba(43,43,51,0.1);
+  --bar-elevated: 0px 0px 12px 0px rgba(43,43,51,0.08), 0px 0px 6px 0px rgba(43,43,51,0.06), 0px 0px 1px 0px rgba(43,43,51,0.4);
+  --shell-bar: 0px 2px 12px 0px rgba(0,0,0,0.15), 0px 1px 6px 0px rgba(0,0,0,0.15), 0px 0px 1px 0px rgba(0,0,0,0.8);
+
+  /* ============================================================
+     SPACING — 8px base unit (4px half-step)
+     ============================================================ */
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 48px;
+  --space-9: 64px;
+  --grid-gutter: 16px;
+  --grid-padding: 16px;
+
+  /* ============================================================
+     RADII — components use small radii (4px default)
+     ============================================================ */
+  --radius-sm: 2px;
+  --radius-md: 4px;   /* buttons, inputs, chips, default */
+  --radius-lg: 8px;   /* cards, larger containers */
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  /* ============================================================
+     TYPOGRAPHY — families
+     ============================================================ */
+  --font-sans: "Mulish", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-docs: "IBM Plex Sans", system-ui, sans-serif; /* documentation only */
+
+  /* Weights */
+  --fw-regular: 400;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+}
+
+/* ============================================================
+   DARK THEME — Command shell / console chrome (.xds-dark)
+   ============================================================ */
+.xds-dark {
+  --label-primary:   rgb(247,247,248);
+  --label-secondary: rgb(200,203,208);
+  --label-tertiary:  rgb(145,150,161);
+  --label-inverse:   rgb(23,24,28);
+
+  --page-background:      rgb(23,24,28);
+  --container-background: rgb(40,43,51);
+  --container-tinted:     rgb(61,66,77);
+  --container-tinted-inverse: rgb(200,203,208);
+
+  --outline:  rgba(200,203,208,0.3);
+  --divider:  rgba(174,178,186,0.2);
+
+  --action:               rgb(88,216,245);
+  --action-hover:         rgb(213,247,255);
+  --action-hover-fill:    rgba(88,216,245,0.2);
+  --action-active:        rgb(12,173,211);
+  --action-active-fill:   rgba(88,216,245,0.3);
+  --action-focus-outline: rgba(88,216,245,0.4);
+
+  --action-neutral:        rgb(200,203,208);
+  --action-neutral-hover:  rgb(228,229,231);
+  --action-neutral-active: rgb(174,178,186);
+
+  --overlay-darken:  rgba(0,0,0,0.6);
+  --overlay-lighten: rgba(40,43,51,0.6);
+
+  --status-danger:  rgb(255,134,134);
+  --status-warning: rgb(254,155,103);
+  --status-pending: rgb(255,206,108);
+  --status-success: rgb(113,218,145);
+  --status-info:    rgb(131,196,254);
+  --status-help:    rgb(199,159,255);
+
+  --shadow04: 0px 2px 4px 0px rgba(0,0,0,0.2), 0px 0px 1px 0px rgba(0,0,0,0.6);
+  --shadow12: 0px 6px 12px 0px rgba(0,0,0,0.2), 0px 3px 6px 0px rgba(0,0,0,0.2), 0px 0px 1px 0px rgba(0,0,0,0.6);
+  --shadow32: 0px 16px 32px 0px rgba(0,0,0,0.3), 0px 8px 16px 0px rgba(0,0,0,0.3), 0px 0px 1px 0px rgba(0,0,0,0.8);
+}
+
+/* ============================================================
+   SEMANTIC TYPE STYLES — XDS scale (fontSize tokens combine
+   size + line-height). Default interface weight is Bold for
+   titles/labels; body is Regular. All map to Mulish.
+   ============================================================ */
+.xds-display-lg      { font: var(--fw-regular) 48px/56px var(--font-sans); }
+.xds-display-lg-bold { font: var(--fw-extrabold) 48px/56px var(--font-sans); }
+.xds-display-md      { font: var(--fw-regular) 40px/48px var(--font-sans); }
+.xds-display-md-bold { font: var(--fw-extrabold) 40px/48px var(--font-sans); }
+
+.xds-title-xl      { font: var(--fw-regular) 32px/40px var(--font-sans); }
+.xds-title-xl-bold { font: var(--fw-extrabold) 32px/40px var(--font-sans); }
+.xds-title-lg      { font: var(--fw-regular) 24px/32px var(--font-sans); }
+.xds-title-lg-bold { font: var(--fw-extrabold) 24px/32px var(--font-sans); }  /* H1 */
+.xds-title-md      { font: var(--fw-regular) 20px/24px var(--font-sans); }
+.xds-title-md-bold { font: var(--fw-extrabold) 20px/24px var(--font-sans); }  /* H2 */
+.xds-title-sm      { font: var(--fw-regular) 16px/20px var(--font-sans); }
+.xds-title-sm-bold { font: var(--fw-bold) 16px/20px var(--font-sans); }       /* H3 */
+
+.xds-subtitle-lg { font: var(--fw-bold) 16px/20px var(--font-sans); letter-spacing: 1.6px; text-transform: uppercase; }
+.xds-subtitle-md { font: var(--fw-bold) 12px/16px var(--font-sans); letter-spacing: 1.2px; text-transform: uppercase; } /* table headers */
+.xds-subtitle-sm { font: var(--fw-bold) 10px/12px var(--font-sans); letter-spacing: 1px;   text-transform: uppercase; }
+
+.xds-text-lg        { font: var(--fw-regular) 16px/24px var(--font-sans); }   /* intro text */
+.xds-text-lg-bold   { font: var(--fw-bold) 16px/24px var(--font-sans); }
+.xds-text-md        { font: var(--fw-regular) 14px/20px var(--font-sans); }   /* body, p, input, table data */
+.xds-text-md-bold   { font: var(--fw-bold) 14px/20px var(--font-sans); }      /* button & link labels, strong */
+.xds-text-sm        { font: var(--fw-regular) 12px/16px var(--font-sans); }   /* helper text, captions */
+.xds-text-sm-bold   { font: var(--fw-bold) 12px/16px var(--font-sans); }      /* chip & input labels, small buttons */
+.xds-text-xs        { font: var(--fw-regular) 10px/12px var(--font-sans); }   /* tiny labels (not body) */
+.xds-text-xs-bold   { font: var(--fw-bold) 10px/12px var(--font-sans); }
+
+/* Convenience semantic aliases */
+.xds-h1 { font: var(--fw-extrabold) 24px/32px var(--font-sans); color: var(--label-primary); }
+.xds-h2 { font: var(--fw-extrabold) 20px/24px var(--font-sans); color: var(--label-primary); }
+.xds-h3 { font: var(--fw-bold) 16px/20px var(--font-sans); color: var(--label-primary); }
+.xds-p  { font: var(--fw-regular) 14px/20px var(--font-sans); color: var(--label-secondary); }
+.xds-link { font: var(--fw-bold) 14px/20px var(--font-sans); color: var(--action); text-decoration: none; cursor: pointer; }
+.xds-link:hover { color: var(--action-hover); text-decoration: underline; }
+.xds-code { font: var(--fw-regular) 14px/20px var(--font-mono); }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;font-family:var(--font-sans);}
+  [data-dash-root] *::-webkit-scrollbar{width:10px;height:10px;}
+  [data-dash-root] *::-webkit-scrollbar-thumb{background:var(--kw-neutral-300);border-radius:8px;border:2px solid var(--page-background);}
+  @keyframes kwiqDot{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-4px);opacity:1}}
+  @keyframes kwiqSpin{to{transform:rotate(360deg)}}
+  @keyframes kwiqIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  [data-dash-root] [data-lead-action]:hover{background:var(--action) !important;color:#fff !important;}
+  [data-dash-root] [data-deck-overlay] [data-deck-nav]:hover{background:rgba(255,255,255,.3) !important;}
+  [data-dash-root] [data-body-row]{transition:margin-right .3s cubic-bezier(.4,0,.2,1);}
+  [data-dash-root] [data-kwiq-prompt]{transition:background .14s ease,color .14s ease,box-shadow .14s ease,transform .14s ease;}
+  [data-dash-root] [data-kwiq-prompt]:hover{background:var(--kw-system-tint) !important;color:var(--action) !important;box-shadow:var(--shadow04);transform:translateY(-1px);}
+  [data-dash-root] [data-kwiq-prompt]:active{transform:translateY(0);box-shadow:none;}
+  /* ---- Concierge AI surface ---- */
+  [data-dash-root] [data-kwiq-cbox]{transition:border-color .2s ease,box-shadow .2s ease;}
+  [data-dash-root] [data-kwiq-cbox]:focus-within{border-color:var(--action) !important;box-shadow:0 0 0 4px var(--action-hover-fill);}
+  [data-dash-root] [data-kwiq-ctx]{transition:background .16s ease,transform .16s ease;}
+  [data-dash-root] [data-kwiq-ctx]:hover{background:var(--kw-system-tint) !important;transform:translateY(-1px);}
+  [data-dash-root] [data-kwiq-voice]{transition:background .16s ease;}
+  [data-dash-root] [data-kwiq-voice]:hover{background:var(--kw-system-tint) !important;}
+  [data-dash-root] [data-kwiq-model]{transition:background .16s ease;}
+  [data-dash-root] [data-kwiq-model]:hover{background:var(--kw-neutral-100) !important;}
+  [data-dash-root] [data-kwiq-send]{transition:background .16s ease,transform .12s ease;}
+  [data-dash-root] [data-kwiq-send]:hover{background:var(--action-hover) !important;}
+  [data-dash-root] [data-kwiq-send]:active{transform:scale(.94);}
+</style><style>body{margin:0;background:var(--kw-neutral-200,#e4e5e7);padding:28px;font-family:Mulish,-apple-system,sans-serif;} .wrap{max-width:860px;margin:0 auto;display:flex;justify-content:center;}</style></head><body><div class="wrap"><div style="width:100%;max-width:820px;background:#fff;border-radius:14px;box-shadow:var(--shadow12);overflow:hidden;border-top:3px solid var(--action);"><div style="padding:26px 30px 22px;border-bottom:1px solid var(--divider);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;"><div><div style="font:var(--fw-extrabold) 12px/16px var(--font-sans);color:var(--action);text-transform:uppercase;letter-spacing:.08em;">KWIQ · Comparative Market Analysis</div><div style="margin-top:5px;font:var(--fw-extrabold) 28px/32px var(--font-sans);color:var(--label-primary);">1255 Kings Road</div><div style="margin-top:3px;font:var(--fw-regular) 13px/18px var(--font-sans);color:var(--label-secondary);">Austin, TX 78746 · 5 comparables · Sold</div></div><div style="text-align:right;"><div style="font:var(--fw-bold) 14px/18px var(--font-sans);color:var(--label-primary);">Nina Royals</div><div style="font:var(--fw-regular) 12px/17px var(--font-sans);color:var(--label-tertiary);">Royals Realtors<br>+1 (512) 465-1234<br>nina.royals@royalsrealtors.com<br>Prepared May 4, 2026</div></div></div><div style="padding:26px 30px 24px;border-bottom:1px solid var(--divider);"><div style="font:var(--fw-extrabold) 12px/16px var(--font-sans);letter-spacing:.07em;text-transform:uppercase;color:var(--label-tertiary);">Estimated market value</div><div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:6px;"><div style="font:var(--fw-extrabold) 44px/48px var(--font-sans);color:var(--label-primary);letter-spacing:-.01em;">$8.4M</div><span style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;background:var(--kw-green-tint);color:var(--kw-green);font:var(--fw-bold) 12px/16px var(--font-sans);">High confidence</span></div><div style="margin-top:20px;position:relative;height:8px;border-radius:999px;background:var(--kw-neutral-200);"><div style="position:absolute;left:0;right:0;top:0;bottom:0;border-radius:999px;background:var(--kw-system-tint);"></div><div style="position:absolute;left:50.0%;top:50%;width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid var(--action);transform:translate(-50%,-50%);box-shadow:var(--shadow04);"></div></div><div style="margin-top:8px;display:flex;justify-content:space-between;font:var(--fw-bold) 12px/16px var(--font-sans);color:var(--label-secondary);"><span>Low $7.9M</span><span>High $8.9M</span></div></div><div style="padding:0 30px;padding-top:24px;"><div style="font:var(--fw-extrabold) 12px/16px var(--font-sans);letter-spacing:.07em;text-transform:uppercase;color:var(--label-tertiary);margin-bottom:14px;">Subject property</div><div style="display:flex;gap:10px;flex-wrap:wrap;"><div style="flex:1;min-width:96px;text-align:center;padding:14px 10px;background:var(--kw-neutral-100);border-radius:10px;"><div style="font:var(--fw-extrabold) 20px/24px var(--font-sans);color:var(--label-primary);">5</div><div style="margin-top:3px;font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.04em;">Beds</div></div><div style="flex:1;min-width:96px;text-align:center;padding:14px 10px;background:var(--kw-neutral-100);border-radius:10px;"><div style="font:var(--fw-extrabold) 20px/24px var(--font-sans);color:var(--label-primary);">5.5</div><div style="margin-top:3px;font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.04em;">Baths</div></div><div style="flex:1;min-width:96px;text-align:center;padding:14px 10px;background:var(--kw-neutral-100);border-radius:10px;"><div style="font:var(--fw-extrabold) 20px/24px var(--font-sans);color:var(--label-primary);">5,400</div><div style="margin-top:3px;font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.04em;">Living area</div></div><div style="flex:1;min-width:96px;text-align:center;padding:14px 10px;background:var(--kw-neutral-100);border-radius:10px;"><div style="font:var(--fw-extrabold) 20px/24px var(--font-sans);color:var(--label-primary);">0.82</div><div style="margin-top:3px;font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.04em;">Lot (ac)</div></div><div style="flex:1;min-width:96px;text-align:center;padding:14px 10px;background:var(--kw-neutral-100);border-radius:10px;"><div style="font:var(--fw-extrabold) 20px/24px var(--font-sans);color:var(--label-primary);">2018</div><div style="margin-top:3px;font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.04em;">Year built</div></div><div style="flex:1;min-width:96px;text-align:center;padding:14px 10px;background:var(--kw-neutral-100);border-radius:10px;"><div style="font:var(--fw-extrabold) 20px/24px var(--font-sans);color:var(--label-primary);">3</div><div style="margin-top:3px;font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.04em;">Garage</div></div></div></div><div style="padding:0 30px;padding-top:26px;"><div style="font:var(--fw-extrabold) 12px/16px var(--font-sans);letter-spacing:.07em;text-transform:uppercase;color:var(--label-tertiary);margin-bottom:14px;">Local market · 78746</div><div style="display:flex;gap:10px;flex-wrap:wrap;"><div style="flex:1;min-width:150px;padding:15px 16px;border:1px solid var(--divider);border-radius:10px;"><div style="font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.05em;">Median $/sq ft</div><div style="margin-top:6px;font:var(--fw-extrabold) 22px/26px var(--font-sans);color:var(--label-primary);">$1,604</div><div style="margin-top:3px;font:var(--fw-bold) 12px/16px var(--font-sans);color:var(--kw-green);">+3.2% MoM</div></div><div style="flex:1;min-width:150px;padding:15px 16px;border:1px solid var(--divider);border-radius:10px;"><div style="font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.05em;">Median days on market</div><div style="margin-top:6px;font:var(--fw-extrabold) 22px/26px var(--font-sans);color:var(--label-primary);">38</div><div style="margin-top:3px;font:var(--fw-bold) 12px/16px var(--font-sans);color:var(--kw-green);">−6 vs. last qtr</div></div><div style="flex:1;min-width:150px;padding:15px 16px;border:1px solid var(--divider);border-radius:10px;"><div style="font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.05em;">List-to-sold ratio</div><div style="margin-top:6px;font:var(--fw-extrabold) 22px/26px var(--font-sans);color:var(--label-primary);">98.4%</div><div style="margin-top:3px;font:var(--fw-bold) 12px/16px var(--font-sans);color:var(--kw-green);">+0.6%</div></div><div style="flex:1;min-width:150px;padding:15px 16px;border:1px solid var(--divider);border-radius:10px;"><div style="font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.05em;">Active inventory</div><div style="margin-top:6px;font:var(--fw-extrabold) 22px/26px var(--font-sans);color:var(--label-primary);">27 homes</div><div style="margin-top:3px;font:var(--fw-bold) 12px/16px var(--font-sans);color:var(--kw-red);">−4 MoM</div></div><div style="flex:1;min-width:150px;padding:15px 16px;border:1px solid var(--divider);border-radius:10px;"><div style="font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.05em;">Median sold price</div><div style="margin-top:6px;font:var(--fw-extrabold) 22px/26px var(--font-sans);color:var(--label-primary);">$8.4M</div><div style="margin-top:3px;font:var(--fw-bold) 12px/16px var(--font-sans);color:var(--kw-green);">+5.1% YoY</div></div><div style="flex:1;min-width:150px;padding:15px 16px;border:1px solid var(--divider);border-radius:10px;"><div style="font:var(--fw-regular) 11px/14px var(--font-sans);color:var(--label-tertiary);text-transform:uppercase;letter-spacing:.05em;">Months of supply</div><div style="margin-top:6px;font:var(--fw-extrabold) 22px/26px var(--font-sans);color:var(--label-primary);">3.1</div><div style="margin-top:3px;font:var(--fw-bold) 12px/16px var(--font-sans);color:var(--label-tertiary);">Balanced market</div></div></div></div><div style="padding:0 30px;padding-top:26px;"><div style="font:var(--fw-extrabold) 12px/16px var(--font-sans);letter-spacing:.07em;text-transform:uppercase;color:var(--label-tertiary);margin-bottom:14px;">Price positioning</div><div style="padding:6px 4px 4px;border:1px solid var(--divider);border-radius:12px;"><svg viewBox="0 0 760 110" width="100%" style="display:block;"><line x1="46" y1="64" x2="714" y2="64" stroke="var(--divider)" stroke-width="2"></line><rect x="261.5" y="61" width="433.3" height="6" rx="3" fill="var(--kw-system-tint)"></rect><circle cx="714.0" cy="64" r="6.5" fill="var(--action)" opacity="0.85"></circle><circle cx="587.4" cy="64" r="6.5" fill="var(--action)" opacity="0.85"></circle><circle cx="46.0" cy="64" r="6.5" fill="var(--action)" opacity="0.85"></circle><circle cx="583.8" cy="64" r="6.5" fill="var(--action)" opacity="0.85"></circle><circle cx="478.1" cy="64" r="6.5" fill="var(--action)" opacity="0.85"></circle><line x1="478.1" y1="30" x2="478.1" y2="86" stroke="var(--action)" stroke-width="2.5" stroke-dasharray="4 3"></line><circle cx="478.1" cy="64" r="8" fill="#fff" stroke="var(--action)" stroke-width="3"></circle><text x="478.1" y="22" text-anchor="middle" font-family="var(--font-sans)" font-size="12" font-weight="800" fill="var(--action)">Subject est. $8.4M</text><text x="46" y="100" text-anchor="start" font-family="var(--font-sans)" font-size="11" fill="var(--label-tertiary)">$7.4M</text><text x="714" y="100" text-anchor="end" font-family="var(--font-sans)" font-size="11" fill="var(--label-tertiary)">$8.94M</text></svg></div><div style="margin-top:8px;font:var(--fw-regular) 12px/18px var(--font-sans);color:var(--label-tertiary);">Each dot is a comparable’s price after adjustments. The dashed line marks the subject’s estimated value.</div></div><div style="padding:0 30px;padding-top:26px;"><div style="font:var(--fw-extrabold) 12px/16px var(--font-sans);letter-spacing:.07em;text-transform:uppercase;color:var(--label-tertiary);margin-bottom:14px;">Comparable sales · adjusted</div><div style="display:flex;flex-direction:column;gap:12px;"><div style="display:flex;gap:14px;padding:16px;border:1px solid var(--divider);border-radius:12px;background:#fff;flex-wrap:wrap;"><span style="width:84px;height:84px;flex:none;border-radius:10px;background:var(--kw-neutral-100);display:flex;align-items:center;justify-content:center;position:relative;"><span style="position:absolute;top:6px;left:6px;width:22px;height:22px;border-radius:50%;background:var(--action);color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 11px/1 var(--font-sans);">1</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--label-tertiary)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span><div style="flex:1;min-width:170px;display:flex;flex-direction:column;gap:7px;"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;"><div style="font:var(--fw-bold) 15px/19px var(--font-sans);color:var(--label-primary);">208 Ashworth Drive</div><span style="padding:3px 10px;border-radius:999px;background:var(--kw-system-tint);color:var(--action);font:var(--fw-bold) 11px/16px var(--font-sans);">Sold</span></div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);">Austin, TX 78746 · Mar 2026</div><div style="font:var(--fw-extrabold) 19px/24px var(--font-sans);color:var(--label-primary);">$9,250,000</div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-secondary);">6 bd · 7 ba · 6,662 sq ft · 0.40 ac</div></div><div style="width:210px;flex:1 1 180px;min-width:170px;border-left:1px solid var(--divider);padding-left:14px;"><div style="font:var(--fw-bold) 11px/16px var(--font-sans);text-transform:uppercase;letter-spacing:.05em;color:var(--label-tertiary);margin-bottom:6px;">Adjustments</div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Living area</span><span style="font-weight:700;color:var(--kw-red);">−$378,600</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Beds</span><span style="font-weight:700;color:var(--kw-red);">−$50,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Baths</span><span style="font-weight:700;color:var(--kw-red);">−$45,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Lot size</span><span style="font-weight:700;color:var(--kw-green);">+$168,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;margin-top:7px;padding-top:7px;border-top:1px solid var(--divider);font:var(--fw-bold) 13px/18px var(--font-sans);color:var(--label-primary);"><span>Adjusted</span><span>$8,944,400</span></div></div></div><div style="display:flex;gap:14px;padding:16px;border:1px solid var(--divider);border-radius:12px;background:#fff;flex-wrap:wrap;"><span style="width:84px;height:84px;flex:none;border-radius:10px;background:var(--kw-neutral-100);display:flex;align-items:center;justify-content:center;position:relative;"><span style="position:absolute;top:6px;left:6px;width:22px;height:22px;border-radius:50%;background:var(--action);color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 11px/1 var(--font-sans);">2</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--label-tertiary)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span><div style="flex:1;min-width:170px;display:flex;flex-direction:column;gap:7px;"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;"><div style="font:var(--fw-bold) 15px/19px var(--font-sans);color:var(--label-primary);">3111 Stratford Place</div><span style="padding:3px 10px;border-radius:999px;background:var(--kw-system-tint);color:var(--action);font:var(--fw-bold) 11px/16px var(--font-sans);">Sold</span></div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);">Austin, TX 78746 · Feb 2026</div><div style="font:var(--fw-extrabold) 19px/24px var(--font-sans);color:var(--label-primary);">$8,995,000</div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-secondary);">5 bd · 6 ba · 6,026 sq ft · 1.17 ac</div></div><div style="width:210px;flex:1 1 180px;min-width:170px;border-left:1px solid var(--divider);padding-left:14px;"><div style="font:var(--fw-bold) 11px/16px var(--font-sans);text-transform:uppercase;letter-spacing:.05em;color:var(--label-tertiary);margin-bottom:6px;">Adjustments</div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Living area</span><span style="font-weight:700;color:var(--kw-red);">−$187,800</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Baths</span><span style="font-weight:700;color:var(--kw-red);">−$15,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Lot size</span><span style="font-weight:700;color:var(--kw-red);">−$140,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;margin-top:7px;padding-top:7px;border-top:1px solid var(--divider);font:var(--fw-bold) 13px/18px var(--font-sans);color:var(--label-primary);"><span>Adjusted</span><span>$8,652,200</span></div></div></div><div style="display:flex;gap:14px;padding:16px;border:1px solid var(--divider);border-radius:12px;background:#fff;flex-wrap:wrap;"><span style="width:84px;height:84px;flex:none;border-radius:10px;background:var(--kw-neutral-100);display:flex;align-items:center;justify-content:center;position:relative;"><span style="position:absolute;top:6px;left:6px;width:22px;height:22px;border-radius:50%;background:var(--action);color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 11px/1 var(--font-sans);">3</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--label-tertiary)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span><div style="flex:1;min-width:170px;display:flex;flex-direction:column;gap:7px;"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;"><div style="font:var(--fw-bold) 15px/19px var(--font-sans);color:var(--label-primary);">101 Stratford Reserve</div><span style="padding:3px 10px;border-radius:999px;background:var(--kw-system-tint);color:var(--action);font:var(--fw-bold) 11px/16px var(--font-sans);">Sold</span></div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);">Austin, TX 78746 · Jan 2026</div><div style="font:var(--fw-extrabold) 19px/24px var(--font-sans);color:var(--label-primary);">$7,950,000</div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-secondary);">6 bd · 6 ba · 6,021 sq ft · 1.56 ac</div></div><div style="width:210px;flex:1 1 180px;min-width:170px;border-left:1px solid var(--divider);padding-left:14px;"><div style="font:var(--fw-bold) 11px/16px var(--font-sans);text-transform:uppercase;letter-spacing:.05em;color:var(--label-tertiary);margin-bottom:6px;">Adjustments</div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Living area</span><span style="font-weight:700;color:var(--kw-red);">−$186,300</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Beds</span><span style="font-weight:700;color:var(--kw-red);">−$50,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Baths</span><span style="font-weight:700;color:var(--kw-red);">−$15,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Lot size</span><span style="font-weight:700;color:var(--kw-red);">−$296,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;margin-top:7px;padding-top:7px;border-top:1px solid var(--divider);font:var(--fw-bold) 13px/18px var(--font-sans);color:var(--label-primary);"><span>Adjusted</span><span>$7,402,700</span></div></div></div><div style="display:flex;gap:14px;padding:16px;border:1px solid var(--divider);border-radius:12px;background:#fff;flex-wrap:wrap;"><span style="width:84px;height:84px;flex:none;border-radius:10px;background:var(--kw-neutral-100);display:flex;align-items:center;justify-content:center;position:relative;"><span style="position:absolute;top:6px;left:6px;width:22px;height:22px;border-radius:50%;background:var(--action);color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 11px/1 var(--font-sans);">4</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--label-tertiary)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span><div style="flex:1;min-width:170px;display:flex;flex-direction:column;gap:7px;"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;"><div style="font:var(--fw-bold) 15px/19px var(--font-sans);color:var(--label-primary);">2308 Bridle Path</div><span style="padding:3px 10px;border-radius:999px;background:var(--kw-yellow-tint);color:var(--kw-yellow-hover);font:var(--fw-bold) 11px/16px var(--font-sans);">Pending</span></div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);">Austin, TX 78703 · Listed</div><div style="font:var(--fw-extrabold) 19px/24px var(--font-sans);color:var(--label-primary);">$8,750,000</div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-secondary);">5 bd · 6 ba · 5,810 sq ft · 0.74 ac</div></div><div style="width:210px;flex:1 1 180px;min-width:170px;border-left:1px solid var(--divider);padding-left:14px;"><div style="font:var(--fw-bold) 11px/16px var(--font-sans);text-transform:uppercase;letter-spacing:.05em;color:var(--label-tertiary);margin-bottom:6px;">Adjustments</div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Living area</span><span style="font-weight:700;color:var(--kw-red);">−$123,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Baths</span><span style="font-weight:700;color:var(--kw-red);">−$15,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Lot size</span><span style="font-weight:700;color:var(--kw-green);">+$32,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;margin-top:7px;padding-top:7px;border-top:1px solid var(--divider);font:var(--fw-bold) 13px/18px var(--font-sans);color:var(--label-primary);"><span>Adjusted</span><span>$8,644,000</span></div></div></div><div style="display:flex;gap:14px;padding:16px;border:1px solid var(--divider);border-radius:12px;background:#fff;flex-wrap:wrap;"><span style="width:84px;height:84px;flex:none;border-radius:10px;background:var(--kw-neutral-100);display:flex;align-items:center;justify-content:center;position:relative;"><span style="position:absolute;top:6px;left:6px;width:22px;height:22px;border-radius:50%;background:var(--action);color:#fff;display:flex;align-items:center;justify-content:center;font:var(--fw-extrabold) 11px/1 var(--font-sans);">5</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--label-tertiary)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span><div style="flex:1;min-width:170px;display:flex;flex-direction:column;gap:7px;"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;"><div style="font:var(--fw-bold) 15px/19px var(--font-sans);color:var(--label-primary);">400 Academy Drive</div><span style="padding:3px 10px;border-radius:999px;background:var(--kw-green-tint);color:var(--kw-green);font:var(--fw-bold) 11px/16px var(--font-sans);">Active</span></div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-tertiary);">Austin, TX 78746 · Active</div><div style="font:var(--fw-extrabold) 19px/24px var(--font-sans);color:var(--label-primary);">$8,400,000</div><div style="font:var(--fw-regular) 12px/16px var(--font-sans);color:var(--label-secondary);">5 bd · 5 ba · 5,210 sq ft · 1.00 ac</div></div><div style="width:210px;flex:1 1 180px;min-width:170px;border-left:1px solid var(--divider);padding-left:14px;"><div style="font:var(--fw-bold) 11px/16px var(--font-sans);text-transform:uppercase;letter-spacing:.05em;color:var(--label-tertiary);margin-bottom:6px;">Adjustments</div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Living area</span><span style="font-weight:700;color:var(--kw-green);">+$57,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Baths</span><span style="font-weight:700;color:var(--kw-green);">+$15,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;font:var(--fw-regular) 12px/19px var(--font-sans);"><span style="color:var(--label-tertiary);">Lot size</span><span style="font-weight:700;color:var(--kw-red);">−$72,000</span></div><div style="display:flex;justify-content:space-between;gap:10px;margin-top:7px;padding-top:7px;border-top:1px solid var(--divider);font:var(--fw-bold) 13px/18px var(--font-sans);color:var(--label-primary);"><span>Adjusted</span><span>$8,400,000</span></div></div></div></div></div><div style="padding:0 30px;padding-top:26px;padding-bottom:6px;"><div style="padding:22px 24px;background:var(--kw-system-tint);border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;"><div><div style="font:var(--fw-extrabold) 12px/16px var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--action);">Suggested list price</div><div style="margin-top:4px;font:var(--fw-extrabold) 34px/38px var(--font-sans);color:var(--label-primary);">$8.32M</div></div><div style="flex:1;min-width:240px;font:var(--fw-regular) 13px/19px var(--font-sans);color:var(--label-secondary);">Based on 5 adjusted comparables, list between <b>$7.9M</b> and <b>$8.4M</b> to draw competitive interest while protecting your seller’s equity.</div></div></div><div style="padding:22px 30px 26px;font:var(--fw-regular) 12px/18px var(--font-sans);color:var(--label-tertiary);">Prepared by Nina Royals · Royals Realtors on May 4, 2026. Estimates derive from adjusted comparable sales and public records; they are not an appraisal. Figures are illustrative.</div></div></div></body></html>

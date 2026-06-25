@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KWIQ · Concept 3 — Warm Concierge</title>
+<!-- XDS tokens: system.action/Hover/Active/containerTinted/divider, neutral.label*, neutral.pageBackground/
+     containerBackground; Mulish only (warmth via ExtraBold + tinted hero, NO serif per XDS); 8px spacing; button radius 4px.
+     Extension: subtle teal-tint hero gradient derived from system.containerTinted — flagged as surface tint. -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400..900;1,400..900&display=swap');
+:root{
+  --system-action:#006C84;--system-action-hover:#0E4E5D;--system-active:#017C98;
+  --system-tinted:#D5F7FF;--system-divider:rgba(0,108,132,.1);
+  --label-primary:#282B33;--label-secondary:#3D424D;--label-tertiary:#6C727E;
+  --page-bg:#F7F7F8;--container-bg:#FFFFFF;--divider:rgba(43,43,51,.1);
+  --space-2:8px;--space-3:12px;--space-4:16px;--space-6:24px;--space-8:32px;--space-12:48px;
+  --shadow12:0 6px 16px rgba(40,43,51,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body,*{font-family:'Mulish',sans-serif}
+body{background:var(--page-bg);color:var(--label-primary);-webkit-font-smoothing:antialiased}
+.panel{max-width:860px;margin:0 auto;min-height:100vh;background:var(--container-bg);display:flex;flex-direction:column;position:relative}
+.chrome{height:56px;display:flex;align-items:center;justify-content:flex-end;gap:4px;padding:0 var(--space-4);position:relative;z-index:2}
+.icon-btn{width:36px;height:36px;border-radius:4px;display:grid;place-items:center;background:none;border:none;color:var(--label-secondary);cursor:pointer;transition:background .18s,color .18s}
+.icon-btn:hover{background:rgba(61,66,77,.06);color:var(--label-primary)}
+/* warm tinted hero */
+.hero{position:absolute;inset:0 0 auto 0;height:360px;background:linear-gradient(160deg,var(--system-tinted) 0%,rgba(213,247,255,.25) 45%,transparent 80%);z-index:0}
+.surface{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--space-8) var(--space-6) var(--space-12)}
+.center{width:100%;max-width:620px;text-align:center}
+.avatar{width:64px;height:64px;border-radius:999px;background:#fff;color:var(--system-action);display:grid;place-items:center;font-weight:800;font-size:24px;margin:0 auto var(--space-4);box-shadow:var(--shadow12);border:2px solid #fff}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--system-action);margin-bottom:var(--space-2)}
+h1{font-size:34px;line-height:42px;font-weight:900;letter-spacing:-.02em}
+.sub{font-size:18px;line-height:26px;font-weight:600;color:var(--label-secondary);margin-top:var(--space-3);max-width:440px;margin-left:auto;margin-right:auto}
+@media(max-width:560px){h1{font-size:26px;line-height:34px}}
+/* composer — emphasize add context */
+.composer{margin-top:var(--space-8);border:1.5px solid var(--divider);border-radius:18px;background:var(--container-bg);box-shadow:var(--shadow12);text-align:left;transition:border-color .2s,box-shadow .2s}
+.composer:focus-within{border-color:var(--system-action);box-shadow:0 0 0 4px var(--system-divider)}
+.composer .field{display:flex;align-items:center;padding:var(--space-4) var(--space-4) var(--space-3)}
+.composer input{flex:1;border:none;outline:none;font-size:16px;line-height:24px;color:var(--label-primary);background:none}
+.composer input::placeholder{color:var(--label-tertiary)}
+.composer .rail{display:flex;align-items:center;justify-content:space-between;padding:0 var(--space-3) var(--space-3)}
+.rail-left,.rail-right{display:flex;align-items:center;gap:var(--space-2)}
+.context-btn{display:inline-flex;align-items:center;gap:8px;background:var(--system-tinted);color:var(--system-action);border:none;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:800;cursor:pointer;transition:background .18s,transform .18s}
+.context-btn:hover{background:#bfeefa;transform:translateY(-1px)}
+.model{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--label-secondary);background:none;border:none;padding:6px 8px;border-radius:4px;cursor:pointer;transition:background .18s}
+.model:hover{background:rgba(61,66,77,.06)}
+.voice{width:36px;height:36px;border-radius:4px;border:none;background:none;color:var(--system-action);display:grid;place-items:center;cursor:pointer;transition:background .18s}
+.voice:hover{background:var(--system-tinted)}
+.send{width:36px;height:36px;border-radius:4px;border:none;background:var(--system-action);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .18s,transform .18s}
+.send:hover{background:var(--system-action-hover)}.send:active{transform:scale(.94)}
+/* slim chip row */
+.chips{display:flex;flex-wrap:wrap;gap:var(--space-2);justify-content:center;margin-top:var(--space-6)}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--container-bg);border:1px solid var(--divider);color:var(--label-secondary);font-size:13.5px;font-weight:700;cursor:pointer;transition:background .18s,border-color .18s,color .18s,transform .18s;opacity:0;transform:translateY(8px);animation:chipIn .5s cubic-bezier(.16,1,.3,1) forwards}
+.chip:hover{background:var(--system-tinted);border-color:var(--system-action);color:var(--system-action);transform:translateY(-2px)}
+.chip svg{color:var(--system-action);flex:none}
+@keyframes chipIn{to{opacity:1;transform:none}}
+.fade{opacity:0;animation:chipIn .6s cubic-bezier(.16,1,.3,1) forwards}
+</style>
+</head>
+<body>
+<div class="panel">
+  <div class="hero"></div>
+  <div class="chrome">
+    <button class="icon-btn" aria-label="More"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg></button>
+    <button class="icon-btn" aria-label="Open in new window"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></button>
+    <button class="icon-btn" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+
+  <div class="surface">
+    <div class="center">
+      <div class="avatar fade">N</div>
+      <div class="eyebrow fade" style="animation-delay:.05s" id="eyebrow">Good morning</div>
+      <h1 class="fade" style="animation-delay:.1s">Good morning, Nina.</h1>
+      <div class="sub fade" style="animation-delay:.16s">I've got your pipeline and calendar ready. What would you like to tackle first?</div>
+
+      <div class="composer fade" style="animation-delay:.22s">
+        <div class="field">
+          <input id="prompt" placeholder="Tell me what you need…" />
+        </div>
+        <div class="rail">
+          <div class="rail-left">
+            <button class="context-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Add a tab or file</button>
+          </div>
+          <div class="rail-right">
+            <button class="model">KWIQ Flash <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+            <button class="voice" aria-label="Voice input"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+            <button class="send" aria-label="Send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="chips" id="chips"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ICONS={
+  cube:'<path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/>',
+  user:'<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  pencil:'<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+  list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+  folder:'<path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9L9.6 3.9A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/>'
+};
+const PROMPTS=[['cube','Summarize my pipeline'],['user','Who should I call today?'],['pencil','Draft a listing'],['list','Follow up with leads'],['folder','Analyze a comp']];
+const wrap=document.getElementById('chips');
+PROMPTS.forEach((p,i)=>{
+  const b=document.createElement('button');b.className='chip';b.style.animationDelay=(0.3+i*0.05)+'s';
+  b.innerHTML=`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[p[0]]}</svg>${p[1]}`;
+  b.onclick=()=>{const f=document.getElementById('prompt');f.value=p[1];f.focus();};
+  wrap.appendChild(b);
+});
+// time-of-day greeting (static date safe: derive from a fixed demo hour)
+const hr=new Date().getHours? new Date().getHours():9;
+let g='Good morning';if(hr>=12&&hr<17)g='Good afternoon';else if(hr>=17)g='Good evening';
+document.getElementById('eyebrow').textContent=g;
+document.querySelector('h1').textContent=g+', Nina.';
+</script>
+</body>
+</html>
